@@ -1,0 +1,169 @@
+
+body {
+  background-color: white;
+}
+.offcanvas {
+  max-width: 70% !important;
+  /* !important dile offcanvus width 70% */
+}
+.signUp {
+  background-color: #febd2f;
+  color: #173334;
+  height: 40px;
+  width: 80px;
+  border-radius: 5px;
+  border: 1px solid #204849;
+  margin-top: 7px;
+}
+
+.signUp:hover {
+  background-color: #ebad2a;
+}
+.nav {
+  padding-right: 20px;
+  background-color: #204849;
+}
+.navbar {
+  background-color: #204849;
+}
+.navbar-brand {
+  font-size: 25px;
+  color: wheat;
+  cursor: pointer;
+  padding: 5px;
+  
+}
+.navbar-brand:hover {
+  color: wheat;
+  border: 0.5px solid #febd2f;
+  border-radius: 3px;
+}
+.navbar-brand:focus{
+    color: antiquewhite;
+}
+.manu {
+  color: #febd2f;
+  font-size: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.manuButton {
+  background-color: #204849;
+  border: none;
+}
+.manuButton:hover {
+  border: 0.5px solid #febd2f;
+  border-radius: 3px;
+}
+.nav-link {
+  background-color: #204849;
+  color: #febd2f;
+  font-size: 35px;
+  padding: 0%;
+  border: none;
+}
+.nav-link:hover {
+  color: #febd2f;
+}
+.nav-link:active {
+  color: #febd2f;
+}
+
+.cart {
+  color: #febd2f;
+  font-size: 40px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+.cart:hover {
+  border: 0.5px solid #febd2f;
+  border-radius: 3px;
+}
+.list-and-carousel {
+  display: flex;
+  padding: 20px;
+  column-gap: 20px;
+}
+
+.carousel-inner {
+  height: 250px;
+}
+
+.list-group {
+  border-radius: 10px;
+}
+.list-group-item {
+  width: 200px;
+  background-color: #173334;
+  color: wheat;
+}
+.list-group-item:hover {
+  background-color: #febd2f;
+  transition: 0.3s;
+}
+.list-group-item:active {
+  color: #173334;
+}
+
+.d-block {
+  border-radius: 10px;
+}
+.next-previous {
+  color: #febd2f;
+  font-size: 35px;
+}
+.centeredNav ul {
+  list-style: none;
+  padding: 0%;
+  margin: 0%;
+  background-color: #173334;
+  text-align: center;
+}
+.centeredNav li {
+  display: inline-block;
+}
+.mainLink {
+  color: wheat;
+  text-decoration: none;
+  margin: 10px;
+  display: block;
+}
+.mainLink:hover {
+  color: #febd2f;
+}
+
+
+
+
+
+
+@media only screen and (max-width: 768px) {
+  .carousel-control-prev {
+    display: none;
+  }
+  .carousel-control-next {
+    display: none;
+  }
+  .centeredNav{
+    display: none;
+  }
+
+}
+@media only screen and (max-width: 425px) {
+  .list-group {
+    display: none;
+  }
+  .carousel-inner {
+    height: 150px;
+  }
+
+}
+@media only screen and (max-width: 360px) {
+  .navbar-brand {
+    display: none;
+  }
+  .carousel-inner {
+    height: 100px;
+  }
+}
