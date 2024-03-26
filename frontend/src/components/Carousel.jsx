@@ -9,29 +9,8 @@ const Carousel = () => {
   return (
     <div className="list-and-carousel">
       {/* list starts */}
-      <div className="list-group">
-        <a
-          href="#"
-          className="list-group-item list-group-item-action"
-          aria-current="true"
-          style={{ backgroundColor: "#febd2f", color: "#173334" }}
-        >
-          current
-        </a>
-        <a href="#" className="list-group-item list-group-item-action">
-          second <FaArrowRight style={{float :"right"}} />
-        </a>
-        <a href="#" className="list-group-item list-group-item-action">
-          third <FaArrowRight style={{float :"right"}} />
-        </a>
-        <a href="#" className="list-group-item list-group-item-action">
-          fourth <FaArrowRight style={{float :"right"}} />
-        </a>
-        <a href="#" className="list-group-item list-group-item-action ">
-          disabled <FaArrowRight style={{float :"right"}} />
-        </a>
-        {/* list ends */}
-      </div>
+
+
       {/* carousel starts */}
       <div className="myCarousel">
         <div
@@ -78,3 +57,5 @@ const Carousel = () => {
 };
 
 export default Carousel;
+
+
