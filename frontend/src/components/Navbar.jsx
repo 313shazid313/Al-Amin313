@@ -8,20 +8,20 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="container-fluid">
           <div>
-          <button
-            className="manuButton"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasWithBothOptions"
-            aria-controls="offcanvasWithBothOptions"
-          >
-            <GiHamburgerMenu className="manu" />
-            
-          </button>
-          <Link to='/' className="navbar-brand ">Al Amin</Link>
+            <button
+              className="manuButton"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasWithBothOptions"
+              aria-controls="offcanvasWithBothOptions"
+            >
+              <GiHamburgerMenu className="manu" />
+            </button>
+            <Link to="/" className="navbar-brand">
+              Al Amin
+            </Link>
           </div>
 
-          
           <div
             className="offcanvas offcanvas-start"
             data-bs-scroll="true"
@@ -48,10 +48,7 @@ const Navbar = () => {
                 Try scrolling the rest of the page to see this option in action.
               </p>
             </div>
-            
           </div>
-
-          
 
           <div className="items">
             <ul className="nav justify-content-end">
@@ -123,7 +120,10 @@ const Navbar = () => {
                       <div className="modal-body">
                         <form>
                           <div className="mb-3">
-                            <label htmlFor="recipient-name" className="col-form-label">
+                            <label
+                              htmlFor="recipient-name"
+                              className="col-form-label"
+                            >
                               Recipient:
                             </label>
                             <input
@@ -133,7 +133,10 @@ const Navbar = () => {
                             />
                           </div>
                           <div className="mb-3">
-                            <label htmlFor="message-text" className="col-form-label">
+                            <label
+                              htmlFor="message-text"
+                              className="col-form-label"
+                            >
                               Message:
                             </label>
                             <textarea
