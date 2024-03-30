@@ -7,7 +7,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 50px;
 }
 .card{
   width: 250px;
@@ -52,10 +51,13 @@
   height: 30px;
   padding: 5px;
   transition: 0.4s;
-  
 }
 .card-content .btn1:hover{
   background-color: #204849;
   color: #febd2f;
   
+}
+
+.added{
+  display: flex;
 }

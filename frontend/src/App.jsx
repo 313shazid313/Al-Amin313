@@ -1,10 +1,13 @@
 import Navbar from "./components/Navbar";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import Home from "./components/Home";
 import MainNavbar from "./components/MainNavbar";
 import AdminHome from "./Admin/AdminHome";
+
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Protected from "./Admin/Protected";
+
+
 
 
 const router = createBrowserRouter([
@@ -20,10 +23,11 @@ const router = createBrowserRouter([
     path: "/admin",
     element: (
       <>
-        <AdminHome />
+        <Protected protectedComponent = {AdminHome} />
       </>
     ),
   },
+
 ]);
 
 function App() {

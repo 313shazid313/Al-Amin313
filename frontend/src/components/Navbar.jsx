@@ -1,26 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaCartPlus } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
+import photo from "../assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg";
 const Navbar = () => {
+  const [count,setCount] = useState(0)
   return (
     <div>
       <nav className="navbar">
         <div className="container-fluid">
-          <div>
-            <button
-              className="manuButton"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#offcanvasWithBothOptions"
-              aria-controls="offcanvasWithBothOptions"
-            >
-              <GiHamburgerMenu className="manu" />
-            </button>
-            <Link to="/" className="navbar-brand">
-              Al Amin
-            </Link>
-          </div>
+          <button
+            className="manuButton"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasWithBothOptions"
+            aria-controls="offcanvasWithBothOptions"
+          >
+            <GiHamburgerMenu className="manu" />
+          </button>
+          <Link to="/" className="navbar-brand">
+            Al Amin
+          </Link>
 
           <div
             className="offcanvas offcanvas-start"
@@ -38,10 +39,12 @@ const Navbar = () => {
               </h5>
               <button
                 type="button"
-                className="btn-close"
+                className="close"
                 data-bs-dismiss="offcanvas"
                 aria-label="Close"
-              ></button>
+              >
+                <IoMdClose />
+              </button>
             </div>
             <div className="offcanvas-body">
               <p>
@@ -53,10 +56,6 @@ const Navbar = () => {
           <div className="items">
             <ul className="nav justify-content-end">
               <li className="nav-item">
-                {/* <a className="nav-link active" aria-current="page" href="#">
-                  <FaCartPlus className="cart" />
-                </a> */}
-
                 <button
                   className="nav-link active"
                   type="button"
@@ -75,90 +74,38 @@ const Navbar = () => {
                 >
                   <div className="offcanvas-header">
                     <h5 className="offcanvas-title" id="offcanvasRightLabel">
-                      Offcanvas right
+                      Shopping Cart
                     </h5>
                     <button
                       type="button"
-                      className="btn-close"
+                      className="close"
                       data-bs-dismiss="offcanvas"
                       aria-label="Close"
-                    ></button>
+                    >
+                      <IoMdClose />
+                    </button>
                   </div>
-                  <div className="offcanvas-body">...</div>
-                </div>
-              </li>
-              <li className="nav-item">
-                <button
-                  className="signUp"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                  data-bs-whatever="@mdo"
-                >
-                  Sign In
-                </button>
-
-                <div
-                  className="modal fade"
-                  id="exampleModal"
-                  tabIndex="-1"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h1 className="modal-title fs-5" id="exampleModalLabel">
-                          New message
-                        </h1>
-                        <button
-                          type="button"
-                          className="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div className="modal-body">
-                        <form>
-                          <div className="mb-3">
-                            <label
-                              htmlFor="recipient-name"
-                              className="col-form-label"
-                            >
-                              Recipient:
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="recipient-name"
-                            />
-                          </div>
-                          <div className="mb-3">
-                            <label
-                              htmlFor="message-text"
-                              className="col-form-label"
-                            >
-                              Message:
-                            </label>
-                            <textarea
-                              className="form-control"
-                              id="message-text"
-                            ></textarea>
-                          </div>
-                        </form>
-                      </div>
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button type="button" className="btn btn-primary">
-                          Send message
-                        </button>
+                  <div className="offcanvas-body">
+                    {/* bootstrap card for cart starts */}
+                    <div className="added">
+                      <img
+                        src={photo}
+                        class="img-fluid"
+                        alt="..."
+                        style={{ width: "45%", borderRadius: "8px" }}
+                      />
+                      <div style={{ padding: "10px" }}>
+                        <h5>namesdfsdf</h5>
+                        <h6>price $$$</h6>
+                        <div style={{ display: "flex" }}>
+                          <button className="increment-decrement">+</button>
+                          <input className="increment-decrement-input " type="text"  />
+                          <button className="increment-decrement">+</button>
+                          <button className="delete-cart">Remove</button>
+                        </div>
                       </div>
                     </div>
+                    {/* bootstrap card for cart ends*/}
                   </div>
                 </div>
               </li>

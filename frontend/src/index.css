@@ -1,34 +1,26 @@
+*{
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
 body {
   background-color: white;
 }
 .offcanvas {
-  max-width: 70% !important;
-  /* !important dile offcanvus width 70% */
-}
-.signUp {
-  background-color: #febd2f;
-  color: #173334;
-  height: 40px;
-  width: 80px;
-  border-radius: 5px;
-  border: 1px solid #204849;
-  margin-top: 7px;
-}
-
-.signUp:hover {
-  background-color: #ebad2a;
+  max-width: 85% !important;
 }
 .nav {
-  padding-right: 20px;
+  
   background-color: #204849;
 }
 .navbar {
   background-color: #204849;
 }
 .navbar-brand {
-  font-size: 25px;
+  font-size: 35px;
   color: #febd2f;
   cursor: pointer;
+
 }
 .navbar-brand:hover {
   color: #febd2f;
@@ -66,9 +58,8 @@ body {
 .cart {
   color: #febd2f;
   font-size: 40px;
-  margin-right: 20px;
-  margin-bottom: 5px;
   padding: 5px;
+  border: 1px solid #204849;
 }
 
 .list-and-carousel {
@@ -77,21 +68,6 @@ body {
   column-gap: 20px;
 }
 
-/* .list-group {
-  border-radius: 10px;
-}
-.list-group-item {
-  width: 200px;
-  background-color: #173334;
-  color: wheat;
-}
-.list-group-item:hover {
-  background-color: #febd2f;
-  transition: 0.3s;
-}
-.list-group-item:active {
-  color: #173334;
-} */
 
 .d-block {
   border-radius: 10px;
@@ -122,6 +98,36 @@ body {
   color: #febd2f;
 }
 
+.offcanvas-header{
+  background-color: #173334;
+  color: #febd2f;
+}
+
+.offcanvas-body{
+  background-color: white;
+  
+}
+.close{
+  color: #febd2f;
+  background-color: #173334;
+  border: none;
+  font-size: 30px;
+}
+.increment-decrement{
+  background-color: white;
+  border: none;
+  width: 30px;
+}
+.increment-decrement-input{
+  width: 25px;
+  border: none;
+  background-color:#E3E6E6;
+}
+.delete-cart{
+  border: none;
+  color: red;
+  
+}
 @media only screen and (max-width: 768px) {
   .carousel-control-prev {
     display: none;
@@ -132,6 +138,7 @@ body {
   .centeredNav {
     display: none;
   }
+  
 }
 @media only screen and (max-width: 425px) {
   .list-group {
