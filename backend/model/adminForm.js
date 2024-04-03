@@ -4,20 +4,25 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const adminSchema = new mongooose.Schema({
-  username: {
-    type: String,
-    required: true,
+const adminSchema = new mongooose.Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 //!hiding password using bcrypt starts --->
 adminSchema.pre("save", async function (next) {
