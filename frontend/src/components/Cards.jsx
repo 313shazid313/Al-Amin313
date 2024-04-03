@@ -6,11 +6,14 @@ const Cards = () => {
   return (
     <>
       <div className="card-container">
-      <div className="card">
+        <div className="card">
           <img src={photo} alt="" />
           <div className="card-content">
             <h3>card1</h3>
-            <p>Diam accusam erat gubergren stet gubergren invidunt vero diam n stet gubergren invidunt vero diam et..et..</p>
+            <p>
+              Diam accusam erat gubergren stet gubergren invidunt vero diam n
+              stet gubergren invidunt vero diam et..et..
+            </p>
             <Link className="cartButton">dfsdfsdf</Link>
           </div>
         </div>
@@ -18,7 +21,10 @@ const Cards = () => {
           <img src={photo} alt="" />
           <div className="card-content">
             <h3>card1</h3>
-            <p>Diam accusam erat gubergren stet gubergren invidunt vero diam n stet gubergren invidunt vero diam et..et..</p>
+            <p>
+              Diam accusam erat gubergren stet gubergren invidunt vero diam n
+              stet gubergren invidunt vero diam et..et..
+            </p>
             <Link className="cartButton">dfsdfsdf</Link>
           </div>
         </div>
@@ -26,7 +32,10 @@ const Cards = () => {
           <img src={photo} alt="" />
           <div className="card-content">
             <h3>card1</h3>
-            <p>Diam accusam erat gubergren stet gubergren invidunt vero diam n stet gubergren invidunt vero diam et..et..</p>
+            <p>
+              Diam accusam erat gubergren stet gubergren invidunt vero diam n
+              stet gubergren invidunt vero diam et..et..
+            </p>
             <Link className="cartButton">dfsdfsdf</Link>
           </div>
         </div>
