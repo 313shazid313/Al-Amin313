@@ -12,7 +12,7 @@ app.use(cors());
 
 dotenv.config();
 
-const adminAuthRoute = require("./router/admin-login-router");
+const Routes = require("./router/routes");
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/alAmin")
@@ -26,4 +26,4 @@ mongoose
     console.log("failed", error);
   });
 
-app.use("/", adminAuthRoute);
+app.use("/", Routes);
