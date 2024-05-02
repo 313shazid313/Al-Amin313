@@ -1,4 +1,4 @@
-const AdminSchema = require("../model/adminForm");
+const AdminSchema = require("../model/adminFormModel");
 const bcrypt = require("bcryptjs");
 
 const adminRegister = async (req, res, next) => {
@@ -46,4 +46,4 @@ const adminLogin = async (req, res) => {
   }
 };
 
-module.exports = { adminRegister, adminLogin };
+module.exports = { adminLogin, adminRegister };

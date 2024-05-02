@@ -16,10 +16,10 @@ const {
 router.route("/adminreg").post(adminRegister);
 router.route("/adminlog").post(adminLogin);
 
-//! categoru route
+//! category route
 router.route("/createcategory").post(categoruFuncCreate);
 router.route("/allcategory").get(categoruFuncRead);
 router.route("/delcategory/:id").delete(categoruFuncdel);
-//!
+//! product route
 
 module.exports = router;
