@@ -1,6 +1,6 @@
 const categorySchema = require("../model/categoryModel");
 
-const categoruFuncCreate = async (req, res) => {
+const categoryFuncCreate = async (req, res) => {
   try {
     const resp = req.body;
     await categorySchema.create(resp);
@@ -30,4 +30,4 @@ const categoruFuncdel = async (req, res) => {
   }
 };
 
-module.exports = { categoruFuncCreate, categoruFuncRead, categoruFuncdel };
+module.exports = { categoryFuncCreate, categoruFuncRead, categoruFuncdel };
