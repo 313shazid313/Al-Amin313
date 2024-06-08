@@ -4,15 +4,16 @@ const productSchema = new mongoose.Schema(
   {
     pname: {
       type: String,
-      required: true,
+      required: [true, "Username is required"],
+      unique: true,
     },
     pdescription: {
       type: String,
-      required: true,
+      required: [true, "Description is required"],
     },
     pprice: {
-      type: Number,
-      required: true,
+      type: String,
+      required: [true, "Price is required"],
     },
     pquantity: {
       type: Number,
@@ -21,6 +22,7 @@ const productSchema = new mongoose.Schema(
     pcategory: {
       type: Schema.Types.ObjectId,
       ref: "Category",
+      required: [true, "Catrgory is required"],
     },
     pimage: {
       type: String,
@@ -31,7 +33,7 @@ const productSchema = new mongoose.Schema(
     },
     pstatus: {
       type: String,
-      required: true,
+      required: [true, "Status is required"],
     },
   },
   { timestamps: true }
