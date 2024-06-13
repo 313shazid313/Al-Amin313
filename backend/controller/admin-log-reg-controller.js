@@ -15,11 +15,11 @@ const adminRegister = async (req, res, next) => {
       userId: creation._id.toString(),
     });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 
-const adminLogin = async (req, res) => {
+const adminLogin = async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const ifExist = await AdminSchema.findOne({ username });
@@ -41,8 +41,7 @@ const adminLogin = async (req, res) => {
       res.status(401).json({ message: "Invalid username or password" });
     }
   } catch (error) {
-    res.status(404).send("404 not found");
-    console.log(error);
+    next(error);
   }
 };
 

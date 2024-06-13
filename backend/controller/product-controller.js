@@ -1,8 +1,7 @@
 const ProductModelSchema = require("../model/productModel");
 
-const productCreate = async (req, res) => {
+const productCreate = async (req, res, next) => {
   try {
-    const imageName = req.file.filename;
     const {
       pname,
       pdescription,
@@ -12,7 +11,7 @@ const productCreate = async (req, res) => {
       pstatus,
       pcategory,
     } = req.body;
-
+    // const productImageName = req.file.filename;
     const product = new ProductModelSchema({
       pname,
       pdescription,
@@ -21,7 +20,7 @@ const productCreate = async (req, res) => {
       poffer,
       pstatus,
       pcategory,
-      pimage: imageName,
+      // pimage: productImageName,
     });
     const createProduct = await product.save();
 
@@ -30,8 +29,7 @@ const productCreate = async (req, res) => {
       createProduct,
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    next(error);
   }
 };
 
