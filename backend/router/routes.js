@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const {
-  adminRegister,
-  adminLogin,
-} = require("../controller/admin-log-reg-controller");
+// const {
+//   adminRegister,
+//   adminLogin,
+// } = require("../controller/admin-log-reg-controller");
 
 const {
   categoryFuncCreate,
@@ -13,9 +13,9 @@ const {
 } = require("../controller/category-controller");
 
 
-//! admin login route
-router.route("/adminreg").post(adminRegister);
-router.route("/adminlog").post(adminLogin);
+// //! admin login route
+// router.route("/adminreg").post(adminRegister);
+// router.route("/adminlog").post(adminLogin);
 
 //! category route
 router.route("/createcategory").post(categoryFuncCreate);

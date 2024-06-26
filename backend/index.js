@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const app = express();
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const createError = require("http-errors");
 const rateLimit = require("express-rate-limit");
@@ -17,12 +17,12 @@ const rateLimiter = rateLimit({
 
 // middleware
 app.use(rateLimiter);
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static("public"));
 app.use(cors());
 app.use(morgan());
-// app.use(express.json());
+app.use(express.json());
 
 dotenv.config();
 

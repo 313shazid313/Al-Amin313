@@ -2,36 +2,38 @@ const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 const productSchema = new mongoose.Schema(
   {
-    pname: {
+    name: {
       type: String,
       required: [true, "Username is required"],
       unique: true,
     },
-    pdescription: {
+    description: {
       type: String,
       required: [true, "Description is required"],
     },
-    pprice: {
+    price: {
       type: String,
       required: [true, "Price is required"],
     },
-    pquantity: {
+    quantity: {
       type: Number,
       default: 0,
     },
-    pcategory: {
+    category: {
       type: Schema.Types.ObjectId,
       ref: "Category",
       required: [true, "Catrgory is required"],
     },
-    pimage: {
+    image: {
       type: String,
+      contentType: "String",
+      required: [true, "Product image is required"],
     },
-    poffer: {
+    offer: {
       type: String,
       default: null,
     },
-    pstatus: {
+    status: {
       type: String,
       required: [true, "Status is required"],
     },

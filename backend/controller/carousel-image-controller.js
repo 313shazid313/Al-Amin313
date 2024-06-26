@@ -5,7 +5,7 @@ const createCarouselImage = async (req, res, next) => {
   const imageName = req.file.filename;
   try {
     await CarouselImages.create({ image: imageName });
-    res.json({ message: "image uploded successfully" });
+    return res.status(200).json({ message: "Image upload successful" });
   } catch (error) {
     next(error);
   }
