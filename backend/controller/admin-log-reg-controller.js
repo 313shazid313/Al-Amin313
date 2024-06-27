@@ -5,10 +5,17 @@ const adminRegister = async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
+    const ifExist = await AdminSchema.findOne({ username });
+
+    if (ifExist) {
+      return res.status(409).json({ message: "user already exist" });
+    }
+
     const creation = await AdminSchema.create({
       username,
       password,
     });
+    
     return res.status(201).json({
       message: "registration successful",
       token: await creation.generateToken(),

@@ -12,8 +12,9 @@ const storage = multer.diskStorage({
     cb(null, `${Math.round(Math.random() * 1e9)}-${file.originalname}`);
   },
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage});
 //! multer middleware code  ------ends------>
+
 const {
   productCreate,
   getProducts,
@@ -24,10 +25,9 @@ const {
 //! product route
 productRouter
   .route("/createproduct")
-  .post(upload.single("productimage"), productCreate);
+  .post(upload.single("productimage") , productCreate);
 productRouter.route("/getproducts").get(getProducts);
 productRouter.route("/singleproduct/:id").get(getASingleProduct)
 productRouter.route("/deleteproduct/:id").delete(deleteProduct)
-
 
 module.exports = productRouter;

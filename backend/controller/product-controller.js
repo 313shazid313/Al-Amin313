@@ -4,7 +4,11 @@ const { responseForSuccess } = require("../controller/res-controller");
 
 const productCreate = async (req, res, next) => {
   try {
-    let fileName = req.file.filename;
+    if (!req.file) {
+      throw new Error("File not provided");
+    }
+
+    const fileName = req.file.filename;
     const { name, description, price, quantity, offer, status, category } =
       req.body;
 

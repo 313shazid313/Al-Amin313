@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const adminRouter = express.Router();
 
 const {
   adminRegister,
@@ -7,5 +7,8 @@ const {
 } = require("../controller/admin-log-reg-controller");
 
 //! admin login route
-router.route("/adminreg").post(adminRegister);
-router.route("/adminlog").post(adminLogin);
+adminRouter.route("/adminreg").post(adminRegister);
+adminRouter.route("/adminlog").post(adminLogin);
+
+
+module.exports = adminRouter
