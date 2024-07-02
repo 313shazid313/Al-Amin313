@@ -1,15 +1,12 @@
-import React from "react";
 import photo from "../assets/nasa-rTZW4f02zY8-unsplash.jpg";
 import { GrLinkNext } from "react-icons/gr";
 import { GrLinkPrevious } from "react-icons/gr";
-import { FaArrowRight } from "react-icons/fa";
 
 
 const Carousel = () => {
   return (
     <div className="list-and-carousel">
       {/* list starts */}
-
 
       {/* carousel starts */}
       <div className="myCarousel">

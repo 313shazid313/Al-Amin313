@@ -1,14 +1,17 @@
-import React from 'react'
-import Carousel101 from './Carousel'
-import Cards from './Cards'
+import Carousel101 from "./Carousel";
+import Footer from "./Footer";
+// import Cards from "./Cards";
+import OfferCarousel from "./OfferCarousel";
+
 const Home = () => {
   return (
     <>
-  
-        <Carousel101/>
-        <Cards/>
+      <Carousel101 />
+      {/* <Cards /> */}
+      <OfferCarousel />
+      <Footer/>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -1,7 +1,6 @@
 const express = require("express");
 const CategoryRouter = express.Router();
 
-
 const {
   categoryFuncCreate,
   categoruFuncRead,
@@ -12,6 +11,5 @@ const {
 CategoryRouter.route("/createcategory").post(categoryFuncCreate);
 CategoryRouter.route("/allcategory").get(categoruFuncRead);
 CategoryRouter.route("/delcategory/:id").delete(categoruFuncdel);
-
 
 module.exports = CategoryRouter;

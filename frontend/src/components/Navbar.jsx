@@ -1,11 +1,10 @@
-import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaCartPlus } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import photo from "../assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg";
 const Navbar = () => {
-  const [count,setCount] = useState(0)
+ 
   return (
     <div>
       <nav className="navbar">
@@ -90,7 +89,7 @@ const Navbar = () => {
                     <div className="added">
                       <img
                         src={photo}
-                        class="img-fluid"
+                        className="img-fluid"
                         alt="..."
                         style={{ width: "45%", borderRadius: "8px" }}
                       />

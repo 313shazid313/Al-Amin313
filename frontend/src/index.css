@@ -10,11 +10,10 @@ body {
   max-width: 85% !important;
 }
 .nav {
-  
-  background-color: #204849;
+  background-color: #173334;
 }
 .navbar {
-  background-color: #204849;
+  background-color: #173334;
 }
 .navbar-brand {
   font-size: 35px;
@@ -36,13 +35,13 @@ body {
   padding: 4px;
 }
 .manuButton {
-  background-color: #204849;
-  border: 1px solid #204849;
+  background-color: #173334;
+  border: 1px solid #173334;
   text-align: center;
 }
 
 .nav-link {
-  background-color: #204849;
+  background-color: #173334;
   color: #febd2f;
   font-size: 35px;
   padding: 0%;
@@ -59,30 +58,26 @@ body {
   color: #febd2f;
   font-size: 40px;
   padding: 5px;
-  border: 1px solid #204849;
+  border: 1px solid #173334;
 }
 
 .list-and-carousel {
   display: flex;
-  padding: 20px;
-  column-gap: 20px;
 }
 
 
-.d-block {
-  border-radius: 10px;
-}
+
 .next-previous {
   color: #febd2f;
   font-size: 35px;
 }
 
-/* ! top navbar css */
+/* ! 2nd navbar css */
 .centeredNav ul {
   list-style: none;
   padding: 0%;
   margin: 0%;
-  background-color: #173334;
+  background-color: #204849;
   text-align: center;
 }
 .centeredNav li {
@@ -99,7 +94,7 @@ body {
 }
 
 .offcanvas-header{
-  background-color: #173334;
+  background-color: #204849;
   color: #febd2f;
 }
 
@@ -109,7 +104,7 @@ body {
 }
 .close{
   color: #febd2f;
-  background-color: #173334;
+  background-color: #204849;
   border: none;
   font-size: 30px;
 }
@@ -128,6 +123,9 @@ body {
   color: red;
   
 }
+/*! offerCarousel css */
+
+
 @media only screen and (max-width: 768px) {
   .carousel-control-prev {
     display: none;
@@ -143,6 +141,9 @@ body {
 @media only screen and (max-width: 425px) {
   .list-group {
     display: none;
+  }
+  .navbar-brand{
+    font-size: 30px;
   }
 }
 @media only screen and (max-width: 360px) {

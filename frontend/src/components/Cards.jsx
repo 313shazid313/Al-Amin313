@@ -1,7 +1,7 @@
-import React from "react";
+
 import photo from "../assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg";
 import { Link } from "react-router-dom";
-import { FaChevronRight } from "react-icons/fa";
+
 const Cards = () => {
   return (
     <>

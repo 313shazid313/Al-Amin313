@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const MainNavbar = () => {
@@ -6,19 +5,19 @@ const MainNavbar = () => {
     <div className="centeredNav">
       <ul>
         <li>
-          <Link className="mainLink" href="#">Active</Link>
+          <Link className="mainLink" href="#">category1</Link>
         </li>
         <li>
-          <Link className="mainLink" href="#">Link</Link>
+          <Link className="mainLink" href="#">category1</Link>
         </li>
         <li>
-          <Link className="mainLink" href="#">Link</Link>
+          <Link className="mainLink" href="#">category1</Link>
         </li>
         <li>
-          <Link className="mainLink" href="#">Disabled</Link>
+          <Link className="mainLink" href="#">category1</Link>
         </li>
         <li>
-          <Link href="#">Disabled</Link>
+          <Link className="mainLink" href="#">category1</Link>
         </li>
       </ul>
     </div>

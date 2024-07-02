@@ -10,5 +10,4 @@ const {
 adminRouter.route("/adminreg").post(adminRegister);
 adminRouter.route("/adminlog").post(adminLogin);
 
-
 module.exports = adminRouter

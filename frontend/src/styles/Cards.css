@@ -9,7 +9,7 @@
   flex-wrap: wrap;
 }
 .card{
-  width: 250px;
+  /* max-width: 100px */
   background-color:white;
   border-radius: 15epx;
   overflow: hidden;
