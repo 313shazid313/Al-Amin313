@@ -5,19 +5,29 @@ const MainNavbar = () => {
     <div className="centeredNav">
       <ul>
         <li>
-          <Link className="mainLink" href="#">category1</Link>
+          <Link className="mainLink" href="#">
+            category1
+          </Link>
         </li>
         <li>
-          <Link className="mainLink" href="#">category1</Link>
+          <Link className="mainLink" href="#">
+            category1
+          </Link>
         </li>
         <li>
-          <Link className="mainLink" href="#">category1</Link>
+          <Link className="mainLink" href="#">
+            category1
+          </Link>
         </li>
         <li>
-          <Link className="mainLink" href="#">category1</Link>
+          <Link className="mainLink" href="#">
+            category1
+          </Link>
         </li>
         <li>
-          <Link className="mainLink" href="#">category1</Link>
+          <Link className="mainLink" href="#">
+            category1
+          </Link>
         </li>
       </ul>
     </div>

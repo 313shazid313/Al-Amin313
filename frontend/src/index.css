@@ -1,10 +1,10 @@
-*{
+* {
   margin: 0%;
   padding: 0%;
   box-sizing: border-box;
 }
 body {
-  background-color: white;
+  background-color: gray;
 }
 .offcanvas {
   max-width: 85% !important;
@@ -19,7 +19,6 @@ body {
   font-size: 35px;
   color: #febd2f;
   cursor: pointer;
-
 }
 .navbar-brand:hover {
   color: #febd2f;
@@ -65,8 +64,6 @@ body {
   display: flex;
 }
 
-
-
 .next-previous {
   color: #febd2f;
   font-size: 35px;
@@ -93,38 +90,35 @@ body {
   color: #febd2f;
 }
 
-.offcanvas-header{
+.offcanvas-header {
   background-color: #204849;
   color: #febd2f;
 }
 
-.offcanvas-body{
+.offcanvas-body {
   background-color: white;
-  
 }
-.close{
+.close {
   color: #febd2f;
   background-color: #204849;
   border: none;
   font-size: 30px;
 }
-.increment-decrement{
+.increment-decrement {
   background-color: white;
   border: none;
   width: 30px;
 }
-.increment-decrement-input{
+.increment-decrement-input {
   width: 25px;
   border: none;
-  background-color:#E3E6E6;
+  background-color: #e3e6e6;
 }
-.delete-cart{
+.delete-cart {
   border: none;
   color: red;
-  
 }
 /*! offerCarousel css */
-
 
 @media only screen and (max-width: 768px) {
   .carousel-control-prev {
@@ -136,13 +130,12 @@ body {
   .centeredNav {
     display: none;
   }
-  
 }
 @media only screen and (max-width: 425px) {
   .list-group {
     display: none;
   }
-  .navbar-brand{
+  .navbar-brand {
     font-size: 30px;
   }
 }

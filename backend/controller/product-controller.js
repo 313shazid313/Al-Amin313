@@ -45,8 +45,7 @@ const productCreate = async (req, res, next) => {
 
 const getProducts = async (req, res, next) => {
   try {
-    const showAll = await ProductModelSchema.find();
-
+    const showAll = await ProductModelSchema.find().populate("category")
     return responseForSuccess(res, {
       statusCode: 200,
       message: "All Products",
