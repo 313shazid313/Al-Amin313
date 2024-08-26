@@ -3,29 +3,37 @@
   padding: 0%;
   box-sizing: border-box;
 }
+
 body {
-  background-color: gray;
+
 }
+
 .offcanvas {
   max-width: 85% !important;
 }
+
 .nav {
   background-color: #173334;
 }
+
 .navbar {
   background-color: #173334;
 }
+
 .navbar-brand {
   font-size: 35px;
   color: #febd2f;
   cursor: pointer;
 }
+
 .navbar-brand:hover {
   color: #febd2f;
 }
+
 .navbar-brand:focus {
   color: #febd2f;
 }
+
 .manu {
   color: #febd2f;
   font-size: 40px;
@@ -33,6 +41,7 @@ body {
   margin-right: 10px;
   padding: 4px;
 }
+
 .manuButton {
   background-color: #173334;
   border: 1px solid #173334;
@@ -46,9 +55,11 @@ body {
   padding: 0%;
   border: none;
 }
+
 .nav-link:hover {
   color: #febd2f;
 }
+
 .nav-link:active {
   color: #febd2f;
 }
@@ -69,6 +80,10 @@ body {
   font-size: 35px;
 }
 
+.centeredNav {
+  cursor: pointer;
+}
+
 /* ! 2nd navbar css */
 .centeredNav ul {
   list-style: none;
@@ -77,15 +92,18 @@ body {
   background-color: #204849;
   text-align: center;
 }
+
 .centeredNav li {
   display: inline-block;
 }
+
 .mainLink {
   color: wheat;
   text-decoration: none;
   margin: 10px;
   display: block;
 }
+
 .mainLink:hover {
   color: #febd2f;
 }
@@ -98,47 +116,57 @@ body {
 .offcanvas-body {
   background-color: white;
 }
+
 .close {
   color: #febd2f;
   background-color: #204849;
   border: none;
   font-size: 30px;
 }
+
 .increment-decrement {
   background-color: white;
   border: none;
   width: 30px;
 }
+
 .increment-decrement-input {
   width: 25px;
   border: none;
   background-color: #e3e6e6;
 }
+
 .delete-cart {
   border: none;
   color: red;
 }
+
 /*! offerCarousel css */
 
 @media only screen and (max-width: 768px) {
   .carousel-control-prev {
     display: none;
   }
+
   .carousel-control-next {
     display: none;
   }
+
   .centeredNav {
     display: none;
   }
 }
+
 @media only screen and (max-width: 425px) {
   .list-group {
     display: none;
   }
+
   .navbar-brand {
     font-size: 30px;
   }
 }
+
 @media only screen and (max-width: 360px) {
   .navbar-brand {
     display: none;

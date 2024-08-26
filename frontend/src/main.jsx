@@ -1,11 +1,36 @@
-import React from "react";
+import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 import "./styles/Cards.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RouteDoesNotExist from "./components/RouteDoesNotExist.jsx";
+import Navbar from "./components/Navbar.jsx";
+import App from "./App.jsx";
+import Footer from "./components/Footer.jsx";
+import store from "../app/store.js";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navbar />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/footer",
+        element: <Footer />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <RouteDoesNotExist />,
+  },
+]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );

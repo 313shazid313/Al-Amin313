@@ -1,44 +1,18 @@
-
 import photo from "../assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg";
-import { Link } from "react-router-dom";
 
 const Cards = () => {
   return (
     <>
       <div className="card-container">
         <div className="card">
-          <img src={photo} alt="" />
+          <img src={photo}/>
           <div className="card-content">
-            <h3>card1</h3>
-            <p>
-              Diam accusam erat gubergren stet gubergren invidunt vero diam n
-              stet gubergren invidunt vero diam et..et..
-            </p>
-            <Link className="cartButton">dfsdfsdf</Link>
+            <h5>Product</h5>
+            <h6>Price$$$</h6>
+            <button className="cart-button">Add To Cart</button>
           </div>
         </div>
-        <div className="card">
-          <img src={photo} alt="" />
-          <div className="card-content">
-            <h3>card1</h3>
-            <p>
-              Diam accusam erat gubergren stet gubergren invidunt vero diam n
-              stet gubergren invidunt vero diam et..et..
-            </p>
-            <Link className="cartButton">dfsdfsdf</Link>
-          </div>
-        </div>
-        <div className="card">
-          <img src={photo} alt="" />
-          <div className="card-content">
-            <h3>card1</h3>
-            <p>
-              Diam accusam erat gubergren stet gubergren invidunt vero diam n
-              stet gubergren invidunt vero diam et..et..
-            </p>
-            <Link className="cartButton">dfsdfsdf</Link>
-          </div>
-        </div>
+       
       </div>
     </>
   );

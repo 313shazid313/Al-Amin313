@@ -3,8 +3,10 @@ import { FaCartPlus } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import photo from "../assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg";
+import MainNavbar from "./MainNavbar";
+import { Outlet } from "react-router-dom";
+
 const Navbar = () => {
- 
   return (
     <div>
       <nav className="navbar">
@@ -85,7 +87,7 @@ const Navbar = () => {
                     </button>
                   </div>
                   <div className="offcanvas-body">
-                    {/* bootstrap card for cart starts */}
+                    {/*card for cart starts */}
                     <div className="added">
                       <img
                         src={photo}
@@ -98,13 +100,16 @@ const Navbar = () => {
                         <h6>price $$$</h6>
                         <div style={{ display: "flex" }}>
                           <button className="increment-decrement">+</button>
-                          <input className="increment-decrement-input " type="text"  />
+                          <input
+                            className="increment-decrement-input"
+                            type="text"
+                          />
                           <button className="increment-decrement">+</button>
                           <button className="delete-cart">Remove</button>
                         </div>
                       </div>
                     </div>
-                    {/* bootstrap card for cart ends*/}
+                    {/*card for cart ends*/}
                   </div>
                 </div>
               </li>
@@ -112,6 +117,8 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <MainNavbar />
+      <Outlet />
     </div>
   );
 };
