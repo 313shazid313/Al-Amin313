@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar.jsx";
 import App from "./App.jsx";
 import Footer from "./components/Footer.jsx";
 import store from "../app/store.js";
+import CategoryBasedProducts from "./pages/CategoryBasedProducts.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
       {
         path: "/footer",
         element: <Footer />,
+      },
+      //! dynamic routing
+      {
+        path: "/category/:id",
+        element: <CategoryBasedProducts />,
       },
     ],
   },

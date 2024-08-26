@@ -1,6 +1,6 @@
 const ProductModelSchema = require("../model/productModel");
 const createError = require("http-errors");
-const { responseForSuccess } = require("../controller/res-controller");
+// const { responseForSuccess } = require("../controller/res-controller");
 
 const productCreate = async (req, res, next) => {
   try {
@@ -33,11 +33,12 @@ const productCreate = async (req, res, next) => {
       image: fileName,
     });
 
-    return responseForSuccess(res, {
-      statusCode: 200,
-      message: "product is created successfully",
-      payload: { product },
-    });
+    // return responseForSuccess(res, {
+    //   statusCode: 200,
+    //   message: "product is created successfully",
+    //   payload: { product },
+    // });
+    res.status(200).json(product);
   } catch (error) {
     next(error);
   }
@@ -45,12 +46,13 @@ const productCreate = async (req, res, next) => {
 
 const getProducts = async (req, res, next) => {
   try {
-    const showAll = await ProductModelSchema.find().populate("category")
-    return responseForSuccess(res, {
-      statusCode: 200,
-      message: "All Products",
-      payload: { showAll },
-    });
+    const showAll = await ProductModelSchema.find().populate("category");
+    // return responseForSuccess(res, {
+    //   statusCode: 200,
+    //   message: "All Products",
+    //   payload: { showAll },
+    // });
+    res.status(200).json(showAll);
   } catch (error) {
     next(error);
   }
@@ -66,11 +68,12 @@ const getASingleProduct = async (req, res, next) => {
       throw new Error("Product not found!");
     }
 
-    return responseForSuccess(res, {
-      statusCode: 200,
-      message: "All Products",
-      payload: { singleProduct },
-    });
+    // return responseForSuccess(res, {
+    //   statusCode: 200,
+    //   message: "All Products",
+    //   payload: { singleProduct },
+    // });
+    res.status(200).json(singleProduct);
   } catch (error) {
     next(error);
   }
@@ -82,10 +85,11 @@ const deleteProduct = async (req, res, next) => {
 
     await ProductModelSchema.findByIdAndDelete({ _id: id });
 
-    return responseForSuccess(res, {
-      statusCode: 200,
-      message: "Successfully deleted",
-    });
+    // return responseForSuccess(res, {
+    //   statusCode: 200,
+    //   message: "Successfully deleted",
+    // });
+    res.status(200).json({ message: "Item Deleted Successfully" });
   } catch (error) {
     next(error);
   }
