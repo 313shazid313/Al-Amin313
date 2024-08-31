@@ -9,6 +9,8 @@ import App from "./App.jsx";
 import Footer from "./components/Footer.jsx";
 import store from "../app/store.js";
 import CategoryBasedProducts from "./pages/CategoryBasedProducts.jsx";
+import ProductDetailPage from "./pages/ProductDetailPage.jsx";
+import AdminHome from "./Admin/AdminHome.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,15 @@ const router = createBrowserRouter([
         path: "/category/:id",
         element: <CategoryBasedProducts />,
       },
+      {
+        path: "/category/:id/:id",
+        element: <ProductDetailPage />,
+      },
     ],
+  },
+  {
+    path: "/admin",
+    element: <AdminHome />,
   },
   {
     path: "*",

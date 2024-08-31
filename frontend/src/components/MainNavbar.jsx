@@ -14,12 +14,14 @@ const MainNavbar = () => {
     dispatch(fetchCategory());
   }, [dispatch]);
 
-  console.log(categories)
+  // console.log(categories)
 
   return (
     <>
       {isLoading && <h3>Loading .....</h3>}
+
       {error && <h3>{error}</h3>}
+
       <div className="centeredNav">
         <ul>
           {categories.map((category) => (

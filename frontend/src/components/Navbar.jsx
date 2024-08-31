@@ -5,8 +5,11 @@ import { Link } from "react-router-dom";
 import photo from "../assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg";
 import MainNavbar from "./MainNavbar";
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const { categories } = useSelector((state) => state.categoryR);
+
   return (
     <div>
       <nav className="navbar">
@@ -48,9 +51,15 @@ const Navbar = () => {
               </button>
             </div>
             <div className="offcanvas-body">
-              <p>
-                Try scrolling the rest of the page to see this option in action.
-              </p>
+              <ul className="list-group">
+                {categories.map((category) => (
+                  <li key={category._id} className="list-group-item">
+                    <Link className="mainLink" to={`/category/${category._id}`}>
+                      {category.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 

@@ -23,9 +23,13 @@ const CategoryBasedProducts = () => {
   // console.log(categoryIdString);
 
   //* filtering products based on categoryId
-  const filteredProducts = products.filter((value) => {
-    return value.category._id === categoryIdString;
-  });
+  // const filteredProducts = products.filter((value) => {
+  //   return value.category._id === categoryIdString;
+  // });
+
+  const filteredProducts = Array.isArray(products)
+    ? products.filter((value) => value.category._id === categoryIdString)
+    : [];
 
   // console.log(filteredProducts);
 
@@ -43,7 +47,10 @@ const CategoryBasedProducts = () => {
                   <p>{product._id}</p>
                   <p>{product.category.name}</p>
                   <h1>{product.category._id}</h1>
-                  <Link>Show Details</Link>
+                  <Link to={`/category/${product.category._id}/${product._id}`}>
+                    Show Details
+                  </Link>
+                  <button className="cart-button">Add To Cart</button>
                 </article>
               );
             })}

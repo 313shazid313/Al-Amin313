@@ -21,7 +21,11 @@ app.use(express.json());
 app.use(rateLimiter);
 app.use(cors());
 app.use(express.static("public"));
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 app.use(morgan());
 
 dotenv.config();
@@ -31,6 +35,7 @@ const carouselImageRoute = require("./router/carouselImageRoutes");
 const productRoute = require("./router/productRoute");
 const { responseForError } = require("./controller/res-controller");
 const adminRouter = require("./router/log-reg-router");
+const cartRouter = require("./router/cartRoute");
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/alAmin")
@@ -48,6 +53,7 @@ app.use("/", Routes);
 app.use("/images", carouselImageRoute);
 app.use("/products", productRoute);
 app.use("/admin", adminRouter);
+app.use("/cart", cartRouter)
 
 app.use((req, res, next) => {
   return next(createError(404, "route not found"));

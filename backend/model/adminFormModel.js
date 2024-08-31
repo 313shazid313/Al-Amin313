@@ -16,7 +16,7 @@ const adminSchema = new mongooose.Schema(
     },
     isAdmin: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   {

@@ -46,13 +46,17 @@ const productCreate = async (req, res, next) => {
 
 const getProducts = async (req, res, next) => {
   try {
+    // ? if i use {.populate("category");} the function will return
+    // ? everything in category model because the category is linked to product model
+
     const showAll = await ProductModelSchema.find().populate("category");
     // return responseForSuccess(res, {
     //   statusCode: 200,
     //   message: "All Products",
     //   payload: { showAll },
     // });
-    res.status(200).json(showAll);
+
+    return res.status(200).json(showAll);
   } catch (error) {
     next(error);
   }
@@ -61,7 +65,10 @@ const getProducts = async (req, res, next) => {
 const getASingleProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const singleProduct = await ProductModelSchema.findById(id);
+
+    const singleProduct = await ProductModelSchema.findById(id).populate(
+      "category"
+    );
 
     if (!singleProduct) {
       res.statusCode = 404;
