@@ -3,10 +3,10 @@ import { fetchProducts } from "../../slices/productSlics";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { addToCart } from "../../slices/cartSlice";
 
 const CategoryBasedProducts = () => {
   const { isLoading, products, error } = useSelector((state) => state.productR);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,12 +20,9 @@ const CategoryBasedProducts = () => {
 
   // * converting categoryId from objects to string
   const categoryIdString = categoryId.id;
-  // console.log(categoryIdString);
+  console.log(categoryIdString);
 
   //* filtering products based on categoryId
-  // const filteredProducts = products.filter((value) => {
-  //   return value.category._id === categoryIdString;
-  // });
 
   const filteredProducts = Array.isArray(products)
     ? products.filter((value) => value.category._id === categoryIdString)
@@ -33,6 +30,14 @@ const CategoryBasedProducts = () => {
 
   // console.log(filteredProducts);
 
+  const clickedProduct = (product) => {
+    const productId = product;
+    const productObject = {
+      product: productId,
+    };
+
+    dispatch(addToCart(productObject));
+  };
   return (
     <>
       {isLoading && <h3>Loading .....</h3>}
@@ -44,13 +49,21 @@ const CategoryBasedProducts = () => {
               return (
                 <article key={product._id}>
                   <h5>{product.name}</h5>
-                  <p>{product._id}</p>
+                  <p>product Id : {product._id}</p>
                   <p>{product.category.name}</p>
-                  <h1>{product.category._id}</h1>
+                  <h4>category id : {product.category._id}</h4>
                   <Link to={`/category/${product.category._id}/${product._id}`}>
                     Show Details
                   </Link>
-                  <button className="cart-button">Add To Cart</button>
+
+                  <button
+                    onClick={() => {
+                      clickedProduct(product._id);
+                    }}
+                    className="cart-button"
+                  >
+                    Add To Cart
+                  </button>
                 </article>
               );
             })}

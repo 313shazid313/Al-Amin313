@@ -11,7 +11,7 @@ const rateLimit = require("express-rate-limit");
 
 const rateLimiter = rateLimit({
   windowMs: 1 * 60 * 1000,
-  limit: 10,
+  limit: 50,
   message: "Too manu request, please try again later",
 });
 
@@ -21,11 +21,7 @@ app.use(express.json());
 app.use(rateLimiter);
 app.use(cors());
 app.use(express.static("public"));
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-  })
-);
+
 app.use(morgan());
 
 dotenv.config();
@@ -53,8 +49,13 @@ app.use("/", Routes);
 app.use("/images", carouselImageRoute);
 app.use("/products", productRoute);
 app.use("/admin", adminRouter);
-app.use("/cart", cartRouter)
+app.use("/cart", cartRouter);
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 app.use((req, res, next) => {
   return next(createError(404, "route not found"));
 });

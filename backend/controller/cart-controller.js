@@ -1,22 +1,28 @@
 const Cart = require("../model/cartModel");
-const createError = require("http-errors");
 
 const addToCart = async (req, res, next) => {
   try {
-    const { product } = req.body;
-    // console.log(product);
-    const productExist = await Cart.exists({ product: product });
+    const { product, quantity } = req.body;
+
+    const productExist = await Cart.findOne({ product: product });
+
     if (productExist) {
-      throw createError(409, "Product already exist in cart");
+      productExist.quantity += 1;
+      await productExist.save();
+      res.status(200).json({
+        message: "Quantity updated",
+        data: productExist,
+        token: await productExist.generateToken(),
+      });
+    } else {
+      const addedToCart = await new Cart(req.body).populate({
+        path: "product",
+        populate: { path: "category" },
+      });
+
+      const data = await addedToCart.save();
+      res.status(201).json({ data, token: await addedToCart.generateToken() });
     }
-
-    const addedToCart = await new Cart(req.body).populate({
-      path: "product",
-      populate: { path: "category" },
-    });
-
-    const data = await addedToCart.save();
-    res.status(201).json({ data, token: await addedToCart.generateToken() });
   } catch (error) {
     next(error);
   }

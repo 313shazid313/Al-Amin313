@@ -8,8 +8,12 @@ const {
   gettingAllCartProduct,
 } = require("../controller/cart-controller");
 
+const isCartTokenExist = require("../middleware/cartAuthMiddleware");
+
 cartRouter.route("/addtocart").post(addToCart);
 cartRouter.route("/removefromcart/:id").delete(removeFromCart);
-cartRouter.route("/getallcartproduct").get(gettingAllCartProduct);
+cartRouter
+  .route("/getallcartproduct")
+  .get(isCartTokenExist, gettingAllCartProduct);
 
 module.exports = cartRouter;

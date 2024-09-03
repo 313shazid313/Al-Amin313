@@ -6,9 +6,24 @@ import photo from "../assets/bryan-goff-f7YQo-eYHdM-unsplash.jpg";
 import MainNavbar from "./MainNavbar";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchCartProducts } from "../../slices/cartSlice";
 
 const Navbar = () => {
+  //for category
   const { categories } = useSelector((state) => state.categoryR);
+  // for cart
+  const { carts } = useSelector((state) => state.cartR);
+  console.log(categories);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCartProducts());
+  }, [dispatch]);
+
+  console.log(carts);
 
   return (
     <div>
