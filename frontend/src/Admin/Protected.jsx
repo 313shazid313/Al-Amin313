@@ -1,5 +1,11 @@
+import AdminLogin from "./AdminLogin";
+import AdminNav from "./AdminNav";
+
 const Protected = () => {
-  return <div></div>;
+  const isSignIn = true;
+  const isAdmin = true;
+  return <>{isSignIn && isAdmin ? <AdminNav /> : <AdminLogin />}</>;
+
 };
 
 export default Protected;

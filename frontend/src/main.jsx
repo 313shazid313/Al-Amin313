@@ -10,7 +10,12 @@ import Footer from "./components/Footer.jsx";
 import store from "../app/store.js";
 import CategoryBasedProducts from "./pages/CategoryBasedProducts.jsx";
 import ProductDetailPage from "./pages/ProductDetailPage.jsx";
-import AdminHome from "./Admin/AdminHome.jsx";
+import Protected from "./Admin/Protected.jsx";
+import ViewProduct from "./Admin/admin component/ViewProducts.jsx";
+import AddProduct from "./Admin/admin component/AddProduct.jsx"
+import AddCategory from "./Admin/admin component/AddCategory.jsx"
+import Poster from "./Admin/admin component/Poster.jsx";
+import ViewUserCart from "./Admin/admin component/ViewUserCart.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,13 +41,37 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/admin",
-    element: <AdminHome />,
-  },
+  //! Route not found
   {
     path: "*",
     element: <RouteDoesNotExist />,
+  },
+  //! admin route
+  {
+    path: "/dashboard/admin",
+    element: <Protected />,
+    children: [
+      {
+        path: "existing-products",
+        element: <ViewProduct />,
+      },
+      {
+        path: "add-new-product",
+        element: <AddProduct />,
+      },
+      {
+        path: "add-new-category",
+        element: <AddCategory />,
+      },
+      {
+        path: "add-new-poster",
+        element: <Poster />,
+      },
+      {
+        path:"user-cart",
+        element:<ViewUserCart/>
+      }
+    ],
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
