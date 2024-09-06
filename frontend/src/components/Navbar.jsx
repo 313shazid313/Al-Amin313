@@ -13,9 +13,9 @@ import { fetchCartProducts } from "../../slices/cartSlice";
 const Navbar = () => {
   //for category
   const { categories } = useSelector((state) => state.categoryR);
+  // console.log(categories);
   // for cart
   const { carts } = useSelector((state) => state.cartR);
-  console.log(categories);
 
   const dispatch = useDispatch();
 

@@ -12,7 +12,27 @@ export const fetchProducts = createAsyncThunk(
 export const fetchASingleProduct = createAsyncThunk(
   "products/fetchASingleProduct",
   async (id) => {
-    const res = await axios.get(`http://localhost:7230/products/singleproduct/${id}`);
+    const res = await axios.get(
+      `http://localhost:7230/products/singleproduct/${id}`
+    );
+    return res.data;
+  }
+);
+
+export const addNewProduct = createAsyncThunk(
+  "products/addNewProduct",
+  async (newProduct) => {
+
+    const res = await axios
+      .post("http://localhost:7230/products/createproduct", newProduct, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     return res.data;
   }
 );
@@ -22,6 +42,7 @@ export const productSlice = createSlice({
   initialState: { isLoading: false, products: [], error: null },
 
   extraReducers: (builder) => {
+    //?fetching products
     builder.addCase(fetchProducts.pending, (state) => {
       state.isLoading = true;
     });
@@ -37,6 +58,18 @@ export const productSlice = createSlice({
     });
     builder.addCase(fetchASingleProduct.fulfilled, (state, action) => {
       state.products = action.payload;
+    });
+
+    //? add new product
+    builder.addCase(addNewProduct.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(addNewProduct.fulfilled, (state, action) => {
+      state.products.push(action.payload);
+    });
+    builder.addCase(addNewProduct.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
     });
   },
 });
