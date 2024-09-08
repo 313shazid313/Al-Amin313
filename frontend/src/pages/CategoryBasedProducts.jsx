@@ -12,7 +12,7 @@ const CategoryBasedProducts = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-  console.log(products);
+  // console.log(products);
 
   // * getting categoryId as params but in object
   const categoryId = useParams();
@@ -20,14 +20,12 @@ const CategoryBasedProducts = () => {
 
   // * converting categoryId from objects to string
   const categoryIdString = categoryId.id;
-  console.log(categoryIdString);
+  // console.log(categoryIdString);
 
   //* filtering products based on categoryId
-
   const filteredProducts = Array.isArray(products)
-    ? products.filter((value) => value.category._id === categoryIdString)
+    ? products.filter((value) => value.category?._id === categoryIdString)
     : [];
-
   // console.log(filteredProducts);
 
   const clickedProduct = (product) => {
@@ -35,7 +33,6 @@ const CategoryBasedProducts = () => {
     const productObject = {
       product: productId,
     };
-
     dispatch(addToCart(productObject));
   };
   return (
@@ -55,7 +52,6 @@ const CategoryBasedProducts = () => {
                   <Link to={`/category/${product.category._id}/${product._id}`}>
                     Show Details
                   </Link>
-
                   <button
                     onClick={() => {
                       clickedProduct(product._id);

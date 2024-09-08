@@ -4,7 +4,8 @@ import axios from "axios";
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
-    const res = await axios.get("http://localhost:7230/products/getproducts");
+    const res = await axios
+      .get("http://localhost:7230/products/getproducts")
     return res.data;
   }
 );
@@ -22,7 +23,6 @@ export const fetchASingleProduct = createAsyncThunk(
 export const addNewProduct = createAsyncThunk(
   "products/addNewProduct",
   async (newProduct) => {
-
     const res = await axios
       .post("http://localhost:7230/products/createproduct", newProduct, {
         headers: { "Content-Type": "multipart/form-data" },

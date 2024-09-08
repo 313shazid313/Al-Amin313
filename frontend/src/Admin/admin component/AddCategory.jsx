@@ -1,15 +1,29 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postNewCategory } from "../../../slices/categorySlice";
 
 const AddCategory = () => {
-  const [category, setCategory] = useState({});
-  const handleInputChange = () => {};
+  const [category, setCategory] = useState({ name: "" });
+  const dispatch = useDispatch();
+
+  const handleInputChange = (e) => {
+    // one way
+    // const name = e.target.name;
+    // const value = e.target.value;
+    // another way
+    const { name, value } = e.target;
+    setCategory({ ...category, [name]: value });
+  };
 
   const handleSubmit = (e) => {
-    e.preventdefault();
+    e.preventDefault();
+
+    console.log(typeof category);
+    dispatch(postNewCategory(category));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} >
       <input
         className="form-control form-control-lg"
         type="text"
@@ -18,7 +32,8 @@ const AddCategory = () => {
         name="name"
         value={category.name}
         onChange={handleInputChange}
-      ></input>
+      />
+      <br />
       <button type="submit" className="btn btn-success">
         Add New Category
       </button>

@@ -23,11 +23,11 @@ export const fetchCartProducts = createAsyncThunk(
 export const addToCart = createAsyncThunk(
   "carts/addToCart",
   async (payload) => {
-    const res = await axios
-      .post("http://localhost:7230/cart/addtocart", payload)
-      .catch(function (error) {
-        console.log(error);
-      });
+    const res = await axios.post(
+      "http://localhost:7230/cart/addtocart",
+      payload
+    );
+
     setToken(res.data.token);
     return res.data;
   }

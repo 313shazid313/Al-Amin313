@@ -24,7 +24,7 @@ const categoruFuncdel = async (req, res) => {
   const { id } = req.params;
   try {
     const deleteUser = await categorySchema.findByIdAndDelete({ _id: id });
-    res.status(200).json(deleteUser);
+    res.status(200).json({ deleteUser, message: "user deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
   }
