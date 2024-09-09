@@ -3,15 +3,27 @@ import { useSelector } from "react-redux";
 import { fetchProducts } from "../../../slices/productSlics";
 import { useDispatch } from "react-redux";
 import photo from "../../assets/nasa-rTZW4f02zY8-unsplash.jpg";
-const ViewProducts = () => {
-  const { isLoading, products, error } = useSelector((state) => state.productR);
+import { setEditData } from "../../../slices/productSlics";
+import { useNavigate } from "react-router-dom";
 
+const ViewProducts = () => {
+  const navigte = useNavigate();
   const dispatch = useDispatch();
 
+  // getting all producr from slice start --------->
+  const { isLoading, products, error } = useSelector((state) => state.productR);
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
   console.log(products);
+  // getting all producr from slice end --------->
+
+  //! sending data to AddProduct component through slice
+  const handleEdit = (producrtToEdit) => {
+    dispatch(setEditData(producrtToEdit));
+    // console.log(producrtToEdit);
+    navigte("/dashboard/admin/add-new-product");
+  };
 
   return (
     <>
@@ -33,13 +45,25 @@ const ViewProducts = () => {
                     <h5 className="card-title">{product.name}</h5>
                     <p className="card-text">
                       This is a wider card with supporting text below as a
-                      natural lead-in 
+                      natural lead-in
                     </p>
                     <p className="card-text">
                       <small className="text-body-secondary">
                         Last updated 3 mins ago
                       </small>
                     </p>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        handleEdit(product);
+                      }}
+                    >
+                      Edit This Product
+                    </button>{" "}
+                    &nbsp; &nbsp; &nbsp;
+                    <button className="btn btn-danger">
+                      Delete This Product
+                    </button>
                   </div>
                 </div>
               </div>
@@ -51,21 +75,3 @@ const ViewProducts = () => {
 };
 
 export default ViewProducts;
-
-
-
-
-
-// const { id } = req.params;
-// const { name, description, price, quantity, offer, status, category } =
-//   req.fields;
-// const { photo } = req.files;
-// const updatedProduct = await Product.findByIdAndUpdate(
-//   id,
-//   {
-//     ...req.fields,
-//     slug: slugify(name),
-//   },
-//   { new: true }
-// );
-// res.status(200).json(updateUser);

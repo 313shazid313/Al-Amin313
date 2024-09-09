@@ -42,7 +42,7 @@ const CategoryBasedProducts = () => {
       <div className="centeredNav">
         <div>
           {!isLoading &&
-            filteredProducts.map((product) => {
+            filteredProducts.map((product) => { 
               return (
                 <article key={product._id}>
                   <h5>{product.name}</h5>

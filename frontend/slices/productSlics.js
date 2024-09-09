@@ -4,8 +4,7 @@ import axios from "axios";
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async () => {
-    const res = await axios
-      .get("http://localhost:7230/products/getproducts")
+    const res = await axios.get("http://localhost:7230/products/getproducts");
     return res.data;
   }
 );
@@ -39,7 +38,13 @@ export const addNewProduct = createAsyncThunk(
 
 export const productSlice = createSlice({
   name: "products",
-  initialState: { isLoading: false, products: [], error: null },
+  initialState: { isLoading: false, products: [], editData: null, error: null },
+
+  reducers: {
+    setEditData: (state, action) => {
+      state.editData = action.payload;
+    },
+  },
 
   extraReducers: (builder) => {
     //?fetching products
@@ -74,4 +79,5 @@ export const productSlice = createSlice({
   },
 });
 
+export const { setEditData } = productSlice.actions;
 export default productSlice.reducer;

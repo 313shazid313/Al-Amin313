@@ -107,15 +107,14 @@ const updateProduct = async (req, res, next) => {
       status,
       category,
     };
-    
+
     if (fileName) {
       updateData.image = fileName;
     }
-
     const updatedResource = await ProductModelSchema.findByIdAndUpdate(
       id,
       updateData,
-      { new: true } // Ensures the updated document is returned
+      { new: true }
     ).populate("category");
 
     res.status(200).json(updatedResource);
