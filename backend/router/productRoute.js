@@ -36,6 +36,6 @@ productRouter.route("/singleproduct/:id").get(getASingleProduct);
 productRouter.route("/deleteproduct/:id").delete(deleteProduct);
 productRouter
   .route("/edit-product/:id")
-  .patch(upload.single("productimage"), updateProduct);
+  .put(upload.single("productimage"), updateProduct);
 
 module.exports = productRouter;

@@ -88,19 +88,36 @@ const getASingleProduct = async (req, res, next) => {
 
 const updateProduct = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const updateData = req.body;
     const { name, description, price, quantity, offer, status, category } =
       req.body;
-    console.log(name);
-    console.log(updateData);
+    const { id } = req.params;
+
+    let fileName = null;
+    if (req.file) {
+      fileName = req.file.filename;
+      console.log(fileName);
+    }
+
+    const updateData = {
+      name,
+      description,
+      price,
+      quantity,
+      offer,
+      status,
+      category,
+    };
+    
+    if (fileName) {
+      updateData.image = fileName;
+    }
+
     const updatedResource = await ProductModelSchema.findByIdAndUpdate(
       id,
       updateData,
-      {
-        new: true,
-      }
-    );
+      { new: true } // Ensures the updated document is returned
+    ).populate("category");
+
     res.status(200).json(updatedResource);
   } catch (error) {
     next(error);
