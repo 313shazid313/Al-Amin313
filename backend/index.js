@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const createError = require("http-errors");
 const rateLimit = require("express-rate-limit");
+app.use(express.urlencoded({ extended: true }));
 
 const rateLimiter = rateLimit({
   windowMs: 1 * 60 * 1000,

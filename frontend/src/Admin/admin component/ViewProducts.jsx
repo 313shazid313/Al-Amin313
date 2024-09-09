@@ -51,3 +51,21 @@ const ViewProducts = () => {
 };
 
 export default ViewProducts;
+
+
+
+
+
+// const { id } = req.params;
+// const { name, description, price, quantity, offer, status, category } =
+//   req.fields;
+// const { photo } = req.files;
+// const updatedProduct = await Product.findByIdAndUpdate(
+//   id,
+//   {
+//     ...req.fields,
+//     slug: slugify(name),
+//   },
+//   { new: true }
+// );
+// res.status(200).json(updateUser);

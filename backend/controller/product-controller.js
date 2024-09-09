@@ -86,6 +86,27 @@ const getASingleProduct = async (req, res, next) => {
   }
 };
 
+const updateProduct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const updateData = req.body;
+    const { name, description, price, quantity, offer, status, category } =
+      req.body;
+    console.log(name);
+    console.log(updateData);
+    const updatedResource = await ProductModelSchema.findByIdAndUpdate(
+      id,
+      updateData,
+      {
+        new: true,
+      }
+    );
+    res.status(200).json(updatedResource);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -106,5 +127,6 @@ module.exports = {
   productCreate,
   getProducts,
   getASingleProduct,
+  updateProduct,
   deleteProduct,
 };

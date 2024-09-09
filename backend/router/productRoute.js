@@ -12,22 +12,30 @@ const storage = multer.diskStorage({
     cb(null, `${Math.round(Math.random() * 1e9)}-${file.originalname}`);
   },
 });
-const upload = multer({ storage: storage});
+const upload = multer({ storage: storage });
 //! multer middleware code  ------ends------>
 
 const {
   productCreate,
   getProducts,
   getASingleProduct,
-  deleteProduct
+  deleteProduct,
+  updateProduct,
 } = require("../controller/product-controller");
+
+//! if i make a post request and use middleware 
+//! its patch/put request wont work if i didnt use that middleware 
+//! i should be careful
 
 //! product route
 productRouter
   .route("/createproduct")
-  .post(upload.single("productimage") , productCreate);
+  .post(upload.single("productimage"), productCreate);
 productRouter.route("/getproducts").get(getProducts);
-productRouter.route("/singleproduct/:id").get(getASingleProduct)
-productRouter.route("/deleteproduct/:id").delete(deleteProduct)
+productRouter.route("/singleproduct/:id").get(getASingleProduct);
+productRouter.route("/deleteproduct/:id").delete(deleteProduct);
+productRouter
+  .route("/edit-product/:id")
+  .patch(upload.single("productimage"), updateProduct);
 
 module.exports = productRouter;
