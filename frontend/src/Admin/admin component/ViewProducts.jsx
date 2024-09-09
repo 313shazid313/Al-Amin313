@@ -10,21 +10,21 @@ const ViewProducts = () => {
   const navigte = useNavigate();
   const dispatch = useDispatch();
 
-  // getting all producr from slice start --------->
+  // getting all producr from slice => start --------->
   const { isLoading, products, error } = useSelector((state) => state.productR);
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
   console.log(products);
-  // getting all producr from slice end --------->
+  // getting all producr from slice => end --------->
 
-  //! sending data to AddProduct component through slice
+  //! sending data to AddProduct component through slice =>start ------>
   const handleEdit = (producrtToEdit) => {
     dispatch(setEditData(producrtToEdit));
     // console.log(producrtToEdit);
     navigte("/dashboard/admin/add-new-product");
   };
-
+  //! sending data to AddProduct component through slice =>end ------>
   return (
     <>
       {!isLoading &&

@@ -36,6 +36,11 @@ export const addNewProduct = createAsyncThunk(
   }
 );
 
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async () => {}
+);
+
 export const productSlice = createSlice({
   name: "products",
   initialState: { isLoading: false, products: [], editData: null, error: null },

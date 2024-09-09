@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const navigate = useNavigate();
-  const editData  = useSelector((state) => state.productR.editData);
+
+  const editData = useSelector((state) => state.productR.editData);
   console.log(editData);
 
- 
   const { categories } = useSelector((state) => state.categoryR);
   const [items, setItems] = useState({
     name: "",
@@ -34,6 +34,7 @@ const AddProduct = () => {
   const handleInputChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+
     setItems({
       ...items,
       [name]: value,
@@ -193,7 +194,7 @@ const AddProduct = () => {
 
         {/* Submit Button */}
         <button type="submit" className="btn btn-success">
-          Add New Product
+          {editData ? "Edit Product" : "Add new Product"}
         </button>
         <br />
         <br />
