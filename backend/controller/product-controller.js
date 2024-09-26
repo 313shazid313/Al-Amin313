@@ -93,6 +93,7 @@ const updateProduct = async (req, res, next) => {
     const { id } = req.params;
 
     let fileName = null;
+
     if (req.file) {
       fileName = req.file.filename;
       console.log(fileName);
@@ -111,6 +112,7 @@ const updateProduct = async (req, res, next) => {
     if (fileName) {
       updateData.image = fileName;
     }
+    
     const updatedResource = await ProductModelSchema.findByIdAndUpdate(
       id,
       updateData,

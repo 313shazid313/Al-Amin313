@@ -12,9 +12,14 @@ export const fetchProducts = createAsyncThunk(
 export const fetchASingleProduct = createAsyncThunk(
   "products/fetchASingleProduct",
   async (id) => {
-    const res = await axios.get(
-      `http://localhost:7230/products/singleproduct/${id}`
-    );
+    const res = await axios
+      .get(`http://localhost:7230/products/singleproduct/${id}`)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     return res.data;
   }
 );
@@ -38,7 +43,23 @@ export const addNewProduct = createAsyncThunk(
 
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
-  async () => {}
+  async ({ id, product }) => {
+    try {
+      const res = await axios.put(
+        `http://localhost:7230/products/edit-product/${id}`,
+        product,
+        // Send updated data in the request body
+        {
+          headers: { "Content-Type": "multipart/form-data" }, // Use application/json when sending regular data
+        }
+      );
+      console.log(product);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
 );
 
 export const productSlice = createSlice({
@@ -80,6 +101,16 @@ export const productSlice = createSlice({
     builder.addCase(addNewProduct.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.error;
+    });
+
+    //? updating product
+    builder.addCase(updateProduct.fulfilled, (state, action) => {
+      const index = state.products.findIndex(
+        (product) => product.id === action.payload.id
+      );
+      if (index !== -1) {
+        state.products[index] = action.payload;
+      }
     });
   },
 });

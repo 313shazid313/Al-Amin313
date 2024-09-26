@@ -2,14 +2,18 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchCategory } from "../../../slices/categorySlice";
-import { addNewProduct } from "../../../slices/productSlics";
+import { addNewProduct, updateProduct } from "../../../slices/productSlics";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const navigate = useNavigate();
 
+  // ? gettin edit data from viewProduct component with redux------>
   const editData = useSelector((state) => state.productR.editData);
-  console.log(editData);
+  // console.log(editData);
+  // console.log(editData.image);
+  // console.log(editData._id)
+  // ? gettin edit data from viewProduct component------>
 
   const { categories } = useSelector((state) => state.categoryR);
   const [items, setItems] = useState({
@@ -26,6 +30,14 @@ const AddProduct = () => {
   const [image, setImage] = useState(null);
 
   const dispatch = useDispatch();
+
+  // ? placing edit data to the form start----->
+  useEffect(() => {
+    if (editData) {
+      setItems(editData);
+    }
+  }, [editData]);
+  // ? placing edit data to the form end----->
 
   useEffect(() => {
     dispatch(fetchCategory());
@@ -62,10 +74,16 @@ const AddProduct = () => {
       formData.append("productimage", image);
     }
 
-    // Dispatch action to add a new product
-    dispatch(addNewProduct(formData));
-    if (dispatch(addNewProduct(formData))) {
-      navigate("/dashboard/admin/existing-products");
+    if (editData) {
+      console.log(items._id);
+      dispatch(updateProduct({ id: items._id, product: items }));
+      console.log(items);
+      // navigate("/dashboard/admin/existing-products");
+    } else {
+      dispatch(addNewProduct(formData));
+      if (dispatch(addNewProduct(formData))) {
+        navigate("/dashboard/admin/existing-products");
+      }
     }
   };
 
