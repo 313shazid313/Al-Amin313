@@ -31,13 +31,13 @@ const AddProduct = () => {
 
   const dispatch = useDispatch();
 
-  // ? placing edit data to the form start----->
+  // ? placing edit data to the form start ----->
   useEffect(() => {
     if (editData) {
       setItems(editData);
     }
   }, [editData]);
-  // ? placing edit data to the form end----->
+  // ? placing edit data to the form end ----->
 
   useEffect(() => {
     dispatch(fetchCategory());
@@ -78,12 +78,10 @@ const AddProduct = () => {
       console.log(items._id);
       dispatch(updateProduct({ id: items._id, product: items }));
       console.log(items);
-      // navigate("/dashboard/admin/existing-products");
+      navigate("/dashboard/admin/existing-products");
     } else {
       dispatch(addNewProduct(formData));
-      if (dispatch(addNewProduct(formData))) {
-        navigate("/dashboard/admin/existing-products");
-      }
+      navigate("/dashboard/admin/existing-products");
     }
   };
 
@@ -172,7 +170,7 @@ const AddProduct = () => {
           value={items.status}
           onChange={handleInputChange}
         >
-          <option value="" disabled selected>
+          <option defaultValue="DEFAULT" disabled >
             Status
           </option>
           <option value="available">Available</option>
@@ -188,7 +186,7 @@ const AddProduct = () => {
           value={items.category}
           onChange={handleInputChange}
         >
-          <option value="" disabled selected>
+          <option defaultValue="DEFAULT" disabled>
             Add Category
           </option>
           {categories.map((categoryItem) => (

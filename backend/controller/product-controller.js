@@ -1,6 +1,7 @@
 const ProductModelSchema = require("../model/productModel");
 const createError = require("http-errors");
 // const { responseForSuccess } = require("../controller/res-controller");
+const fs = require("fs-extra");
 
 const productCreate = async (req, res, next) => {
   try {
@@ -112,7 +113,7 @@ const updateProduct = async (req, res, next) => {
     if (fileName) {
       updateData.image = fileName;
     }
-    
+
     const updatedResource = await ProductModelSchema.findByIdAndUpdate(
       id,
       updateData,
@@ -128,14 +129,24 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const deleteData = await ProductModelSchema.findByIdAndDelete({ _id: id });
 
-    await ProductModelSchema.findByIdAndDelete({ _id: id });
+    const filename = deleteData.image;
+    const filePath = "../productimages/" + filename;
+
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        console.log("cannot unlink image");
+        console.log(err);
+      } else console.log("file deleted successfully");
+    });
 
     // return responseForSuccess(res, {
     //   statusCode: 200,
     //   message: "Successfully deleted",
     // });
-    res.status(200).json({ message: "Item Deleted Successfully" });
+
+    res.status(200).json({ message: "Item Deleted Successfully", deleteData });
   } catch (error) {
     next(error);
   }
