@@ -174,7 +174,7 @@ const AddProduct = () => {
           value={items.status}
           onChange={handleInputChange}
         >
-          <option defaultValue="DEFAULT" disabled >
+          <option defaultValue="DEFAULT" disabled>
             Status
           </option>
           <option value="available">Available</option>
@@ -209,6 +209,7 @@ const AddProduct = () => {
             type="file"
             id="formFile"
             onChange={handleFileChange}
+            required
           />
         </div>
 

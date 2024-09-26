@@ -100,6 +100,18 @@ const updateProduct = async (req, res, next) => {
       console.log(fileName);
     }
 
+    const product = await ProductModelSchema.findById(id);
+
+    const filenametodelete = product.image;
+    const filePath = "./productimages/" + filenametodelete;
+
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        console.log("cannot unlink image");
+        console.log(err);
+      } else console.log("file deleted successfully");
+    });
+
     const updateData = {
       name,
       description,
