@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { fetchProducts } from "../../../slices/productSlics";
+import { fetchProducts, deleteProduct } from "../../../slices/productSlics";
 import { useDispatch } from "react-redux";
 import photo from "../../assets/nasa-rTZW4f02zY8-unsplash.jpg";
 import { setEditData } from "../../../slices/productSlics";
@@ -25,6 +25,14 @@ const ViewProducts = () => {
     navigte("/dashboard/admin/add-new-product");
   };
   //! sending data to AddProduct component through slice =>end ------>
+
+  //! delete functionality
+  const deleteFunc = (id) => {
+    dispatch(deleteProduct({ id: id }));
+    location.reload();
+  };
+  //! delete functionality
+
   return (
     <>
       {!isLoading &&
@@ -61,7 +69,12 @@ const ViewProducts = () => {
                       Edit This Product
                     </button>{" "}
                     &nbsp; &nbsp; &nbsp;
-                    <button className="btn btn-danger">
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => {
+                        deleteFunc(product._id);
+                      }}
+                    >
                       Delete This Product
                     </button>
                   </div>

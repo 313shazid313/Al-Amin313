@@ -78,6 +78,7 @@ export const productSlice = createSlice({
     setEditData: (state, action) => {
       state.editData = action.payload;
     },
+
   },
 
   extraReducers: (builder) => {
