@@ -44,21 +44,29 @@ export const addNewProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async ({ id, product }) => {
-    try {
-      const res = await axios.put(
-        `http://localhost:7230/products/edit-product/${id}`,
-        product,
-        // Send updated data in the request body
-        {
-          headers: { "Content-Type": "multipart/form-data" }, // Use application/json when sending regular data
-        }
-      );
-      console.log(product);
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
+    const res = await axios
+      .put(`http://localhost:7230/products/edit-product/${id}`, product, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((resp) => {
+        console.log(resp);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return res.data;
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "products/deleteProduct",
+  async ({ id }) => {
+    await axios
+      .delete(`http://localhost:7230/products/deleteproduct/${id}`)
+      .catch((error) => {
+        console.log(error);
+      });
+    return id;
   }
 );
 
@@ -111,6 +119,11 @@ export const productSlice = createSlice({
       if (index !== -1) {
         state.products[index] = action.payload;
       }
+    });
+    builder.addCase(deleteProduct.fulfilled, (state, action) => {
+      state.products = state.products.filter(
+        (product) => product.id !== action.payload
+      );
     });
   },
 });
