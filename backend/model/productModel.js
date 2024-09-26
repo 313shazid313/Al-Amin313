@@ -27,7 +27,7 @@ const productSchema = new mongoose.Schema(
     image: {
       type: String,
       contentType: "String",
-      required: [true, "Product image is required"],
+      required: [false, "Product image is required"],
     },
     offer: {
       type: String,
@@ -35,7 +35,7 @@ const productSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      required: [true, "Status is required"],
+      required: [false, "Status is required"],
     },
   },
   { timestamps: true }

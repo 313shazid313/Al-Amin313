@@ -132,7 +132,7 @@ const deleteProduct = async (req, res, next) => {
     const deleteData = await ProductModelSchema.findByIdAndDelete({ _id: id });
 
     const filename = deleteData.image;
-    const filePath = "../productimages/" + filename;
+    const filePath = "./productimages/" + filename;
 
     fs.unlink(filePath, (err) => {
       if (err) {

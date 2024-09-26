@@ -103,6 +103,7 @@ const AddProduct = () => {
             name="name"
             value={items.name}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div className="input-group mb-3">
@@ -117,6 +118,7 @@ const AddProduct = () => {
             name="description"
             value={items.description}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div className="input-group mb-3">
@@ -131,6 +133,7 @@ const AddProduct = () => {
             name="price"
             value={items.price}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div className="input-group mb-3">
@@ -145,6 +148,7 @@ const AddProduct = () => {
             name="quantity"
             value={items.quantity}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div className="input-group mb-3">
