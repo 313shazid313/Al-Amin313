@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const AddCategory = () => {
   const { categories } = useSelector((state) => state.categoryR);
-  console.log(categories);
+
 
   const [category, setCategory] = useState({ name: "" });
   const dispatch = useDispatch();
@@ -33,9 +33,16 @@ const AddCategory = () => {
     dispatch(fetchCategory());
   }, [dispatch]);
 
+  // delete category function
   const handleClicktoDel = (id) => {
-    dispatch(deleteCategory({ id: id }));
-    location.reload();
+    dispatch(deleteCategory({ id: id }))
+      .then(() => {
+        // After the product is deleted, fetch the updated list
+        dispatch(fetchCategory());
+      })
+      .catch((error) => {
+        console.error("Failed to delete category:", error);
+      });
   };
 
   return (

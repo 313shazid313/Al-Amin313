@@ -59,12 +59,9 @@ export const categorySlice = createSlice({
       state.categories.push(action.payload);
     });
     builder.addCase(deleteCategory.fulfilled, (state, action) => {
-      const index = state.products.findIndex(
-        (category) => category.id === action.payload.id
+      state.categories = state.products.filter(
+        (product) => product.id !== action.payload
       );
-      if (index !== -1) {
-        state.categories[index] = action.payload;
-      }
     });
   },
 });

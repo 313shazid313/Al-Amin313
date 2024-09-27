@@ -28,8 +28,14 @@ const ViewProducts = () => {
 
   //! delete functionality
   const deleteFunc = (id) => {
-    dispatch(deleteProduct({ id: id }));
-    location.reload();
+    dispatch(deleteProduct({ id: id }))
+      .then(() => {
+        // After the product is deleted, fetch the updated list
+        dispatch(fetchProducts());
+      })
+      .catch((error) => {
+        console.error("Failed to delete product:", error);
+      });
   };
   //! delete functionality
 
