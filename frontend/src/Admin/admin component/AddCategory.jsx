@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 const AddCategory = () => {
   const { categories } = useSelector((state) => state.categoryR);
 
-
   const [category, setCategory] = useState({ name: "" });
   const dispatch = useDispatch();
 
@@ -23,9 +22,15 @@ const AddCategory = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(typeof category);
-    dispatch(postNewCategory(category));
-    alert("Category added successfully");
-    document.getElementById("categoryInput").value = "";
+    dispatch(postNewCategory(category))
+      .then(() => {
+        dispatch(fetchCategory());
+        alert("Category added successfully");
+      })
+      .catch((error) => {
+        console.error("Failed to delete category:", error);
+      })
+   
   };
 
   // getting categories
@@ -37,7 +42,6 @@ const AddCategory = () => {
   const handleClicktoDel = (id) => {
     dispatch(deleteCategory({ id: id }))
       .then(() => {
-        // After the product is deleted, fetch the updated list
         dispatch(fetchCategory());
       })
       .catch((error) => {

@@ -59,7 +59,7 @@ export const categorySlice = createSlice({
       state.categories.push(action.payload);
     });
     builder.addCase(deleteCategory.fulfilled, (state, action) => {
-      state.categories = state.products.filter(
+      state.categories = state.categories.filter(
         (product) => product.id !== action.payload
       );
     });
