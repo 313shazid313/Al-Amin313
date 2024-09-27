@@ -25,6 +25,18 @@ export const postNewCategory = createAsyncThunk(
   }
 );
 
+export const deleteCategory = createAsyncThunk(
+  "categories/deleteCategory",
+  async ({ id }) => {
+    const res = await axios
+      .delete(`http://localhost:7230/delcategory/${id}`)
+      .catch((error) => {
+        console.error(error);
+      });
+    return res.data;
+  }
+);
+
 export const categorySlice = createSlice({
   name: "categories",
   initialState: { isLoading: false, categories: [], error: null },
@@ -45,6 +57,14 @@ export const categorySlice = createSlice({
     });
     builder.addCase(postNewCategory.fulfilled, (state, action) => {
       state.categories.push(action.payload);
+    });
+    builder.addCase(deleteCategory.fulfilled, (state, action) => {
+      const index = state.products.findIndex(
+        (category) => category.id === action.payload.id
+      );
+      if (index !== -1) {
+        state.categories[index] = action.payload;
+      }
     });
   },
 });

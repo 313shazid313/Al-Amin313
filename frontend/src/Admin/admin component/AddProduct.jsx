@@ -39,6 +39,7 @@ const AddProduct = () => {
   }, [editData]);
   // ? placing edit data to the form end ----->
 
+  // ? getting categories
   useEffect(() => {
     dispatch(fetchCategory());
   }, [dispatch]);
@@ -61,7 +62,7 @@ const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Create form data to send including the image file
+    // Creating form data to send including the image file
     const formData = new FormData();
     formData.append("name", items.name);
     formData.append("description", items.description);
@@ -183,15 +184,17 @@ const AddProduct = () => {
         <br />
 
         {/* Category */}
+        {/* Category */}
         <select
           className="form-select"
           aria-label="Category"
           name="category"
-          value={items.category}
+          value={items.category || ""}
           onChange={handleInputChange}
+          required
         >
-          <option defaultValue="DEFAULT" disabled>
-            Add Category
+          <option value="" disabled>
+            Select Category
           </option>
           {categories.map((categoryItem) => (
             <option key={categoryItem._id} value={categoryItem._id}>
@@ -199,6 +202,7 @@ const AddProduct = () => {
             </option>
           ))}
         </select>
+
         <br />
 
         {/* Image Upload */}
