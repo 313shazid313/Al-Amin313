@@ -1,52 +1,79 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { postNewCategory, deleteCategory } from "../../../slices/categorySlice";
-import { fetchCategory } from "../../../slices/categorySlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  postNewCategory,
+  deleteCategory,
+  updateCategory,
+  fetchCategory,
+} from "../../../slices/categorySlice";
 
 const AddCategory = () => {
   const { categories } = useSelector((state) => state.categoryR);
 
   const [category, setCategory] = useState({ name: "" });
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState(null);
+
   const dispatch = useDispatch();
 
+  // Handle input change
   const handleInputChange = (e) => {
-    // one way
-    // const name = e.target.name;
-    // const value = e.target.value;
-    // another way
     const { name, value } = e.target;
     setCategory({ ...category, [name]: value });
   };
 
+  // Handle form submit (Add or Update)
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(typeof category);
-    dispatch(postNewCategory(category))
-      .then(() => {
-        dispatch(fetchCategory());
-        alert("Category added successfully");
-      })
-      .catch((error) => {
-        console.error("Failed to delete category:", error);
-      })
-   
+
+    if (isEditing && currentCategory) {
+      // Update category if in edit mode
+      dispatch(updateCategory({ id: currentCategory._id, ...category }))
+        .then(() => {
+          dispatch(fetchCategory());
+          alert("Category updated successfully");
+          setIsEditing(false);
+          setCurrentCategory(null);
+          setCategory({ name: "" });
+        })
+        .catch((error) => {
+          console.error("Failed to update category:", error);
+        });
+    } else {
+      // Add new category
+      dispatch(postNewCategory(category))
+        .then(() => {
+          dispatch(fetchCategory());
+          alert("Category added successfully");
+          setCategory({ name: "" });
+        })
+        .catch((error) => {
+          console.error("Failed to add category:", error);
+        });
+    }
   };
 
-  // getting categories
+  // Fetch categories on mount
   useEffect(() => {
     dispatch(fetchCategory());
   }, [dispatch]);
 
-  // delete category function
+  // Handle delete category
   const handleClicktoDel = (id) => {
-    dispatch(deleteCategory({ id: id }))
+    dispatch(deleteCategory({ id }))
       .then(() => {
         dispatch(fetchCategory());
       })
       .catch((error) => {
         console.error("Failed to delete category:", error);
       });
+  };
+
+  // Handle update category button click
+  const updateCategoryFunc = (categoryItem) => {
+    setIsEditing(true);
+    setCurrentCategory(categoryItem);
+    setCategory({ name: categoryItem.name }); // Prepopulate the form with selected category
   };
 
   return (
@@ -64,9 +91,10 @@ const AddCategory = () => {
         />
         <br />
         <button type="submit" className="btn btn-success">
-          Add New Category
+          {isEditing ? "Update Category" : "Add New Category"}
         </button>
       </form>
+
       <br />
       <h2>Existing Category</h2>
       <table className="table table-striped">
@@ -78,25 +106,30 @@ const AddCategory = () => {
             <th scope="col">Delete</th>
           </tr>
         </thead>
-        {categories.map((categoryItem, index) => (
-          <tr key={categoryItem._id} className="">
-            <th scope="row">{index + 1}</th>
-            <td>{categoryItem.name}</td>
-            <td>
-              <button className="btn btn-warning ">Update</button>
-            </td>
-            <td>
-              <button
-                onClick={() => {
-                  handleClicktoDel(categoryItem._id);
-                }}
-                className="btn btn-outline-danger "
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))}
+        <tbody>
+          {categories.map((categoryItem, index) => (
+            <tr key={categoryItem._id}>
+              <th scope="row">{index + 1}</th>
+              <td>{categoryItem.name}</td>
+              <td>
+                <button
+                  onClick={() => updateCategoryFunc(categoryItem)}
+                  className="btn btn-warning"
+                >
+                  Update
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() => handleClicktoDel(categoryItem._id)}
+                  className="btn btn-outline-danger"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );

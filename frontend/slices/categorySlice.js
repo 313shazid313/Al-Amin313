@@ -25,6 +25,22 @@ export const postNewCategory = createAsyncThunk(
   }
 );
 
+export const updateCategory = createAsyncThunk(
+  "categories/updateCategory",
+  async ({ id, category }) => {
+    const res = await axios
+      .put(`http://localhost:7230/update-category/${id}`, category, {
+        headers: {
+          "Content-Type": "application/json", // Make sure to send the request as JSON
+        },
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    return res.data;
+  }
+);
+
 export const deleteCategory = createAsyncThunk(
   "categories/deleteCategory",
   async ({ id }) => {
@@ -60,8 +76,16 @@ export const categorySlice = createSlice({
     });
     builder.addCase(deleteCategory.fulfilled, (state, action) => {
       state.categories = state.categories.filter(
-        (product) => product.id !== action.payload
+        (category) => category.id !== action.payload
       );
+    });
+    builder.addCase(updateCategory.fulfilled, (state, action) => {
+      const index = state.categories.findIndex(
+        (category) => category.id === action.payload.id
+      );
+      if (index !== -1) {
+        state.categories[index] = action.payload;
+      }
     });
   },
 });
