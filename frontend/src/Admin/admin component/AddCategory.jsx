@@ -28,7 +28,7 @@ const AddCategory = () => {
 
     if (isEditing && currentCategory) {
       // Update category if in edit mode
-      dispatch(updateCategory({ id: currentCategory._id, ...category }))
+      dispatch(updateCategory({ id: currentCategory._id, category: category }))
         .then(() => {
           dispatch(fetchCategory());
           alert("Category updated successfully");
@@ -60,7 +60,7 @@ const AddCategory = () => {
 
   // Handle delete category
   const handleClicktoDel = (id) => {
-    dispatch(deleteCategory({ id }))
+    dispatch(deleteCategory({ id: id }))
       .then(() => {
         dispatch(fetchCategory());
       })
