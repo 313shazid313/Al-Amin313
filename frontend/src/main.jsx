@@ -16,6 +16,7 @@ import AddProduct from "./Admin/admin component/AddProduct.jsx"
 import AddCategory from "./Admin/admin component/AddCategory.jsx"
 import Poster from "./Admin/admin component/Poster.jsx";
 import ViewUserCart from "./Admin/admin component/ViewUserCart.jsx";
+import Cart from "./components/Cart.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         path: "/category/:id/:id",
         element: <ProductDetailPage />,
       },
+      {
+        path:"/my-cart",
+        element :<Cart/>
+      }
     ],
   },
   //! Route not found
