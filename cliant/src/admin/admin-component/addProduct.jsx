@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { fetchCategory } from "../../../slices/categorySlice";
-import { addNewProduct, updateProduct } from "../../../slices/productSlics";
+import { fetchCategory } from "../../redux/feature/categorySlice";
+import { addNewProduct, updateProduct } from "../../redux/feature/productSlice";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
@@ -92,13 +92,13 @@ const AddProduct = () => {
         onSubmit={handleSubmit}
         style={{ maxWidth: "60%", textAlign: "center", margin: "auto" }}
       >
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
+        <div className="">
+          <span className="" id="inputGroup-sizing-default">
             Name
           </span>
           <input
             type="text"
-            className="form-control"
+            className=""
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
             name="name"
@@ -107,14 +107,14 @@ const AddProduct = () => {
             required
           />
         </div>
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
+        <div className="">
+          <span className="" id="inputGroup-sizing-default">
             Description
           </span>
           <textarea
             rows="4"
             type="text"
-            className="form-control"
+            className=""
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
             name="description"
@@ -123,13 +123,13 @@ const AddProduct = () => {
             required
           />
         </div>
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
+        <div className="">
+          <span className="" id="inputGroup-sizing-default">
             Price
           </span>
           <input
             type="text"
-            className="form-control"
+            className=""
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
             name="price"
@@ -138,13 +138,13 @@ const AddProduct = () => {
             required
           />
         </div>
-        <div className="input-group mb-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
+        <div className="">
+          <span className="" id="inputGroup-sizing-default">
             Quantity
           </span>
           <input
             type="number"
-            className="form-control"
+            className=""
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
             name="quantity"
@@ -153,13 +153,13 @@ const AddProduct = () => {
             required
           />
         </div>
-        <div className="input-group mb-3">
+        <div className="">
           <span className="input-group-text" id="inputGroup-sizing-default">
             Offer
           </span>
           <input
             type="text"
-            className="form-control"
+            className=""
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
             name="offer"
@@ -170,7 +170,7 @@ const AddProduct = () => {
 
         {/* Status */}
         <select
-          className="form-select"
+          className=""
           aria-label="Default select example"
           name="status"
           value={items.status}
@@ -187,7 +187,7 @@ const AddProduct = () => {
         {/* Category */}
         {/* Category */}
         <select
-          className="form-select"
+          className=""
           aria-label="Category"
           name="category"
           value={items.category || ""}
@@ -207,10 +207,10 @@ const AddProduct = () => {
         <br />
 
         {/* Image Upload */}
-        <div className="mb-3">
+        <div className="">
           <label className="form-label">Add Product Image</label>
           <input
-            className="form-control"
+            className=""
             type="file"
             id="formFile"
             onChange={handleFileChange}

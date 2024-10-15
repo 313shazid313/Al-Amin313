@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../slices/productSlics";
+import { fetchProducts } from "../redux/feature/productSlice";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../slices/cartSlice";
+import { addToCart } from "../redux/feature/cartSlice";
 
 const CategoryBasedProducts = () => {
   const { isLoading, products, error } = useSelector((state) => state.productR);
@@ -20,13 +20,13 @@ const CategoryBasedProducts = () => {
 
   // * converting categoryId from objects to string
   const categoryIdString = categoryId.id;
-  // console.log(categoryIdString);
+  console.log(categoryIdString);
 
   //* filtering products based on categoryId
   const filteredProducts = Array.isArray(products)
     ? products.filter((value) => value.category?._id === categoryIdString)
     : [];
-  // console.log(filteredProducts);
+  console.log(filteredProducts);
 
   const clickedProduct = (product) => {
     const productId = product;
@@ -42,7 +42,7 @@ const CategoryBasedProducts = () => {
       <div className="centeredNav">
         <div>
           {!isLoading &&
-            filteredProducts.map((product) => { 
+            filteredProducts.map((product) => {
               return (
                 <article key={product._id}>
                   <h5>{product.name}</h5>
@@ -56,7 +56,7 @@ const CategoryBasedProducts = () => {
                     onClick={() => {
                       clickedProduct(product._id);
                     }}
-                    className="cart-button"
+                    className=""
                   >
                     Add To Cart
                   </button>
@@ -64,6 +64,7 @@ const CategoryBasedProducts = () => {
               );
             })}
         </div>
+        <h1> asdasdasdasdasd</h1>
       </div>
     </>
   );

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0%;
   padding: 0%;
@@ -5,7 +9,7 @@
 }
 
 body {
-
+background-color: #F1F2F4;
 }
 
 .offcanvas {
@@ -139,6 +143,28 @@ body {
 .delete-cart {
   border: none;
   color: red;
+}
+
+.mainCartDiv{
+  display: flex;
+  justify-content: center; /* To center horizontally */
+  align-items: center;    /* To center vertically */
+  min-height: 100vh;
+}
+.summaryDiv{
+  max-width: 250px;
+  max-width:  350px ;
+  
+  background-color: white;
+
+  box-shadow: 0, 2px, 4px, rgba(0, 0, 0, 0.2);
+
+  border-radius: 0px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.cartDiv{
+  background-color: #FEFBF4;
 }
 
 /*! offerCarousel css */
