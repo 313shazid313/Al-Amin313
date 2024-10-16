@@ -32,7 +32,7 @@ const carouselImageRoute = require("./router/carouselImageRoutes");
 const productRoute = require("./router/productRoute");
 const { responseForError } = require("./controller/res-controller");
 const adminRouter = require("./router/log-reg-router");
-const cartRouter = require("./router/cartRoute");
+
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/alAmin")
@@ -50,7 +50,7 @@ app.use("/", Routes);
 app.use("/images", carouselImageRoute);
 app.use("/products", productRoute);
 app.use("/admin", adminRouter);
-app.use("/cart", cartRouter);
+
 
 app.use(
   cors({

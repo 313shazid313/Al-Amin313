@@ -3,7 +3,7 @@ import { fetchProducts } from "../redux/feature/productSlice";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { addToCart } from "../redux/feature/cartSlice";
+
 
 const CategoryBasedProducts = () => {
   const { isLoading, products, error } = useSelector((state) => state.productR);
@@ -28,13 +28,7 @@ const CategoryBasedProducts = () => {
     : [];
   console.log(filteredProducts);
 
-  const clickedProduct = (product) => {
-    const productId = product;
-    const productObject = {
-      product: productId,
-    };
-    dispatch(addToCart(productObject));
-  };
+
   return (
     <>
       {isLoading && <h3>Loading .....</h3>}
@@ -53,10 +47,7 @@ const CategoryBasedProducts = () => {
                     Show Details
                   </Link>
                   <button
-                    onClick={() => {
-                      clickedProduct(product._id);
-                    }}
-                    className=""
+                    
                   >
                     Add To Cart
                   </button>
@@ -64,7 +55,6 @@ const CategoryBasedProducts = () => {
               );
             })}
         </div>
-        <h1> asdasdasdasdasd</h1>
       </div>
     </>
   );

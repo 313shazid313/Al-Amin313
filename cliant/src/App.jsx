@@ -1,6 +1,6 @@
 import { initFlowbite } from "flowbite";
 import { useEffect } from "react";
-import Navigation from "./component/Navigation";
+
 
 const App = () => {
   useEffect(() => {
@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <div>
-      <Navigation />
+    
     </div>
   );
 };
