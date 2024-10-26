@@ -129,11 +129,15 @@ const Navigation = () => {
             </div>
           </div>
           <div className="flex-initial w-80 flex justify-center items-center text-4xl cursor-pointer">
-            Al-Amin
+            <NavLink to="/">Al-Amin</NavLink>
           </div>
           <div className="flex-initial w-64 flex justify-end items-center text-3xl px-3">
-            <IoSearchSharp className="mx-3 cursor-pointer" />
-            <IoCartSharp className="mx-3 cursor-pointer" />
+            <NavLink >
+              <IoSearchSharp className="mx-3 cursor-pointer" />
+            </NavLink>
+            <NavLink to="my-cart">
+              <IoCartSharp className="mx-3 cursor-pointer" />
+            </NavLink>
           </div>
         </div>
       </div>

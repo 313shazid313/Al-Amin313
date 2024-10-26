@@ -1,73 +1,110 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { getToken, setToken } from "../../helper/helperFunction";
+import { createSlice } from "@reduxjs/toolkit";
+import Swal from "sweetalert2";
 
-// Fetching cart products
-export const fetchCartProducts = createAsyncThunk(
-  "carts/fetchCartProducts",
-  async () => {
-    const token = getToken(); // Fetch the token from your helper function
-    const res = await axios.get(
-      "http://localhost:7230/cart/getallcartproduct",
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
-    return res.data; // Assuming the response contains the cart products
+// Helper function to load cart from localStorage
+const loadCartFromLocalStorage = () => {
+  try {
+    const serializedCart = localStorage.getItem("cartData");
+    return serializedCart ? JSON.parse(serializedCart) : initialState;
+  } catch (error) {
+    console.error("Failed to load cart from localStorage", error);
+    return initialState;
   }
-);
+};
 
-// Adding products to cart
-export const addToCart = createAsyncThunk(
-  "carts/addToCart",
-  async (payload) => {
-    const res = await axios.post(
-      "http://localhost:7230/cart/addtocart",
-      payload
-    );
-
-    setToken(res.data.token);
-    return res.data;
+// Helper function to save cart to localStorage
+const saveCartToLocalStorage = (cart) => {
+  try {
+    const serializedCart = JSON.stringify(cart);
+    localStorage.setItem("cartData", serializedCart);
+  } catch (error) {
+    console.error("Failed to save cart to localStorage", error);
   }
-);
+};
 
-// export const addToCart = createAsyncThunk("carts/addToCart", async (cart) => {
-//   try {
-//     const res = await axios.post("http://localhost:7230/cart/addtocart", cart);
-//     return res.data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+const initialState = loadCartFromLocalStorage() || [];
+// const initialState = {
+//   cart:[],
+//   selectedItems: 0,
+//   totalPrice: 0,
+
+// };
+
+const calculateCartTotals = (cart) => {
+  const selectedItems = cart.reduce(
+    (total, product) => total + product.quantity,
+    0
+  );
+  const totalPrice = cart.reduce(
+    (total, product) => total + product.quantity * product.price,
+    0
+  );
+
+  return { selectedItems, totalPrice };
+};
 
 export const cartSlice = createSlice({
-  name: "carts",
-  initialState: { isLoading: false, carts: [], error: null },
+  name: "cart",
+  initialState,
+  reducers: {
+    addToCart: (state, action) => {
+      const isExist = state.cart.find(
+        (product) => product._id === action.payload._id
+      );
+      if (!isExist) {
+        state.cart.push({ ...action.payload, quantity: 1 });
+        alert("Product added successfully!");
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Product already Added to Cart",
+          icon: "error",
+          confirmButtonText: "It's Ok",
+        });
+      }
 
-  extraReducers: (builder) => {
-    builder
-      // Handle fetching cart products
-      .addCase(fetchCartProducts.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchCartProducts.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.carts = action.payload;
-        state.error = null;
-      })
-      .addCase(fetchCartProducts.rejected, (state, action) => {
-        state.isLoading = false;
-        state.carts = [];
-        state.error = action.error.message;
-      })
+      const totals = calculateCartTotals(state.cart);
+      state.selectedItems = totals.selectedItems;
+      state.totalPrice = totals.totalPrice;
 
-      // Handle adding products to the cart
-      .addCase(addToCart.fulfilled, (state, action) => {
-        state.carts = action.payload;
-      });
+      saveCartToLocalStorage(state);
+    },
+    updateQuantity: (state, action) => {
+      const product = state.cart.find((item) => item._id === action.payload.id);
+      if (product) {
+        if (action.payload.type === "increment") {
+          product.quantity += 1;
+        } else if (
+          action.payload.type === "decrement" &&
+          product.quantity > 1
+        ) {
+          product.quantity -= 1;
+        }
+      }
+      const totals = calculateCartTotals(state.cart);
+      state.selectedItems = totals.selectedItems;
+      state.totalPrice = totals.totalPrice;
+
+      saveCartToLocalStorage(state);
+    },
+    removeFromCart: (state, action) => {
+      state.cart = state.cart.filter(
+        (product) => product._id !== action.payload.id
+      );
+      const totals = calculateCartTotals(state.cart);
+      state.selectedItems = totals.selectedItems;
+      state.totalPrice = totals.totalPrice;
+
+      saveCartToLocalStorage(state);
+    },
+    clearCart: (state) => {
+      Object.assign(state, initialState);
+
+      saveCartToLocalStorage(state);
+    },
   },
 });
 
+export const { addToCart, updateQuantity, removeFromCart, clearCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;
