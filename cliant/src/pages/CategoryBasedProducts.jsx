@@ -37,7 +37,7 @@ const CategoryBasedProducts = () => {
                 className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-200"
               >
                 <img src={photo} alt={product.name} className="w-full h-48 object-cover" />
-                
+        
                 <div className="p-4">
                   <h5 className="text-lg font-semibold text-gray-800">{product.name}</h5>
                   <p className="text-gray-500">{product.category.name}</p>
