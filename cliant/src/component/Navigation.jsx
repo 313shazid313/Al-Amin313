@@ -25,7 +25,7 @@ const Navigation = () => {
 
       {error && <h3>{error}</h3>}
 
-      <div className="">
+      <div >
         <div className="flex justify-between bg-[#173334] h-20 text-[#FEBD2F]">
           <div className="flex-initial w-64 flex justify-start items-center">
             {/* <!-- drawer init and toggle --> */}

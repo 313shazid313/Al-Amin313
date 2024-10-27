@@ -5,9 +5,9 @@ import {
   deleteProduct,
   setEditData,
 } from "../../redux/feature/productSlice";
-import photo from "../../assets/nasa-rTZW4f02zY8-unsplash.jpg";
+// import photo from "../../assets/nasa-rTZW4f02zY8-unsplash.jpg";
 import { useNavigate } from "react-router-dom";
-
+import { getImageURL } from "../../util/image-util"
 const ViewProducts = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ const ViewProducts = () => {
       .catch((error) => console.error("Failed to delete product:", error));
   };
 
+  console.log(products)
   return (
     <div className="max-w-7xl mx-auto p-4 space-y-6">
       {!isLoading && !error && products.map((product) => (
@@ -38,7 +39,7 @@ const ViewProducts = () => {
         >
           <div className="md:w-1/3">
             <img
-              src={photo}
+              src={getImageURL(product.image)}
               alt={product.name}
               className="w-full h-48 object-cover md:h-full"
             />
