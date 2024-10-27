@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Swal from "sweetalert2";
 
-// Helper function to load cart from localStorage
 const loadCartFromLocalStorage = () => {
   try {
     const serializedCart = localStorage.getItem("cartData");
@@ -12,7 +11,6 @@ const loadCartFromLocalStorage = () => {
   }
 };
 
-// Helper function to save cart to localStorage
 const saveCartToLocalStorage = (cart) => {
   try {
     const serializedCart = JSON.stringify(cart);
@@ -27,7 +25,6 @@ const initialState = loadCartFromLocalStorage() || [];
 //   cart:[],
 //   selectedItems: 0,
 //   totalPrice: 0,
-
 // };
 
 const calculateCartTotals = (cart) => {
@@ -39,7 +36,6 @@ const calculateCartTotals = (cart) => {
     (total, product) => total + product.quantity * product.price,
     0
   );
-
   return { selectedItems, totalPrice };
 };
 

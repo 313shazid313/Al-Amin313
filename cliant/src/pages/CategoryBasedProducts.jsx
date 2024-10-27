@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/feature/productSlice";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { addToCart } from "../redux/feature/cartSlice";
+import photo from "../assets/nasa-rTZW4f02zY8-unsplash.jpg";
+
 const CategoryBasedProducts = () => {
   const { isLoading, products, error } = useSelector((state) => state.productR);
   const dispatch = useDispatch();
@@ -11,55 +12,53 @@ const CategoryBasedProducts = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-  console.log(products);
 
-  // * getting categoryId as params but in object
-  const categoryId = useParams();
-  // console.log(categoryId);
+  const { id: categoryId } = useParams();
 
-  // * converting categoryId from objects to string
-  const categoryIdString = categoryId.id;
-  console.log(categoryIdString);
-
-  //* filtering products based on categoryId
   const filteredProducts = Array.isArray(products)
-    ? products.filter((value) => value.category?._id === categoryIdString)
+    ? products.filter((product) => product.category?._id === categoryId)
     : [];
-  console.log(filteredProducts);
 
-  // ? adding products data to cart slice
-  const handleAddToCart = (clickedProductToAddToCart) => {
-    // console.log(clickedProductToAddToCart);
-    dispatch(addToCart(clickedProductToAddToCart));
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
   };
 
   return (
     <>
-      {isLoading && <h3>Loading .....</h3>}
-      {error && <h3>{error}</h3>}
-      <div className="centeredNav">
-        <div>
+      {isLoading && <h3 className="text-center text-gray-500">Loading .....</h3>}
+      {error && <h3 className="text-center text-red-500">{error}</h3>}
+      
+      <div className="container mx-auto px-4 py-4">
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {!isLoading &&
-            filteredProducts.map((product) => {
-              return (
-                <article key={product._id}>
-                  <h5>{product.name}</h5>
-                  <p>product Id : {product._id}</p>
-                  <p>{product.category.name}</p>
-                  <h4>category id : {product.category._id}</h4>
-                  <Link to={`/category/${product.category._id}/${product._id}`}>
-                    Show Details
-                  </Link>
-                  <button
-                    onClick={() => {
-                      handleAddToCart(product);
-                    }}
-                  >
-                    Add To Cart
-                  </button>
-                </article>
-              );
-            })}
+            filteredProducts.map((product) => (
+              <article 
+                key={product._id} 
+                className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-200"
+              >
+                <img src={photo} alt={product.name} className="w-full h-48 object-cover" />
+                
+                <div className="p-4">
+                  <h5 className="text-lg font-semibold text-gray-800">{product.name}</h5>
+                  <p className="text-gray-500">{product.category.name}</p>
+
+                  <div className="flex justify-between items-center mt-4">
+                    <Link 
+                      to={`/category/${product.category._id}/${product._id}`} 
+                      className="text-blue-500 hover:text-blue-700"
+                    >
+                      Show Details
+                    </Link>
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                    >
+                      Add To Cart
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))}
         </div>
       </div>
     </>

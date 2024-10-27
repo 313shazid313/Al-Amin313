@@ -1,95 +1,76 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { fetchProducts, deleteProduct } from "../../redux/feature/productSlice";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  fetchProducts,
+  deleteProduct,
+  setEditData,
+} from "../../redux/feature/productSlice";
 import photo from "../../assets/nasa-rTZW4f02zY8-unsplash.jpg";
-import { setEditData } from "../../redux/feature/productSlice";
 import { useNavigate } from "react-router-dom";
 
 const ViewProducts = () => {
-  const navigte = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // getting all producr from slice => start --------->
   const { isLoading, products, error } = useSelector((state) => state.productR);
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-  console.log(products);
-  // getting all producr from slice => end --------->
 
-  //! sending data to AddProduct component through slice =>start ------>
-  const handleEdit = (producrtToEdit) => {
-    dispatch(setEditData(producrtToEdit));
-    // console.log(producrtToEdit);
-    navigte("/dashboard/admin/add-new-product");
+  const handleEdit = (productToEdit) => {
+    dispatch(setEditData(productToEdit));
+    navigate("/dashboard/admin/add-new-product");
   };
-  //! sending data to AddProduct component through slice =>end ------>
 
-  //! delete functionality
   const deleteFunc = (id) => {
-    dispatch(deleteProduct({ id: id }))
-      .then(() => {
-        // After the product is deleted, fetch the updated list
-        dispatch(fetchProducts());
-      })
-      .catch((error) => {
-        console.error("Failed to delete product:", error);
-      });
+    dispatch(deleteProduct({ id }))
+      .then(() => dispatch(fetchProducts()))
+      .catch((error) => console.error("Failed to delete product:", error));
   };
-  //! delete functionality
 
   return (
-    <>
-      {!isLoading &&
-        !error &&
-        products.map((product) => {
-          return (
-            <div
-              className="card mb-3"
-              style={{ maxWidth: "900px" }}
-              key={product._id}
-            >
-              <div className="row g-0">
-                <div className="col-md-4">
-                  <img src={photo} />
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <h5 className="card-title">{product.name}</h5>
-                    <p className="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in
-                    </p>
-                    <p className="card-text">
-                      <small className="text-body-secondary">
-                        Last updated 3 mins ago
-                      </small>
-                    </p>
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => {
-                        handleEdit(product);
-                      }}
-                    >
-                      Edit This Product
-                    </button>{" "}
-                    &nbsp; &nbsp; &nbsp;
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => {
-                        deleteFunc(product._id);
-                      }}
-                    >
-                      Delete This Product
-                    </button>
-                  </div>
-                </div>
-              </div>
+    <div className="max-w-7xl mx-auto p-4 space-y-6">
+      {!isLoading && !error && products.map((product) => (
+        <div
+          className="bg-white shadow-lg rounded-lg overflow-hidden md:flex md:space-x-4"
+          key={product._id}
+        >
+          <div className="md:w-1/3">
+            <img
+              src={photo}
+              alt={product.name}
+              className="w-full h-48 object-cover md:h-full"
+            />
+          </div>
+          <div className="p-4 md:w-2/3">
+            <h5 className="text-xl font-semibold mb-2">{product.name}</h5>
+            <p className="text-gray-700 mb-4">
+              This is a wider card with supporting text below as a natural lead-in.
+            </p>
+            <p className="text-sm text-gray-500 mb-6">
+              <small>Last updated 3 mins ago</small>
+            </p>
+            <div className="flex flex-col space-y-2 md:flex-row md:space-x-4">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
+                onClick={() => handleEdit(product)}
+              >
+                Edit This Product
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
+                onClick={() => deleteFunc(product._id)}
+              >
+                Delete This Product
+              </button>
             </div>
-          );
-        })}
-    </>
+          </div>
+        </div>
+      ))}
+      {isLoading && <p>Loading...</p>}
+      {error && <p className="text-red-500">{error}</p>}
+    </div>
   );
 };
 

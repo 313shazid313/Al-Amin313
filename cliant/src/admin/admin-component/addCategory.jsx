@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   postNewCategory,
   deleteCategory,
@@ -10,26 +9,22 @@ import {
 
 const AddCategory = () => {
   const { categories } = useSelector((state) => state.categoryR);
-
   const [category, setCategory] = useState({ name: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [currentCategory, setCurrentCategory] = useState(null);
 
   const dispatch = useDispatch();
 
-  // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setCategory({ ...category, [name]: value });
   };
 
-  // Handle form submit (Add or Update)
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (isEditing && currentCategory) {
-      // Update category if in edit mode
-      dispatch(updateCategory({ id: currentCategory._id, category: category }))
+      dispatch(updateCategory({ id: currentCategory._id, category }))
         .then(() => {
           dispatch(fetchCategory());
           alert("Category updated successfully");
@@ -41,7 +36,6 @@ const AddCategory = () => {
           console.error("Failed to update category:", error);
         });
     } else {
-      // Add new category
       dispatch(postNewCategory(category))
         .then(() => {
           dispatch(fetchCategory());
@@ -54,84 +48,79 @@ const AddCategory = () => {
     }
   };
 
-  // Fetch categories on mount
   useEffect(() => {
     dispatch(fetchCategory());
   }, [dispatch]);
 
-  // Handle delete category
   const handleClicktoDel = (id) => {
-    dispatch(deleteCategory({ id: id }))
-      .then(() => {
-        dispatch(fetchCategory());
-      })
-      .catch((error) => {
-        console.error("Failed to delete category:", error);
-      });
+    dispatch(deleteCategory({ id }))
+      .then(() => dispatch(fetchCategory()))
+      .catch((error) => console.error("Failed to delete category:", error));
   };
 
-  // Handle update category button click
   const updateCategoryFunc = (categoryItem) => {
     setIsEditing(true);
     setCurrentCategory(categoryItem);
-    setCategory({ name: categoryItem.name }); // Prepopulate the form with selected category
+    setCategory({ name: categoryItem.name });
   };
 
   return (
-    <div className="">
-      <form onSubmit={handleSubmit}>
+    <div className="p-6 max-w-3xl mx-auto bg-white rounded-md shadow-md">
+      <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         <input
           id="categoryInput"
-          className=""
+          className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           type="text"
           placeholder="Enter New Category"
-          aria-label=".form-control-lg example"
           name="name"
           value={category.name}
           onChange={handleInputChange}
         />
-        <br />
-        <button type="submit" className="">
+        <button
+          type="submit"
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
+        >
           {isEditing ? "Update Category" : "Add New Category"}
         </button>
       </form>
 
-      <br />
-      <h2>Existing Category</h2>
-      <table className="">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Update</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map((categoryItem, index) => (
-            <tr key={categoryItem._id}>
-              <th scope="row">{index + 1}</th>
-              <td>{categoryItem.name}</td>
-              <td>
-                <button
-                  onClick={() => updateCategoryFunc(categoryItem)}
-                  className=""
-                >
-                  Update
-                </button>
-              </td>
-              <td>
-                <button
-                  onClick={() => handleClicktoDel(categoryItem._id)}
-                  className=""
-                >
-                  Delete
-                </button>
-              </td>
+      <h2 className="text-xl font-semibold mt-6">Existing Categories</h2>
+      <div className="overflow-x-auto">
+        <table className="w-full mt-4 border border-gray-200 rounded-lg">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="px-4 py-2 border">#</th>
+              <th className="px-4 py-2 border">Name</th>
+              <th className="px-4 py-2 border">Update</th>
+              <th className="px-4 py-2 border">Delete</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {categories.map((categoryItem, index) => (
+              <tr key={categoryItem._id} className="text-center border-t">
+                <td className="px-4 py-2 border">{index + 1}</td>
+                <td className="px-4 py-2 border">{categoryItem.name}</td>
+                <td className="px-4 py-2 border">
+                  <button
+                    onClick={() => updateCategoryFunc(categoryItem)}
+                    className="px-3 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-200"
+                  >
+                    Update
+                  </button>
+                </td>
+                <td className="px-4 py-2 border">
+                  <button
+                    onClick={() => handleClicktoDel(categoryItem._id)}
+                    className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-200"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

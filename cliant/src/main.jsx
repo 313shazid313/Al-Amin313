@@ -16,6 +16,7 @@ import AddCategory from "./admin/admin-component/addCategory.jsx"
 import Poster from "./admin/admin-component/Poster.jsx";
 import ViewUserCart from "./admin/admin-component/ViewUserCart.jsx";
 import Cart from "./component/Cart.jsx";
+import Orders from "./admin/admin-component/Orders.jsx";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path:"user-cart",
         element:<ViewUserCart/>
+      },
+      {
+        path:"user-order",
+        element:<Orders/>
       }
     ],
   },
