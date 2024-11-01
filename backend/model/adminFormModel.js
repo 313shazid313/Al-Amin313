@@ -1,6 +1,6 @@
 const mongooose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -42,23 +42,23 @@ adminSchema.pre("save", async function (next) {
 });
 
 //!hiding password using bcrypt ends --->
-adminSchema.methods.generateToken = async function () {
-  //! instance method
-  try {
-    return jwt.sign(
-      {
-        userId: this._id.toString(), //? these are payload
-        isAdmin: this.isAdmin, //? these are payload
-      },
-      process.env.SECRET,
-      {
-        expiresIn: "1d",
-      }
-    );
-  } catch (error) {
-    console.error(error);
-  }
-};
+// adminSchema.methods.generateToken = async function () {
+//   //! instance method
+//   try {
+//     return jwt.sign(
+//       {
+//         userId: this._id.toString(), //? these are payload
+//         isAdmin: this.isAdmin, //? these are payload
+//       },
+//       process.env.SECRET,
+//       {
+//         expiresIn: "1d",
+//       }
+//     );
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 const AdminSchema = new mongooose.model("User", adminSchema);
 module.exports = AdminSchema;

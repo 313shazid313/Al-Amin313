@@ -4,7 +4,7 @@ const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "Username is required"],
+      required: [true, "name is required"],
       unique: true,
     },
     description: {
@@ -26,8 +26,7 @@ const productSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      contentType: "String",
-      required: [false, "Product image is required"],
+      required: false,
     },
     offer: {
       type: String,

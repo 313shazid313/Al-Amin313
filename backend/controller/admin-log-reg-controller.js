@@ -1,5 +1,6 @@
 const AdminSchema = require("../model/adminFormModel");
 const bcrypt = require("bcryptjs");
+const generateToken = require("../middleware/generateToken");
 
 const adminRegister = async (req, res, next) => {
   try {
@@ -15,10 +16,9 @@ const adminRegister = async (req, res, next) => {
       username,
       password,
     });
-    
+
     return res.status(201).json({
       message: "registration successful",
-      token: await creation.generateToken(),
       userId: creation._id.toString(),
     });
   } catch (error) {
@@ -33,23 +33,42 @@ const adminLogin = async (req, res, next) => {
     console.log(ifExist);
 
     if (!ifExist) {
-      return res.status(409).json({ message: "Invalid username or password" });
+      return res.status(409).json({ message: "Invalid Username" });
     }
 
     const isValid = await bcrypt.compare(password, ifExist.password);
 
-    if (isValid) {
-      res.status(200).json({
-        message: "login successful",
-        token: await ifExist.generateToken(),
-        userId: ifExist._id.toString(),
-      });
-    } else {
-      res.status(401).json({ message: "Invalid username or password" });
+    if (!isValid) {
+      return res.status(401).send({ message: "Invalid Password!" });
     }
+
+    const token = await generateToken(ifExist._id);
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
+    res.status(200).send({
+      message: "Logged in successfully!",
+      token,
+      user: {
+        _id: ifExist._id,
+        username: ifExist.username,
+        isAdmin: ifExist.isAdmin,
+      },
+    });
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = { adminLogin, adminRegister };
+const adminLogout = async (req, res) => {
+  try {
+    res.clearCookie("token");
+    res.status(200).send({ message: "user logout success" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { adminLogin, adminRegister, adminLogout };
