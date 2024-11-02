@@ -12,9 +12,11 @@ const AdminNav = () => {
 
   const handleLogout = async () => {
     try {
-      await logoutUser().unwrap();
-      dispatch(logout())
-      alert("Logout successful!");
+      if (confirm("Sure You want to Logout")) {
+        await logoutUser().unwrap();
+        dispatch(logout())
+        alert("Logout successful!");
+      }
     } catch (error) {
       console.error("Error to logout", error)
     }
