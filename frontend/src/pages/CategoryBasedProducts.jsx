@@ -28,7 +28,7 @@ const CategoryBasedProducts = () => {
       {isLoading && <h3 className="text-center text-gray-500">Loading .....</h3>}
       {error && <h3 className="text-center text-red-500">{error}</h3>}
 
-      <div className="container mx-auto m-12 px-4 py-4">
+      <div className="container mx-auto m-12 px-4 py-4 mt-40">
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {!isLoading &&
             filteredProducts.map((product) => (

@@ -3,7 +3,7 @@ const cloudinary = require("cloudinary").v2;
 cloudinary.config({
   cloud_name: "dtyheyl6n",
   api_key: "869958822369318",
-  api_secret: "9AGX3lMwN8DdaJ1E9_dtkU4KGDI",
+  api_secret: process.env.IMAGE_API_SECRET,
 });
 
 const options = {

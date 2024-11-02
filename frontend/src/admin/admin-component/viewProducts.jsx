@@ -5,9 +5,9 @@ import {
   deleteProduct,
   setEditData,
 } from "../../redux/feature/productSlice";
-// import photo from "../../assets/nasa-rTZW4f02zY8-unsplash.jpg";
 import { useNavigate } from "react-router-dom";
-// import { getImageURL } from "../../util/image-util"
+
+
 const ViewProducts = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,21 +19,27 @@ const ViewProducts = () => {
   }, [dispatch]);
 
   const handleEdit = (productToEdit) => {
-    dispatch(setEditData(productToEdit));
-    navigate("/dashboard/admin/add-new-product");
+
+    if (confirm("Are You Sure Want to Edit")) {
+      dispatch(setEditData(productToEdit));
+      navigate("/dashboard/admin/add-new-product");
+    }
+
   };
 
   const deleteFunc = (id) => {
-    dispatch(deleteProduct({ id }))
-      .then(() => dispatch(fetchProducts()))
-      .then(() => { alert("Sure You Want to delete") })
-      .catch((error) => console.error("Failed to delete product:", error));
+    if (confirm("Are you sure you want to delete?")) {
+      dispatch(deleteProduct({ id }))
+        .then(() => dispatch(fetchProducts()))
+        .catch((error) => console.error("Failed to delete product:", error));
+    }
   };
+
 
   if (products.length === 0) {
     return <p className="text-4xl">No products available. please add some products!</p>;
   }
-  
+
 
   console.log(products)
   return (

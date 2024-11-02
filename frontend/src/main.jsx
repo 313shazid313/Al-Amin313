@@ -14,7 +14,6 @@ import ViewProduct from "./admin/admin-component/viewProducts.jsx";
 import AddProduct from "./admin/admin-component/addProduct.jsx"
 import AddCategory from "./admin/admin-component/addCategory.jsx"
 import Poster from "./admin/admin-component/Poster.jsx";
-
 import Cart from "./component/Cart.jsx";
 import Orders from "./admin/admin-component/Orders.jsx";
 
@@ -34,15 +33,15 @@ const router = createBrowserRouter([
       //! dynamic routing
       {
         path: "/category/:id",
-        element: <CategoryBasedProducts />,
+        element: <><CategoryBasedProducts /><Footer /></>,
       },
       {
         path: "/category/:id/:id",
-        element: <ProductDetailPage />,
+        element: <><ProductDetailPage /><Footer /></>,
       },
       {
-        path:"/my-cart",
-        element :<Cart/>
+        path: "/my-cart",
+        element: <><Cart /><Footer /></>
       }
     ],
   },
@@ -74,8 +73,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path:"user-order",
-        element:<Orders/>
+        path: "user-order",
+        element: <Orders />
       }
     ],
   },

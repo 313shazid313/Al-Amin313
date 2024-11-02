@@ -36,7 +36,7 @@ const ProductDetailPage = () => {
 
   console.log(singleProduct);
   return (
-    <div className="max-w-5xl mx-auto p-8 mt-12 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+    <div className="max-w-5xl mx-auto p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 mt-44 mb-28">
       <div className="md:flex md:space-x-8">
         {/* Product Image */}
         <div className="flex-shrink-0 mb-6 md:mb-0">
