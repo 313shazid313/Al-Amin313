@@ -30,7 +30,7 @@ app.use(
 
 const uploadImage = require("./utility/uploadImage");
 const productRoute = require("./router/productRoute");
-const carouselImageRoute = require("./router/carouselImageRoutes");
+
 const { responseForError } = require("./controller/res-controller");
 const adminRouter = require("./router/log-reg-router");
 
@@ -47,7 +47,7 @@ mongoose
   });
 
 app.use("/products-additionals", productRoute);
-app.use("/images", carouselImageRoute);
+
 app.use("/admin", adminRouter);
 
 app.post("/uploadimage", (req, res) => {

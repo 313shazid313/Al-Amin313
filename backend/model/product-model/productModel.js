@@ -67,7 +67,7 @@ const productSchema = new mongoose.Schema(
       ref: "Unit",
     },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 const productData = mongoose.model("Product", productSchema);

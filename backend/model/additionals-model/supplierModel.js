@@ -28,7 +28,7 @@ const supplierSchema = new mongoose.Schema(
       required: false,
     },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 const SupplierModel = mongoose.model("Supplier", supplierSchema);

@@ -20,7 +20,7 @@ const cliantReviewSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 
