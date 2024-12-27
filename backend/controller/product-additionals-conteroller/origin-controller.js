@@ -1,4 +1,4 @@
-const originSchema = require("../../model/product-additional-model/originModel");
+const originSchema = require("../../model/product-model/product-additional-model/originModel");
 
 const originCreate = async (req, res) => {
   try {

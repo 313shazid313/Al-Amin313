@@ -1,4 +1,4 @@
-const typeSchema = require("../../model/product-additional-model/typeModel");
+const typeSchema = require("../../model/product-model/product-additional-model/typeModel");
 
 const typeCreate = async (req, res) => {
   try {

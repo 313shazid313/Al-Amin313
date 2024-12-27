@@ -1,4 +1,4 @@
-const CarouselImages = require("../model/carouselImageModel");
+const CarouselImages = require("../model/additionals-model/carouselImageModel");
 
 const createCarouselImage = async (req, res, next) => {
   try {
