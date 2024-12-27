@@ -56,11 +56,11 @@ const AddProduct = () => {
       if (editData) {
         dispatch(updateProduct({ id: items._id, product: productData }));
         alert("Product updated successfully!");
-        navigate("/dashboard/admin/existing-products");
+        navigate("/dashboard/admin/product-table");
       } else {
         dispatch(addNewProduct(productData));
         alert("Product added successfully!");
-        navigate("/dashboard/admin/existing-products");
+        navigate("/dashboard/admin/product-table");
       }
 
       setItems({

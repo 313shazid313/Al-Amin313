@@ -10,9 +10,9 @@ import store from "./redux/store.js";
 import CategoryBasedProducts from "./pages/CategoryBasedProducts.jsx";
 import ProductDetailPage from "./pages/ProductDetailPage.jsx";
 import Protected from "./admin/Protected.jsx";
-import ViewProduct from "./admin/admin-component/viewProducts.jsx";
-import AddProduct from "./admin/admin-component/addProduct.jsx"
-import AddCategory from "./admin/admin-component/addCategory.jsx"
+import ProductTable from "./admin/admin-component/ProductTable.jsx";
+import AddProduct from "./admin/admin-component/addProduct.jsx";
+import AddCategory from "./admin/admin-component/addCategory.jsx";
 import Poster from "./admin/admin-component/Poster.jsx";
 import Cart from "./component/Cart.jsx";
 import Orders from "./admin/admin-component/Orders.jsx";
@@ -33,16 +33,31 @@ const router = createBrowserRouter([
       //! dynamic routing
       {
         path: "/category/:id",
-        element: <><CategoryBasedProducts /><Footer /></>,
+        element: (
+          <>
+            <CategoryBasedProducts />
+            <Footer />
+          </>
+        ),
       },
       {
         path: "/category/:id/:id",
-        element: <><ProductDetailPage /><Footer /></>,
+        element: (
+          <>
+            <ProductDetailPage />
+            <Footer />
+          </>
+        ),
       },
       {
         path: "/my-cart",
-        element: <><Cart /><Footer /></>
-      }
+        element: (
+          <>
+            <Cart />
+            <Footer />
+          </>
+        ),
+      },
     ],
   },
   //! Route not found
@@ -56,11 +71,11 @@ const router = createBrowserRouter([
     element: <Protected />,
     children: [
       {
-        path: "existing-products",
-        element: <ViewProduct />,
+        path: "product-table",
+        element: <ProductTable />,
       },
       {
-        path: "add-new-product",
+        path: "product-table/add-new-product",
         element: <AddProduct />,
       },
       {
@@ -74,8 +89,8 @@ const router = createBrowserRouter([
 
       {
         path: "user-order",
-        element: <Orders />
-      }
+        element: <Orders />,
+      },
     ],
   },
 ]);

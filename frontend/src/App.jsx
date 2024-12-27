@@ -8,6 +8,7 @@ import { fetchProducts } from "./redux/feature/productSlice";
 import { addToCart } from "./redux/feature/cartSlice";
 import { Link } from "react-router-dom";
 const App = () => {
+  
   useEffect(() => {
     initFlowbite();
   }, []);
