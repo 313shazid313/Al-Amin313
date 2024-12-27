@@ -7,14 +7,23 @@ const productSchema = new mongoose.Schema(
       required: [true, "name is required"],
       unique: true,
     },
+    Specification: {
+      type: String,
+      required: false,
+    },
     description: {
       type: String,
-      required: [true, "Description is required"],
+      required: false,
     },
     price: {
-      type: String,
+      type: Number,
       required: [true, "Price is required"],
     },
+    deletePrice: {
+      type: Number,
+      required: [true, "Price is required"],
+    },
+
     quantity: {
       type: Number,
       default: 0,
