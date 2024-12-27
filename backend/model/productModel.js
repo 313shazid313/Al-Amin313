@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
+
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -23,16 +24,15 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Price is required"],
     },
-
+    buyingPrice: {
+      type: Number,
+      required: false,
+    },
     quantity: {
       type: Number,
       default: 0,
     },
-    category: {
-      type: Schema.Types.ObjectId,
-      ref: "Category",
-    },
-    image: {
+    imageURL: {
       type: String,
       required: false,
     },
@@ -40,9 +40,31 @@ const productSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
+
+    //? available or not
     status: {
       type: String,
       required: [false, "Status is required"],
+    },
+    categoryId: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+    },
+    typeId: {
+      type: Schema.Types.ObjectId,
+      ref: "Type",
+    },
+    originId: {
+      type: Schema.Types.ObjectId,
+      ref: "Origin",
+    },
+    brandId: {
+      type: Schema.Types.ObjectId,
+      ref: "Brand",
+    },
+    unitId: {
+      type: Schema.Types.ObjectId,
+      ref: "Unit",
     },
   },
   { timestamps: true }
