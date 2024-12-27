@@ -10,5 +10,5 @@ const unitSchema = new mongoose.Schema(
   { timestamps: false }
 );
 
-const UnitModel = mongoose.model("Brand", unitSchema);
+const UnitModel = mongoose.model("Unit", unitSchema);
 module.exports = UnitModel;

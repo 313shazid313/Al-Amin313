@@ -10,5 +10,5 @@ const originSchema = new mongoose.Schema(
   { timestamps: false }
 );
 
-const OriginModel = mongoose.model("Brand", originSchema);
+const OriginModel = mongoose.model("Origin", originSchema);
 module.exports = OriginModel;

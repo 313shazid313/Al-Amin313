@@ -13,23 +13,43 @@ const categoryFuncCreate = async (req, res) => {
 
 const categoruFuncRead = async (req, res) => {
   try {
-    const showAll = await categorySchema.find();
-    res.status(200).json(showAll);
+    const allCategories = await categorySchema.find();
+
+    if (!allCategories) {
+      return res.status(201).json({ message: "Categories does not exist" });
+    }
+
+    const nestedCates = nestedCategories(allCategories);
+
+    return res.status(201).json(nestedCates);
   } catch (error) {
     res.status(500).json({ message: "Server Error" });
   }
 };
 
-const categoruFuncdel = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const deleteCategory = await categorySchema.findByIdAndDelete({ _id: id });
-    res
-      .status(200)
-      .json({ deleteCategory, message: "user deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Server Error" });
+const nestedCategories = (categories, parentd = null) => {
+  const categoryList = [];
+  let category;
+
+  if (parentd == null) {
+    category = categories.filter((cat) => cat.parentCategoryId == null);
+  } else {
+    category = categories.filter(
+      (cat) => String(cat.parentCategoryId) == String(parentd)
+    );
   }
+
+  for (let cate of category) {
+    categoryList.push({
+      id: cate.id,
+      name: cate.name,
+      inHomeCategory: cate.inHomeCategory,
+      isPublished: cate.isPublished,
+      parentCategoryId: cate.parentCategoryId,
+      children: nestedCategories(categories, cate.id),
+    });
+  }
+  return categoryList;
 };
 
 const categoryFuncUpdate = async (req, res) => {
@@ -53,6 +73,5 @@ const categoryFuncUpdate = async (req, res) => {
 module.exports = {
   categoryFuncCreate,
   categoruFuncRead,
-  categoruFuncdel,
   categoryFuncUpdate,
 };

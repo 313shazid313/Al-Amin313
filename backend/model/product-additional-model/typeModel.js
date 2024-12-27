@@ -10,5 +10,5 @@ const typeSchema = new mongoose.Schema(
   { timestamps: false }
 );
 
-const TypeModel = mongoose.model("Brand", typeSchema);
+const TypeModel = mongoose.model("Type", typeSchema);
 module.exports = TypeModel;

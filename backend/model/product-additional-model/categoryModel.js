@@ -5,7 +5,22 @@ const categorySchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, "Category name is required"],
-      trim: true,
+      unique: true,
+    },
+    inHomeCategory: {
+      type: Boolean,
+      default: false,
+    },
+
+    isPublished: {
+      type: Boolean,
+      default: false,
+    },
+    parentCategoryId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: false,
+      ref: "Category",
+      default: null,
     },
   },
   {
@@ -13,5 +28,4 @@ const categorySchema = new mongoose.Schema(
   }
 );
 
-const Category = mongoose.model("Category", categorySchema);
-module.exports = Category;
+module.exports = mongoose.model("Category", categorySchema);

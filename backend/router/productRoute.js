@@ -12,7 +12,6 @@ const {
 const {
   categoryFuncCreate,
   categoruFuncRead,
-  categoruFuncdel,
   categoryFuncUpdate,
 } = require("../controller/product-additionals-conteroller/category-controller");
 
@@ -40,14 +39,13 @@ const {
   unitUpdate,
 } = require("../controller/product-additionals-conteroller/unit-controller");
 
-//! if i make a post request and use middleware
-//! its patch/put request wont work if i didnt use that middleware
-//! i should be careful
+//? if i make a post request and use middleware
+//? its patch/put request wont work if i didnt use that middleware
+//? i should be careful
 
 //! product route
-productRouter.route("/createcategory").post(categoryFuncCreate);
-productRouter.route("/allcategory").get(categoruFuncRead);
-productRouter.route("/delcategory/:id").delete(categoruFuncdel);
+productRouter.route("/create-category").post(categoryFuncCreate);
+productRouter.route("/all-category").get(categoruFuncRead);
 productRouter.route("/update-category/:id").put(categoryFuncUpdate);
 
 productRouter.route("/create-a-brand").post(brandCreate);
