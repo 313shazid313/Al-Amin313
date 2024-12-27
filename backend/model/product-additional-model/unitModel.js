@@ -5,10 +5,9 @@ const unitSchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, "Name is required"],
-      unique: true,
     },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 const UnitModel = mongoose.model("Brand", unitSchema);

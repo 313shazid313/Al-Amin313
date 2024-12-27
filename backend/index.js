@@ -46,7 +46,7 @@ mongoose
     console.log("failed", error);
   });
 
-app.use("/products", productRoute);
+app.use("/products-additionals", productRoute);
 app.use("/images", carouselImageRoute);
 app.use("/admin", adminRouter);
 

@@ -16,6 +16,13 @@ const {
   categoryFuncUpdate,
 } = require("../controller/product-additionals-conteroller/category-controller");
 
+const {
+  brandCreate,
+  brandRead,
+  brandDelete,
+  brandUpdate,
+} = require("../controller/product-additionals-conteroller/brand-controller");
+
 //! if i make a post request and use middleware
 //! its patch/put request wont work if i didnt use that middleware
 //! i should be careful
@@ -25,6 +32,10 @@ productRouter.route("/createcategory").post(categoryFuncCreate);
 productRouter.route("/allcategory").get(categoruFuncRead);
 productRouter.route("/delcategory/:id").delete(categoruFuncdel);
 productRouter.route("/update-category/:id").put(categoryFuncUpdate);
+
+productRouter.route("/create-a-brand").post(brandCreate);
+productRouter.route("/allbrands").get(brandRead);
+productRouter.route("/update-a-brand/:id").put(brandUpdate);
 
 productRouter.route("/createproduct").post(productCreate);
 productRouter.route("/getproducts").get(getProducts);
