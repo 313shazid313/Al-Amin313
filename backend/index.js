@@ -27,6 +27,7 @@ app.use(
     credentials: true,
   })
 );
+
 const uploadImage = require("./utility/uploadImage");
 
 const productRoute = require("./router/productRoute");
