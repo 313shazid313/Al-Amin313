@@ -28,10 +28,6 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
-    quantity: {
-      type: Number,
-      default: 0,
-    },
     imageURL: {
       type: String,
       required: false,
@@ -40,11 +36,15 @@ const productSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-
     //? available or not
     status: {
       type: String,
       required: [false, "Status is required"],
+    },
+    isPublished: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
     categoryId: {
       type: Schema.Types.ObjectId,
