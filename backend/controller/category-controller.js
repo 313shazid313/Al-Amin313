@@ -1,4 +1,4 @@
-const categorySchema = require("../model/categoryModel");
+const categorySchema = require("../model/product-additional-model/categoryModel");
 
 const categoryFuncCreate = async (req, res) => {
   try {
