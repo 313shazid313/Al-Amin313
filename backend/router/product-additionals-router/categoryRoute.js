@@ -6,7 +6,7 @@ const {
   categoruFuncRead,
   categoruFuncdel,
   categoryFuncUpdate,
-} = require("../controller/category-controller");
+} = require("../../controller/product-additionals-conteroller/category-controller");
 
 //! category route
 CategoryRouter.route("/createcategory").post(categoryFuncCreate);

@@ -24,13 +24,13 @@ app.use(morgan("dev"));
 app.use(
   cors({
     origin: "http://localhost:5173",
-    credentials: true
+    credentials: true,
   })
 );
 const uploadImage = require("./utility/uploadImage");
 
 const productRoute = require("./router/productRoute");
-const categoryRoutes = require("./router/categoryRoute");
+const categoryRoutes = require("./router/product-additionals-router/categoryRoute");
 const carouselImageRoute = require("./router/carouselImageRoutes");
 const { responseForError } = require("./controller/res-controller");
 const adminRouter = require("./router/log-reg-router");
