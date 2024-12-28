@@ -34,8 +34,25 @@ const typeUpdate = async (req, res) => {
   }
 };
 
+
+const getSingleType = async (req, res) => {
+  try {
+    const { id } = req.params; // Assuming ID is passed as a route parameter
+    const data = await typeSchema.findById(id); // Replace YourModel with your actual model
+
+    if (!data) {
+      return res.status(404).json({ message: "Data not found" });
+    }
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 module.exports = {
   typeCreate,
   typeRead,
   typeUpdate,
+  getSingleType
 };

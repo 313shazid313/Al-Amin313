@@ -50,7 +50,7 @@ const slideAdUpdate = async (req, res) => {
 const getSingleSlideAd = async (req, res) => {
   try {
     const { id } = req.params; // Assuming ID is passed as a route parameter
-    const data = await cliantReviewSchema.findById(id); // Replace YourModel with your actual model
+    const data = await slideAdSchema.findById(id); // Replace YourModel with your actual model
 
     if (!data) {
       return res.status(404).json({ message: "Data not found" });

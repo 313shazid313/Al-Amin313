@@ -41,7 +41,7 @@ const supplierUpdate = async (req, res) => {
 const getSingleSupplier = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await cliantReviewSchema.findById(id);
+    const data = await supplierSchema.findById(id);
 
     if (!data) {
       return res.status(404).json({ message: "Data not found" });

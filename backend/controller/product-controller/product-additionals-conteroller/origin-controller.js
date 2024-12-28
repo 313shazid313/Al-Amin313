@@ -34,8 +34,24 @@ const originUpdate = async (req, res) => {
   }
 };
 
+const getSingleOrigin = async (req, res) => {
+  try {
+    const { id } = req.params; 
+    const data = await originSchema.findById(id);
+
+    if (!data) {
+      return res.status(404).json({ message: "Data not found" });
+    }
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 module.exports = {
   originCreate,
   originRead,
   originUpdate,
+  getSingleOrigin
 };
