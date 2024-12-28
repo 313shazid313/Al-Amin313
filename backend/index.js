@@ -46,8 +46,7 @@ mongoose
     console.log("failed", error);
   });
 
-app.use("/products-additionals", productRoute);
-
+app.use("/products", productRoute);
 app.use("/admin", adminRouter);
 
 app.post("/uploadimage", (req, res) => {
@@ -60,8 +59,8 @@ app.use((req, res, next) => {
   return next(createError(404, "route not found"));
 });
 
+//? seprate error handeling
 app.use((err, req, res, next) => {
-  //? seprate error handeling
   return responseForError(res, {
     statusCode: err.status,
     message: err.message,

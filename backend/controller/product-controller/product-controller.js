@@ -11,6 +11,7 @@ const productCreate = async (req, res, next) => {
     //==========>
     const { name } = req.body;
     const productExist = await ProductModelSchema.exists({ name: name });
+
     if (productExist) {
       return res.json(401, { message: "Product with this name already exist" });
     }
@@ -26,10 +27,12 @@ const productCreate = async (req, res, next) => {
 
 const getProducts = async (req, res, next) => {
   try {
-    // ? if i use {.populate("category");} the function will return
-    // ? everything in category model because the category is linked to product model
-
-    const showAll = await ProductModelSchema.find().populate("category");
+    const showAll = await ProductModelSchema.find()
+      .populate("categoryId")
+      .populate("typeId")
+      .populate("originId")
+      .populate("brandId")
+      .populate("unitId");
 
     return res.status(200).json(showAll);
   } catch (error) {
@@ -60,12 +63,19 @@ const updateProduct = async (req, res, next) => {
     const {
       name,
       description,
+      Specification,
       price,
-      quantity,
+      deletePrice,
+      buyingPrice,
+      imageURL,
       offer,
-      status,
-      category,
-      image,
+      isPublished,
+      status, //? available or not
+      categoryId,
+      typeId,
+      originId,
+      brandId,
+      unitId,
     } = req.body;
 
     console.log("Request Body:", req.body);
@@ -75,12 +85,19 @@ const updateProduct = async (req, res, next) => {
     const updateData = {
       name,
       description,
+      Specification,
       price,
-      quantity,
+      deletePrice,
+      buyingPrice,
+      imageURL,
       offer,
-      status,
-      category,
-      image,
+      isPublished,
+      status, //? available or not
+      categoryId,
+      typeId,
+      originId,
+      brandId,
+      unitId,
     };
 
     console.log(id);
@@ -103,21 +120,9 @@ const updateProduct = async (req, res, next) => {
   }
 };
 
-const deleteProduct = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const deleteData = await ProductModelSchema.findByIdAndDelete({ _id: id });
-
-    res.status(200).json({ message: "Item Deleted Successfully", deleteData });
-  } catch (error) {
-    next(error);
-  }
-};
-
 module.exports = {
   productCreate,
   getProducts,
   getASingleProduct,
   updateProduct,
-  deleteProduct,
 };

@@ -5,7 +5,6 @@ const {
   productCreate,
   getProducts,
   getASingleProduct,
-  deleteProduct,
   updateProduct,
 } = require("../controller/product-controller/product-controller");
 
@@ -67,7 +66,6 @@ productRouter.route("/update-an-unit/:id").put(unitUpdate);
 productRouter.route("/createproduct").post(productCreate);
 productRouter.route("/getproducts").get(getProducts);
 productRouter.route("/singleproduct/:id").get(getASingleProduct);
-productRouter.route("/deleteproduct/:id").delete(deleteProduct);
 productRouter.route("/edit-product/:id").put(updateProduct);
 
 module.exports = productRouter;
