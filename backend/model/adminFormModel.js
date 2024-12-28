@@ -20,7 +20,7 @@ const adminSchema = new mongooose.Schema(
     },
   },
   {
-    timestamps: true,
+    timestamps: false,
   }
 );
 

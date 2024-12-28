@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline"; // Ensure you have @heroicons/react installed for the menu icon
 import { useLogoutUserMutation } from "../redux/auth/authApi";
@@ -191,7 +191,8 @@ const AdminNav = () => {
               </ul>
             </li>
             <li>
-              <Link
+              <NavLink
+                exact
                 to="product-table"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -206,7 +207,7 @@ const AdminNav = () => {
                 </svg>
                 <span className="flex-1 ms-3 whitespace-nowrap">Manage Products</span>
                 
-              </Link>
+              </NavLink>
             </li>
        
             <li>
