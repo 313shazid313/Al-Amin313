@@ -5,36 +5,42 @@ const {
   reviewCreate,
   reviewRead,
   reviewUpdate,
+  getSingleReview,
 } = require("../controller/additionals-controller/cliantreview-controller");
 
 const {
   damageCreate,
   damageRead,
   damageUpdate,
+  getSingleDamage,
 } = require("../controller/additionals-controller/damage-controller");
 
 const {
   deliveryCreate,
   deliveryRead,
   deliveryUpdate,
+  getSingleDelivery,
 } = require("../controller/additionals-controller/delevery-controller");
 
 const {
   slideAdCreate,
   slideAdRead,
   slideAdUpdate,
+  getSingleSlideAd,
 } = require("../controller/additionals-controller/slide-ad-controller");
 
 const {
   stockCreate,
   stockRead,
   stockUpdate,
+  getSingleStock,
 } = require("../controller/additionals-controller/stock-contoller");
 
 const {
   supplierCreate,
   supplierRead,
   supplierUpdate,
+  getSingleSupplier,
 } = require("../controller/additionals-controller/supplier-controller");
 
 additionalsRoute.route("/create-review").post(reviewCreate);
