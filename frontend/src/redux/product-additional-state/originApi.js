@@ -30,36 +30,29 @@ const originApi = createApi({
     }),
 
     // update order status
-    // updateOrigin: builder.mutation({
-    //   query: ({ id, status }) => ({
-    //     url: `/update-origin/${id}`,
-    //     method: "PUT",
-    //     body:  status ,
-    //   }),
-    //   invalidatesTags: ["Origin"],
-    // }),
+    updateOrigin: builder.mutation({
+      query: ({ id, status }) => ({
+        url: `/update-origin/${id}`,
+        method: "PUT",
+        body:  status ,
+      }),
+      invalidatesTags: ["Origin"],
+    }),
 
     singleOrigin: builder.query({
       query: (id) => `/single-origin/${id}`,
       providesTags: (result, error, id) => [{ type: "Origin", id }],
     }),
 
-    // delete order
-    deleteanOrigin: builder.mutation({
-      query: (id) => ({
-        url: `/delete-origin/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: (result, error, id) => [{ type: "Origin", id }],
-    }),
+
+
   }),
 });
 
 export const {
   useCreateOriginMutation,
-  useDeleteanOriginMutation,
   useGetAllOriginQuery,
-//   useUpdateOriginMutation,
+  useUpdateOriginMutation,
   useSingleOriginQuery,
 } = originApi;
 

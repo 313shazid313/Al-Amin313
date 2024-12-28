@@ -29,35 +29,26 @@ const unitApi = createApi({
       providesTags: ["Unit"],
     }),
 
-    // updateUnit: builder.mutation({
-    //   query: ({ id, status }) => ({
-    //     url: `/update-unit/${id}`,
-    //     method: "PUT",
-    //     body: status,
-    //   }),
-    //   invalidatesTags: ["Unit"],
-    // }),
+    updateUnit: builder.mutation({
+      query: ({ id, status }) => ({
+        url: `/update-unit/${id}`,
+        method: "PUT",
+        body: status,
+      }),
+      invalidatesTags: ["Unit"],
+    }),
 
     singleUnit: builder.query({
       query: (id) => `/single-unit/${id}`,
       providesTags: (result, error, id) => [{ type: "Unit", id }],
-    }),
-
-    deleteanUnit: builder.mutation({
-      query: (id) => ({
-        url: `/delete-unit/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: (result, error, id) => [{ type: "Unit", id }],
     }),
   }),
 });
 
 export const {
   useCreateUnitMutation,
-  useDeleteanUnitMutation,
   useGetAllUnitQuery,
-  //   useUpdateUnitMutation,
+  useUpdateUnitMutation,
   useSingleUnitQuery,
 } = unitApi;
 
