@@ -32,4 +32,6 @@ const slideAdSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("SlideAd", slideAdSchema);
+const slideAdModel = mongoose.model("SlideAd", slideAdSchema);
+
+module.exports = slideAdModel;

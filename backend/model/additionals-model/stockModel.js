@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
 const stockSchema = new mongoose.Schema(
   {
@@ -32,4 +33,5 @@ const stockSchema = new mongoose.Schema(
   { timestamps: false }
 );
 
-module.exports = mongoose.model("Stock", stockSchema);
+const stockModel = mongoose.model("Stock", stockSchema);
+module.exports = stockModel;

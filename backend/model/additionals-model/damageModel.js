@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
 const damageSchema = new mongoose.Schema(
   {
@@ -14,4 +15,5 @@ const damageSchema = new mongoose.Schema(
   { timestamps: false }
 );
 
-module.exports = mongoose.model("Stock", damageSchema);
+const damageModel = mongoose.model("Damage", damageSchema);
+module.exports = damageModel;

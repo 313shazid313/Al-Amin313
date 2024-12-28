@@ -30,6 +30,7 @@ app.use(
 
 const uploadImage = require("./utility/uploadImage");
 const productRoute = require("./router/productRoute");
+const additionalsRoute = require("./router/additionalsRoute");
 
 const { responseForError } = require("./controller/res-controller");
 const adminRouter = require("./router/log-reg-router");
@@ -48,6 +49,7 @@ mongoose
 
 app.use("/products", productRoute);
 app.use("/admin", adminRouter);
+app.use("/additionals", additionalsRoute);
 
 app.post("/uploadimage", (req, res) => {
   uploadImage(req.body.image)
