@@ -25,12 +25,31 @@ const supplierUpdate = async (req, res) => {
     const { id } = req.params;
     const { name, phone, email, address } = req.body;
     const updateData = { name, phone, email, address };
-    const updateCategory = await supplierSchema.findByIdAndUpdate(id, updateData, {
-      new: true,
-    });
+    const updateCategory = await supplierSchema.findByIdAndUpdate(
+      id,
+      updateData,
+      {
+        new: true,
+      }
+    );
     res.status(200).json(updateCategory);
   } catch (error) {
     res.status(500).json({ message: "Update Unsuccessfull" });
+  }
+};
+
+const getSingleSupplier = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await cliantReviewSchema.findById(id);
+
+    if (!data) {
+      return res.status(404).json({ message: "Data not found" });
+    }
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };
 
@@ -38,4 +57,5 @@ module.exports = {
   supplierCreate,
   supplierRead,
   supplierUpdate,
+  getSingleSupplier,
 };
