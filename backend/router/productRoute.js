@@ -51,26 +51,31 @@ const {
 productRouter.route("/create-category").post(categoryFuncCreate);
 productRouter.route("/all-category").get(categoruFuncRead);
 productRouter.route("/update-category/:id").put(categoryFuncUpdate);
+productRouter.route("/single-category/:id").put(getSingleCategory);
 
-productRouter.route("/create-a-brand").post(brandCreate);
+productRouter.route("/create-brand").post(brandCreate);
 productRouter.route("/allbrands").get(brandRead);
-productRouter.route("/update-a-brand/:id").put(brandUpdate);
+productRouter.route("/update-brand/:id").put(brandUpdate);
+productRouter.route("/single-brand/:id").put(getSingleBrand);
 
-productRouter.route("/create-an-origin").post(originCreate);
+productRouter.route("/create-origin").post(originCreate);
 productRouter.route("/allorigins").get(originRead);
-productRouter.route("/update-an-origin/:id").put(originUpdate);
+productRouter.route("/update-origin/:id").put(originUpdate);
+productRouter.route("/single-origin/:id").put(getSingleOrigin);
 
-productRouter.route("/create-a-type").post(typeCreate);
+productRouter.route("/create-type").post(typeCreate);
 productRouter.route("/alltypes").get(typeRead);
-productRouter.route("/update-a-type/:id").put(typeUpdate);
+productRouter.route("/update-type/:id").put(typeUpdate);
+productRouter.route("/single-type/:id").put(getSingleType);
 
-productRouter.route("/create-an-unit").post(unitCreate);
+productRouter.route("/create-unit").post(unitCreate);
 productRouter.route("/allunit").get(unitRead);
-productRouter.route("/update-an-unit/:id").put(unitUpdate);
+productRouter.route("/single-unit/:id").put(getSingleUnit);
+productRouter.route("/update-unit/:id").put(unitUpdate);
 
-productRouter.route("/createproduct").post(productCreate);
-productRouter.route("/getproducts").get(getProducts);
-productRouter.route("/singleproduct/:id").get(getASingleProduct);
-productRouter.route("/edit-product/:id").put(updateProduct);
+productRouter.route("/create-product").post(productCreate);
+productRouter.route("/allproducts").get(getProducts);
+productRouter.route("/single-product/:id").get(getASingleProduct);
+productRouter.route("/update-product/:id").put(updateProduct);
 
 module.exports = productRouter;
