@@ -1,4 +1,4 @@
-const slideAdSchema = require("../../model/additionals-model/slideAd");
+const slideAdSchema = require("../../model/additionals-model/slideAdModel");
 
 const slideAdCreate = async (req, res) => {
   try {

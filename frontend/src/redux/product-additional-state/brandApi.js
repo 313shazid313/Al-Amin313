@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const BaseUrl = "http://localhost:8000/product-route/brand/";
+const BaseUrl = "http://localhost:7230/products";
 
 const brandApi = createApi({
   reducerPath: "brandApi",
@@ -14,7 +14,7 @@ const brandApi = createApi({
   endpoints: (builder) => ({
     createBrand: builder.mutation({
       query: (newBrand) => ({
-        url: "/create-brand",
+        url: "/create-a-brand",
         method: "POST",
         body: newBrand,
       }),
@@ -30,14 +30,14 @@ const brandApi = createApi({
     }),
 
     // update order status
-    updateBrand: builder.mutation({
-      query: ({ id, status }) => ({
-        url: `/update-brand/${id}`,
-        method: "PUT",
-        body: status,
-      }),
-      invalidatesTags: ["Brand"],
-    }),
+    // updateBrand: builder.mutation({
+    //   query: ({ id, status }) => ({
+    //     url: `/update-brand/${id}`,
+    //     method: "PUT",
+    //     body: status,
+    //   }),
+    //   invalidatesTags: ["Brand"],
+    // }),
 
     singleBrand: builder.query({
       query: (id) => `/single-brand/${id}`,
@@ -59,7 +59,7 @@ export const {
   useCreateBrandMutation,
   useDeleteaBrandMutation,
   useGetAllBrandsQuery,
-  useUpdateBrandMutation,
+  //   useUpdateBrandMutation,
   useSingleBrandQuery,
 } = brandApi;
 

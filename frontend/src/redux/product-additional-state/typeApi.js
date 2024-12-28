@@ -30,14 +30,14 @@ const typeApi = createApi({
     }),
 
     // update order status
-    updateType: builder.mutation({
-      query: ({ id, status }) => ({
-        url: `/update-type/${id}`,
-        method: "PUT",
-        body:  status ,
-      }),
-      invalidatesTags: ["Types"],
-    }),
+    // updateType: builder.mutation({
+    //   query: ({ id, status }) => ({
+    //     url: `/update-type/${id}`,
+    //     method: "PUT",
+    //     body:  status ,
+    //   }),
+    //   invalidatesTags: ["Types"],
+    // }),
 
     singleType: builder.query({
       query: (id) => `/single-type/${id}`,
@@ -59,7 +59,7 @@ export const {
   useCreateTypeMutation,
   useDeleteaTypeMutation,
   useGetAllTypesQuery,
-  useUpdateTypeMutation,
+//   useUpdateTypeMutation,
   useSingleTypeQuery
 } = typeApi;
 
