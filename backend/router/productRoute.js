@@ -7,37 +7,37 @@ const {
   getASingleProduct,
   deleteProduct,
   updateProduct,
-} = require("../controller/product-controller");
+} = require("../controller/product-controller/product-controller");
 
 const {
   categoryFuncCreate,
   categoruFuncRead,
   categoryFuncUpdate,
-} = require("../controller/product-additionals-conteroller/category-controller");
+} = require("../controller/product-controller/product-additionals-conteroller/category-controller");
 
 const {
   brandCreate,
   brandRead,
   brandUpdate,
-} = require("../controller/product-additionals-conteroller/brand-controller");
+} = require("../controller/product-controller/product-additionals-conteroller/brand-controller");
 
 const {
   originCreate,
   originRead,
   originUpdate,
-} = require("../controller/product-additionals-conteroller/origin-controller");
+} = require("../controller/product-controller/product-additionals-conteroller/origin-controller");
 
 const {
   typeCreate,
   typeRead,
   typeUpdate,
-} = require("../controller/product-additionals-conteroller/type-controller");
+} = require("../controller/product-controller/product-additionals-conteroller/type-controller");
 
 const {
   unitCreate,
   unitRead,
   unitUpdate,
-} = require("../controller/product-additionals-conteroller/unit-controller");
+} = require("../controller/product-controller/product-additionals-conteroller/unit-controller");
 
 //? if i make a post request and use middleware
 //? its patch/put request wont work if i didnt use that middleware

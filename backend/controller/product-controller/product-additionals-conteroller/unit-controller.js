@@ -1,4 +1,4 @@
-const unitSchema = require("../../model/product-model/product-additional-model/unitModel");
+const unitSchema = require("../../../model/product-model/product-additional-model/unitModel");
 
 const unitCreate = async (req, res) => {
   try {
