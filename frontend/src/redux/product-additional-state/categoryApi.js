@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const BaseUrl = "http://localhost:8000/product-route/category/";
+const BaseUrl = "http://localhost:7230/products";
 
 const categoryApi = createApi({
   reducerPath: "categoryApi",
@@ -23,7 +23,7 @@ const categoryApi = createApi({
 
     getAllCategories: builder.query({
       query: () => ({
-        url: "/get-all-categorys",
+        url: "/all-categories",
         method: "GET",
       }),
       providesTags: ["Category"],

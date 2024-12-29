@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const BaseUrl = "http://localhost:8000/product-route/type/";
+const BaseUrl = "http://localhost:7230/products";
 
 const typeApi = createApi({
   reducerPath: "typeApi",
@@ -23,7 +23,7 @@ const typeApi = createApi({
 
     getAllTypes: builder.query({
       query: () => ({
-        url: "/get-all-types",
+        url: "/all-types",
         method: "GET",
       }),
       providesTags: ["Types"],

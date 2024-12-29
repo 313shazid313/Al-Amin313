@@ -14,7 +14,7 @@ const brandApi = createApi({
   endpoints: (builder) => ({
     createBrand: builder.mutation({
       query: (newBrand) => ({
-        url: "/create-a-brand",
+        url: "/create-brand",
         method: "POST",
         body: newBrand,
       }),
@@ -23,7 +23,7 @@ const brandApi = createApi({
 
     getAllBrands: builder.query({
       query: () => ({
-        url: "/allbrands",
+        url: "/all-brands",
         method: "GET",
       }),
       providesTags: ["Brand"],

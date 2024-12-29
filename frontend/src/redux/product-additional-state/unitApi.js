@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const BaseUrl = "http://localhost:8000/product-route/unit/";
+const BaseUrl = "http://localhost:7230/products";
 
 const unitApi = createApi({
   reducerPath: "unitApi",
@@ -23,7 +23,7 @@ const unitApi = createApi({
 
     getAllUnit: builder.query({
       query: () => ({
-        url: "/get-all-units",
+        url: "/all-units",
         method: "GET",
       }),
       providesTags: ["Unit"],

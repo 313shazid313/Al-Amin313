@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const BaseUrl = "http://localhost:8000/product-route/origin/";
+const BaseUrl = "http://localhost:7230/products";
 
 const originApi = createApi({
   reducerPath: "originApi",
@@ -23,7 +23,7 @@ const originApi = createApi({
 
     getAllOrigin: builder.query({
       query: () => ({
-        url: "/get-all-origins",
+        url: "/all-origins",
         method: "GET",
       }),
       providesTags: ["Origin"],
