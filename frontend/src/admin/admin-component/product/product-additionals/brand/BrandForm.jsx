@@ -4,6 +4,7 @@ import {
   useGetAllBrandsQuery,
 } from "../../../../../redux/product-additional-state/brandApi";
 import { useNavigate } from "react-router-dom";
+import ImageHandle from "../../../ImageHandle";
 
 const BrandForm = () => {
   const handleGoBack = () => {
@@ -13,6 +14,9 @@ const BrandForm = () => {
   const { refetch } = useGetAllBrandsQuery();
   const navigate = useNavigate();
   const [createBrand] = useCreateBrandMutation();
+
+
+  const [image, setImage] = useState("");
 
   const [element, setElement] = useState({
     name: "",
@@ -65,14 +69,18 @@ const BrandForm = () => {
           </div>
         </div>
 
-        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-          Add Image
-        </label>
-        <input
-          className="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-          id="small_size"
-          type="file"
-        />
+
+
+        <div className="flex flex-col space-y-1">
+          <ImageHandle
+            label="Image"
+            name="image"
+            id="image"
+            value={image}
+            placeholder="Upload image"
+            setImage={setImage}
+          />
+        </div>
 
         <div className="space-y-10">
           <fieldset>

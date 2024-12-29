@@ -24,7 +24,9 @@ const ImageHandle = ({ name, setImage, label, id, value }) => {
   const uploadSingleImage = async (base64) => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:7230/uploadimage", { image: base64 });
+      const res = await axios.post("http://localhost:7230/uploadimage", {
+        image: base64,
+      });
       const imageURL = res.data;
       console.log(imageURL);
       setUrl(imageURL);
@@ -56,26 +58,29 @@ const ImageHandle = ({ name, setImage, label, id, value }) => {
 
   return (
     <div>
-      <label htmlFor={name} className="block text-sm font-medium text-gray-600">
+      <label
+        htmlFor={name}
+        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >
         {label}
       </label>
+
       <input
         onChange={uploadImage}
         name={name}
         id={name}
         type="file"
-        className="add-product-InputCSS"
-        multiple // add if you intend to support multiple images
+        multiple
+        className="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
       />
+
       {loading && <p>Loading...</p>}
-      {
-        url && (
-          <div>
-            <p>Image uploaded successfully!</p>
-            <img src={url} alt="uploaded image" />
-          </div>
-        )
-      }
+      {url && (
+        <div>
+          <p>Image uploaded successfully!</p>
+          <img src={url} alt="uploaded image" />
+        </div>
+      )}
     </div>
   );
 };
