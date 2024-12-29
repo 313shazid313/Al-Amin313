@@ -5,7 +5,7 @@ import {
   deleteCategory,
   updateCategory,
   fetchCategory,
-} from "../../redux/feature/categorySlice";
+} from "../../../../../redux/feature/categorySlice";
 
 const AddCategory = () => {
   const { categories } = useSelector((state) => state.categoryR);

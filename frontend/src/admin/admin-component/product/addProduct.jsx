@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCategory } from "../../redux/feature/categorySlice";
-import { addNewProduct, updateProduct } from "../../redux/feature/productSlice";
+import { fetchCategory } from "../../../redux/feature/categorySlice";
+import { addNewProduct, updateProduct } from "../../../redux/feature/productSlice";
 import { useNavigate } from "react-router-dom";
-import ImageHandle from "./ImageHandle";
+import ImageHandle from "../ImageHandle";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const AddProduct = () => {
     category: "",
     offer: "",
     status: "",
-    image: ""  // Add image field to items state
+    image: "", // Add image field to items state
   });
 
   const dispatch = useDispatch();
@@ -45,13 +45,19 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!items.name || !items.category || !items.price || !items.status || !items.description) {
+    if (
+      !items.name ||
+      !items.category ||
+      !items.price ||
+      !items.status ||
+      !items.description
+    ) {
       alert("Please fill in all required fields.");
       return;
     }
 
     try {
-      const productData = { ...items, image };  // Add image URL to product data
+      const productData = { ...items, image }; // Add image URL to product data
 
       if (editData) {
         dispatch(updateProduct({ id: items._id, product: productData }));
@@ -71,9 +77,9 @@ const AddProduct = () => {
         category: "",
         offer: "",
         status: "",
-        image: ""
+        image: "",
       });
-      setImage("");  // Clear the image state
+      setImage(""); // Clear the image state
     } catch (error) {
       console.error("Failed to add or update product:", error);
     }
@@ -214,7 +220,6 @@ const AddProduct = () => {
         {editData ? "Edit Product" : "Add New Product"}
       </button>
     </form>
-
   );
 };
 
