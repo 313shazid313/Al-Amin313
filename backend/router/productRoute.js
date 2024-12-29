@@ -49,32 +49,32 @@ const {
 
 //! product route
 productRouter.route("/create-category").post(categoryFuncCreate);
-productRouter.route("/all-category").get(categoruFuncRead);
+productRouter.route("/all-categories").get(categoruFuncRead);
 productRouter.route("/update-category/:id").put(categoryFuncUpdate);
 productRouter.route("/single-category/:id").get(getSingleCategory);
 
 productRouter.route("/create-brand").post(brandCreate);
-productRouter.route("/allbrands").get(brandRead);
+productRouter.route("/all-brands").get(brandRead);
 productRouter.route("/update-brand/:id").put(brandUpdate);
 productRouter.route("/single-brand/:id").get(getSingleBrand);
 
 productRouter.route("/create-origin").post(originCreate);
-productRouter.route("/allorigins").get(originRead);
+productRouter.route("/all-origins").get(originRead);
 productRouter.route("/update-origin/:id").put(originUpdate);
 productRouter.route("/single-origin/:id").get(getSingleOrigin);
 
 productRouter.route("/create-type").post(typeCreate);
-productRouter.route("/alltypes").get(typeRead);
+productRouter.route("/all-types").get(typeRead);
 productRouter.route("/update-type/:id").put(typeUpdate);
 productRouter.route("/single-type/:id").get(getSingleType);
 
 productRouter.route("/create-unit").post(unitCreate);
-productRouter.route("/allunit").get(unitRead);
+productRouter.route("/all-units").get(unitRead);
 productRouter.route("/single-unit/:id").put(getSingleUnit);
 productRouter.route("/update-unit/:id").get(unitUpdate);
 
 productRouter.route("/create-product").post(productCreate);
-productRouter.route("/allproducts").get(getProducts);
+productRouter.route("/all-products").get(getProducts);
 productRouter.route("/update-product/:id").put(updateProduct);
 productRouter.route("/single-product/:id").get(getASingleProduct);
 
