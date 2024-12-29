@@ -6,7 +6,7 @@ import {
   setEditData,
 } from "../../../redux/feature/productSlice";
 import { useNavigate } from "react-router-dom";
-import Loading from "../../../util/Loading";
+import Loading from "../../../component/Loading";
 import { Link } from "react-router-dom";
 
 const ProductTable = () => {

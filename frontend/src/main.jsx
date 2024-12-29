@@ -16,6 +16,12 @@ import AddCategory from "./admin/admin-component/product/product-additionals/cat
 import Poster from "./admin/admin-component/Poster.jsx";
 import Cart from "./component/Cart.jsx";
 import Orders from "./admin/admin-component/Orders.jsx";
+import BrandTable from "./admin/admin-component/product/product-additionals/brand/BrandTable.jsx";
+import BrandForm from "./admin/admin-component/product/product-additionals/brand/BrandForm.jsx";
+import BrandUpdate from "./admin/admin-component/product/product-additionals/brand/BrandUpdate.jsx";
+import UnitTable from "./admin/admin-component/product/product-additionals/unit/UnitTable.jsx";
+import UnitForm from "./admin/admin-component/product/product-additionals/unit/UnitForm.jsx";
+import UnitUpdate from "./admin/admin-component/product/product-additionals/unit/UnitUpdate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +96,30 @@ const router = createBrowserRouter([
       {
         path: "user-order",
         element: <Orders />,
+      },
+      {
+        path: "brand-table",
+        element: <BrandTable />,
+      },
+      {
+        path: "brand-table/brand-form",
+        element: <BrandForm />,
+      },
+      {
+        path: "brand-table/brand-update/:id",
+        element: <BrandUpdate />,
+      },
+      {
+        path: "unit-table",
+        element: <UnitTable />,
+      },
+      {
+        path: "unit-table/unit-form",
+        element: <UnitForm />,
+      },
+      {
+        path: "unit-table/unit-update/:id",
+        element: <UnitUpdate />,
       },
     ],
   },

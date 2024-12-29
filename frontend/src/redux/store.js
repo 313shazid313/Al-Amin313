@@ -24,7 +24,14 @@ export const store = configureStore({
     [typeApi.reducerPath]: typeApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware),
+    getDefaultMiddleware().concat(
+      authApi.middleware,
+      brandApi.middleware,
+      categoryApi.middleware,
+      originApi.middleware,
+      typeApi.middleware,
+      unitApi.middleware
+    ),
 });
 
 export default store;

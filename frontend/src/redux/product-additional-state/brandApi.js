@@ -29,7 +29,6 @@ const brandApi = createApi({
       providesTags: ["Brand"],
     }),
 
-    // update order status
     updateBrand: builder.mutation({
       query: ({ id, status }) => ({
         url: `/update-brand/${id}`,
