@@ -3,6 +3,16 @@ const brandSchema = require("../../../model/product-model/product-additional-mod
 const brandCreate = async (req, res) => {
   try {
     const resp = req.body;
+
+    const { name } = req.body;
+    const exist = await brandSchema.exists({ name: name });
+
+    if (exist) {
+      return res.json(401, {
+        message: "This Brand name is already exists. Please add new one.",
+      });
+    }
+
     await brandSchema.create(resp);
     return res.status(200).json({ message: "message sent successfully" });
   } catch (error) {
@@ -49,10 +59,9 @@ const getSingleBrand = async (req, res) => {
   }
 };
 
-
 module.exports = {
   brandCreate,
   brandRead,
   brandUpdate,
-  getSingleBrand
+  getSingleBrand,
 };

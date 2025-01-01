@@ -2,8 +2,18 @@ const typeSchema = require("../../../model/product-model/product-additional-mode
 
 const typeCreate = async (req, res) => {
   try {
-    const resp = req.body;
-    await typeSchema.create(resp);
+    const data = req.body;
+
+    const { name } = req.body;
+    const exist = await typeSchema.exists({ name: name });
+
+    if (exist) {
+      return res.json(401, {
+        message: "This type name already exists please add new one.",
+      });
+    }
+
+    await typeSchema.create(data);
     return res.status(200).json({ message: "message sent successfully" });
   } catch (error) {
     console.error(error);
@@ -34,7 +44,6 @@ const typeUpdate = async (req, res) => {
   }
 };
 
-
 const getSingleType = async (req, res) => {
   try {
     const { id } = req.params; // Assuming ID is passed as a route parameter
@@ -54,5 +63,5 @@ module.exports = {
   typeCreate,
   typeRead,
   typeUpdate,
-  getSingleType
+  getSingleType,
 };

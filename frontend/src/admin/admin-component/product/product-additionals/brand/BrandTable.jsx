@@ -57,7 +57,7 @@ const BrandTable = () => {
             {data?.map((item) => (
               <tr
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                key={item.id}
+                key={item._id}
               >
                 <td className="px-6 py-4">{(serial = serial + 1)}</td>
                 <td className="px-6 py-4">{item.name}</td>

@@ -3,6 +3,16 @@ const unitSchema = require("../../../model/product-model/product-additional-mode
 const unitCreate = async (req, res) => {
   try {
     const data = req.body;
+
+    const { name } = req.body;
+    const exist = await unitSchema.exists({ name: name });
+
+    if (exist) {
+      return res.json(401, {
+        message: "This unit name is already exists. Please add new one.",
+      });
+    }
+
     await unitSchema.create(data);
     return res.status(200).json({ message: "message sent successfully" });
   } catch (error) {
@@ -53,5 +63,5 @@ module.exports = {
   unitCreate,
   unitRead,
   unitUpdate,
-  getSingleUnit
+  getSingleUnit,
 };

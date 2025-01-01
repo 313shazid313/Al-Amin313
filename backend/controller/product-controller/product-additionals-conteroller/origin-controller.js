@@ -3,6 +3,16 @@ const originSchema = require("../../../model/product-model/product-additional-mo
 const originCreate = async (req, res) => {
   try {
     const resp = req.body;
+
+    const { name } = req.body;
+    const exist = await originSchema.exists({ name: name });
+
+    if (exist) {
+      return res.json(401, {
+        message: "Origin already exists please add new one.",
+      });
+    }
+
     await originSchema.create(resp);
     return res.status(200).json({ message: "message sent successfully" });
   } catch (error) {
@@ -36,7 +46,7 @@ const originUpdate = async (req, res) => {
 
 const getSingleOrigin = async (req, res) => {
   try {
-    const { id } = req.params; 
+    const { id } = req.params;
     const data = await originSchema.findById(id);
 
     if (!data) {
@@ -53,5 +63,5 @@ module.exports = {
   originCreate,
   originRead,
   originUpdate,
-  getSingleOrigin
+  getSingleOrigin,
 };

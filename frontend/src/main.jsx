@@ -2,6 +2,8 @@ import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+
 import RouteDoesNotExist from "./component/RouteDoesNotExist.jsx";
 import Navigation from "./component/Navigation.jsx";
 import App from "./App.jsx";
@@ -21,11 +23,15 @@ import BrandUpdate from "./admin/admin-component/product/product-additionals/bra
 import UnitTable from "./admin/admin-component/product/product-additionals/unit/UnitTable.jsx";
 import UnitForm from "./admin/admin-component/product/product-additionals/unit/UnitForm.jsx";
 import UnitUpdate from "./admin/admin-component/product/product-additionals/unit/UnitUpdate.jsx";
-
-import { Toaster } from "react-hot-toast";
 import TypeTable from "./admin/admin-component/product/product-additionals/type/TypeTable.jsx";
 import TypeForm from "./admin/admin-component/product/product-additionals/type/TypeForm.jsx";
 import TypeUpdate from "./admin/admin-component/product/product-additionals/type/TypeUpdate.jsx";
+import OriginTable from "./admin/admin-component/product/product-additionals/origin/OriginTable.jsx";
+import OriginForm from "./admin/admin-component/product/product-additionals/origin/OriginForm.jsx";
+import OriginUpdate from "./admin/admin-component/product/product-additionals/origin/OriginUpdate.jsx";
+import CategoryTable from "./admin/admin-component/product/product-additionals/category/CategoryTable.jsx";
+import CategoryForm from "./admin/admin-component/product/product-additionals/category/CategoryForm.jsx";
+import CategoryUpdate from "./admin/admin-component/product/product-additionals/category/CategoryUpdate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -133,6 +139,30 @@ const router = createBrowserRouter([
       {
         path: "type-table/type-update/:id",
         element: <TypeUpdate />,
+      },
+      {
+        path: "origin-table",
+        element: <OriginTable />,
+      },
+      {
+        path: "origin-table/origin-form",
+        element: <OriginForm />,
+      },
+      {
+        path: "origin-table/origin-update/:id",
+        element: <OriginUpdate />,
+      },
+      {
+        path: "category-table",
+        element: <CategoryTable />,
+      },
+      {
+        path: "category-table/category-form",
+        element: <CategoryForm />,
+      },
+      {
+        path: "category-table/category-update/:id",
+        element: <CategoryUpdate />,
       },
     ],
   },

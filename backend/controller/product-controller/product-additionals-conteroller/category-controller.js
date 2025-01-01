@@ -3,6 +3,16 @@ const categorySchema = require("../../../model/product-model/product-additional-
 const categoryFuncCreate = async (req, res) => {
   try {
     const res = req.body;
+
+    const { name } = req.body;
+    const exist = await categorySchema.exists({ name: name });
+
+    if (exist) {
+      return res.json(401, {
+        message: "This Category name is already exists. Please add new one.",
+      });
+    }
+
     await categorySchema.create(res);
     return res.status(200).json({ message: "message sent successfully" });
   } catch (error) {
@@ -89,5 +99,5 @@ module.exports = {
   categoryFuncCreate,
   categoruFuncRead,
   categoryFuncUpdate,
-  getSingleCategory
+  getSingleCategory,
 };
