@@ -66,7 +66,7 @@ const UnitUpdate = () => {
             htmlFor="name"
             className="block text-sm font-medium text-gray-900"
           >
-            Name
+            Unit Name
           </label>
           <div className="mt-2">
             <input
