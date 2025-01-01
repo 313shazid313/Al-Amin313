@@ -12,7 +12,6 @@ import ProductDetailPage from "./pages/ProductDetailPage.jsx";
 import Protected from "./admin/Protected.jsx";
 import ProductTable from "./admin/admin-component/product/ProductTable.jsx";
 import AddProduct from "./admin/admin-component/product/AddProduct.jsx";
-import AddCategory from "./admin/admin-component/product/product-additionals/category/addCategory.jsx";
 import Poster from "./admin/admin-component/Poster.jsx";
 import Cart from "./component/Cart.jsx";
 import Orders from "./admin/admin-component/Orders.jsx";
@@ -24,6 +23,9 @@ import UnitForm from "./admin/admin-component/product/product-additionals/unit/U
 import UnitUpdate from "./admin/admin-component/product/product-additionals/unit/UnitUpdate.jsx";
 
 import { Toaster } from "react-hot-toast";
+import TypeTable from "./admin/admin-component/product/product-additionals/type/TypeTable.jsx";
+import TypeForm from "./admin/admin-component/product/product-additionals/type/TypeForm.jsx";
+import TypeUpdate from "./admin/admin-component/product/product-additionals/type/TypeUpdate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -86,10 +88,7 @@ const router = createBrowserRouter([
         path: "product-table/add-new-product",
         element: <AddProduct />,
       },
-      {
-        path: "add-new-category",
-        element: <AddCategory />,
-      },
+
       {
         path: "add-new-poster",
         element: <Poster />,
@@ -122,6 +121,18 @@ const router = createBrowserRouter([
       {
         path: "unit-table/unit-update/:id",
         element: <UnitUpdate />,
+      },
+      {
+        path: "type-table",
+        element: <TypeTable />,
+      },
+      {
+        path: "type-table/type-form",
+        element: <TypeForm />,
+      },
+      {
+        path: "type-table/type-update/:id",
+        element: <TypeUpdate />,
       },
     ],
   },
