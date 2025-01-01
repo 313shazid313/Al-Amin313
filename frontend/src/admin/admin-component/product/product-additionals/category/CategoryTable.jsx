@@ -3,34 +3,12 @@ import { useGetAllCategoriesQuery } from "../../../../../redux/product-additiona
 import Loading from "../../../../../component/Loading";
 import Error404 from "../../../../../component/RouteDoesNotExist";
 
-import { useNavigate } from "react-router-dom";
-
 const CategoryTable = () => {
-  // const navigate = useNavigate();
   const { data, isError, isLoading } = useGetAllCategoriesQuery();
 
   let serial = 0;
 
   console.log(data);
-
-  // const [deleteaCategory] = useDeleteaCategoryMutation();
-
-  // const handleCategoryDelete = async (id) => {
-  //   try {
-  //     if (confirm("Sure You Want to Delete")) {
-  //       const response = await deleteaCategory(id).unwrap();
-  //       console.log(response);
-  //       refetch();
-  //     }
-  //   } catch (error) {
-  //     console.error("Failed to delete user", error);
-  //   }
-  // };
-
-  // const handleCategoryEdit = (data) => {
-  //   console.log(data);
-  //   navigate("category-form");
-  // };
 
   if (isLoading) return <Loading />;
   if (isError) return <Error404 />;
@@ -64,17 +42,20 @@ const CategoryTable = () => {
 
   return (
     <div>
-      <p className="text-2xl font-bold mb-6 text-center">Manage Category</p>
-      {/* {isLoading && <Loading />} */}
-      <div className="flex justify-end">
-        <Link
-          to="category-form"
-          className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
-        >
-          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            Add New Category
-          </span>
-        </Link>
+      <div className="flex justify-between">
+        <div>
+          <p className="text-2xl font-bold mb-6">Manage Category</p>
+        </div>
+        <div className="">
+          <Link
+            to="category-form"
+            className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+          >
+            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              Add New
+            </span>
+          </Link>
+        </div>
       </div>
 
       <div className="relative overflow-x-auto">
