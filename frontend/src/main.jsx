@@ -11,7 +11,7 @@ import CategoryBasedProducts from "./pages/CategoryBasedProducts.jsx";
 import ProductDetailPage from "./pages/ProductDetailPage.jsx";
 import Protected from "./admin/Protected.jsx";
 import ProductTable from "./admin/admin-component/product/ProductTable.jsx";
-import AddProduct from "./admin/admin-component/product/addProduct.jsx";
+import AddProduct from "./admin/admin-component/product/AddProduct.jsx";
 import AddCategory from "./admin/admin-component/product/product-additionals/category/addCategory.jsx";
 import Poster from "./admin/admin-component/Poster.jsx";
 import Cart from "./component/Cart.jsx";
@@ -22,6 +22,8 @@ import BrandUpdate from "./admin/admin-component/product/product-additionals/bra
 import UnitTable from "./admin/admin-component/product/product-additionals/unit/UnitTable.jsx";
 import UnitForm from "./admin/admin-component/product/product-additionals/unit/UnitForm.jsx";
 import UnitUpdate from "./admin/admin-component/product/product-additionals/unit/UnitUpdate.jsx";
+
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -127,5 +129,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <RouterProvider router={router} />
+    <Toaster position="top-right" reverseOrder={false} />
   </Provider>
 );

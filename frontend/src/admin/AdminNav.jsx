@@ -4,6 +4,7 @@ import { Bars3Icon } from "@heroicons/react/24/outline"; // Ensure you have @her
 import { useLogoutUserMutation } from "../redux/auth/authApi";
 import { logout } from "../redux/auth/authSlice";
 import { useDispatch } from "react-redux";
+
 const AdminNav = () => {
   const dispatch = useDispatch();
   const [logoutUser] = useLogoutUserMutation();
@@ -244,7 +245,8 @@ const AdminNav = () => {
                   </a>
                 </li>
                 <li>
-                  <NavLink 
+                  <NavLink
+                    exact="true"
                     to="brand-table"
                     className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
@@ -280,7 +282,7 @@ const AdminNav = () => {
 
             <li>
               <NavLink
-                exact
+                exact="true"
                 to="product-table"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -335,7 +337,7 @@ const AdminNav = () => {
             </li>
             <li>
               <button
-                href="#"
+                onClick={handleLogout}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg

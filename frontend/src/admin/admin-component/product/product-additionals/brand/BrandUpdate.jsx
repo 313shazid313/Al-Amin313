@@ -4,47 +4,57 @@ import {
   useUpdateBrandMutation,
   useSingleBrandQuery,
 } from "../../../../../redux/product-additional-state/brandApi";
+import ImageHandle from "../../../ImageHandle";
+import toast from "react-hot-toast";
 
 const BrandUpdate = () => {
+  const [image, setImage] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { data, isLoading: isProductLoading, error } = useSingleBrandQuery(id);
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
+  const { data, isLoading: isProductLoading, error } = useSingleBrandQuery(id);
   const [updateBrand, { isLoading: isUpdating }] = useUpdateBrandMutation();
 
   const [element, setElement] = useState({
-    brandName: "",
-    description: "",
+    name: "",
+    isPublished: false,
   });
 
   useEffect(() => {
-    if (data?.aBrand) {
+    if (data) {
       setElement({
-        brandName: data.aBrand.brandName || "",
-        description: data.aBrand.description || "",
+        name: data.name || "",
+        isPublished: data.isPublished || false,
       });
+      setImage(data.imageURL || "");
     }
-  }, [data?.aBrand]);
+  }, [data]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setElement((prevState) => ({
       ...prevState,
-      [name]: value, // Update state with selected value
+      [name]: name === "isPublished" ? value === "true" : value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      await updateBrand({ id: id, status: element }).unwrap();
-      alert("Brand updated successfully!");
+      await updateBrand({
+        id: id,
+        status: { ...element, imageURL: image },
+      }).unwrap();
+
+      toast.success("Brand Updated Successfully");
       navigate(-1);
     } catch (err) {
       console.error("Failed to update brand:", err);
-      alert("An error occurred while updating the brand.");
+      toast.error("Update Brand Failed");
     }
   };
 
@@ -53,48 +63,99 @@ const BrandUpdate = () => {
 
   return (
     <div>
-      <div>
-        <h2 className="text-2xl font-bold mb-6 text-center">Update Brand</h2>
-        <form onSubmit={handleSubmit} className="max-w-xl mx-auto pt-16">
-          <div className="mb-5">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Enter Brand Name
-            </label>
+      <p className="text-2xl font-bold text-center">Update Brand</p>
+      <form onSubmit={handleSubmit} className="max-w-xl mx-auto pt-3">
+        <div className="sm:col-span-3 py-3">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-900"
+          >
+            Name
+          </label>
+          <div className="mt-2">
             <input
+              id="name"
+              name="name"
+              value={element.name}
               onChange={handleInputChange}
-              name="brandName"
-              value={element.brandName}
-              required
               type="text"
-              id="base-input"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 sm:text-sm"
             />
           </div>
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Enter Brand Description
-          </label>
-          <textarea
-            onChange={handleInputChange}
-            name="description"
-            value={element.description}
-            id="message"
-            rows="4"
-            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Write your thoughts here..."
-          ></textarea>
-          <div className="pt-5">
-            <button
-              type="submit"
-              disabled={isUpdating}
-              className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
-            >
-              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                {isUpdating ? "Updating..." : "Edit Brand"}
-              </span>
-            </button>
-          </div>
-        </form>
-      </div>
+        </div>
+
+        <div className="flex flex-col space-y-1">
+          <ImageHandle
+            label="Image"
+            name="image"
+            id="image"
+            value={image}
+            placeholder="Upload image"
+            setImage={setImage}
+          />
+        </div>
+
+        <div className="space-y-10">
+          <fieldset>
+            <legend className="text-sm font-semibold text-gray-900">
+              Publish or Not
+            </legend>
+            <div className="mt-3 space-y-6">
+              <div className="flex items-center gap-x-3">
+                <input
+                  id="publish"
+                  name="isPublished"
+                  value="true"
+                  type="radio"
+                  onChange={handleInputChange}
+                  checked={element.isPublished === true}
+                  className="size-4 border-gray-300 text-blue-500 focus:ring-blue-500"
+                />
+                <label
+                  htmlFor="publish"
+                  className="block text-sm font-medium text-gray-900"
+                >
+                  Publish
+                </label>
+              </div>
+              <div className="flex items-center gap-x-3">
+                <input
+                  id="unpublish"
+                  name="isPublished"
+                  value="false"
+                  type="radio"
+                  onChange={handleInputChange}
+                  checked={element.isPublished === false}
+                  className="size-4 border-gray-300 text-blue-500 focus:ring-blue-500"
+                />
+                <label
+                  htmlFor="unpublish"
+                  className="block text-sm font-medium text-gray-900"
+                >
+                  Un-Publish
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div className="mt-6 flex items-center justify-end gap-x-6">
+          <button
+            onClick={handleGoBack}
+            type="button"
+            className="text-sm font-semibold text-gray-900"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={isUpdating}
+            className="rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600"
+          >
+            Save
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

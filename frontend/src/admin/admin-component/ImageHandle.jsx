@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 // eslint-disable-next-line no-unused-vars, react/prop-types
 const ImageHandle = ({ name, setImage, label, id, value }) => {
@@ -30,7 +31,7 @@ const ImageHandle = ({ name, setImage, label, id, value }) => {
       const imageURL = res.data;
       console.log(imageURL);
       setUrl(imageURL);
-      alert("Uploading image successful");
+      toast.success("Uploading image successful");
       setImage(imageURL);
     } catch (error) {
       console.error(error);
@@ -53,7 +54,6 @@ const ImageHandle = ({ name, setImage, label, id, value }) => {
       const base = await convertBase64(imageFiles[i]);
       base64s.push(base);
     }
-    // Further processing for multiple images if required
   };
 
   return (
@@ -66,11 +66,11 @@ const ImageHandle = ({ name, setImage, label, id, value }) => {
       </label>
 
       <input
+        multiple
         onChange={uploadImage}
         name={name}
         id={name}
         type="file"
-        multiple
         className="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
       />
 

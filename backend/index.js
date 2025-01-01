@@ -21,13 +21,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(rateLimiter);
 app.use(morgan("dev"));
-
-app.use(cors({
-  origin: 'http://localhost:5173', // Allow only your frontend origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-}));
-
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 const uploadImage = require("./utility/uploadImage");
 const productRoute = require("./router/productRoute");

@@ -19,7 +19,7 @@ const AddProduct = () => {
     category: "",
     offer: "",
     status: "",
-    image: "", // Add image field to items state
+    image: "",
   });
 
   const dispatch = useDispatch();

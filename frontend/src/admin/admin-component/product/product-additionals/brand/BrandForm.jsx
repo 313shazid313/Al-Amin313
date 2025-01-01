@@ -5,6 +5,8 @@ import {
 } from "../../../../../redux/product-additional-state/brandApi";
 import { useNavigate } from "react-router-dom";
 import ImageHandle from "../../../ImageHandle";
+import toast from "react-hot-toast";
+
 
 const BrandForm = () => {
   const handleGoBack = () => {
@@ -14,7 +16,6 @@ const BrandForm = () => {
   const { refetch } = useGetAllBrandsQuery();
   const navigate = useNavigate();
   const [createBrand] = useCreateBrandMutation();
-
 
   const [image, setImage] = useState("");
 
@@ -35,10 +36,12 @@ const BrandForm = () => {
   const handleSubmit = async (e) => {
     console.log(element);
     e.preventDefault();
+    const productData = { ...element, imageURL: image };
+    console.log(productData);
     try {
-      await createBrand({ ...element }).unwrap();
+      await createBrand(productData).unwrap();
       refetch();
-      alert("Create New Brand successful!");
+      toast.success("Brand Added Successfully");
       navigate(-1);
     } catch (error) {
       console.error(error);
@@ -69,8 +72,6 @@ const BrandForm = () => {
           </div>
         </div>
 
-
-
         <div className="flex flex-col space-y-1">
           <ImageHandle
             label="Image"
@@ -96,7 +97,7 @@ const BrandForm = () => {
                   type="radio"
                   onChange={handleInputChange}
                   // defaultChecked={isPublished === true}
-                  className="size-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+                  className="size-4 border-gray-300 text-blue-500 focus:ring-blue-500"
                 />
                 <label
                   htmlFor="publish"
@@ -113,7 +114,7 @@ const BrandForm = () => {
                   type="radio"
                   onChange={handleInputChange}
                   // defaultChecked={isPublished === false}
-                  className="size-4 border-gray-300 text-blue-600 focus:ring-blue-600"
+                  className="size-4 border-gray-300 text-blue-500 focus:ring-blue-500"
                 />
                 <label
                   htmlFor="unpublish"

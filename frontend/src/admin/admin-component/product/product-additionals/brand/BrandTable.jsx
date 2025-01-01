@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useGetAllBrandsQuery } from "../../../../../redux/product-additional-state/brandApi";
 import Loading from "../../../../../component/Loading";
 import Error404 from "../../../../../component/RouteDoesNotExist";
+import defaultImage from "../../../../../assets/qvga.png";
 
 const BrandTable = () => {
   const { data, isError, isLoading } = useGetAllBrandsQuery();
@@ -60,7 +61,15 @@ const BrandTable = () => {
               >
                 <td className="px-6 py-4">{(serial = serial + 1)}</td>
                 <td className="px-6 py-4">{item.name}</td>
-                <img src={item.imageURL} alt="" />
+                <img
+                  src={item.imageURL ? item.imageURL : defaultImage}
+                  alt="image"
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                  }}
+                />
                 <td className="px-6 py-4">
                   {item.isPublished ? (
                     <span className="text-green-600">✔ Published</span>
@@ -68,7 +77,7 @@ const BrandTable = () => {
                     <span className="text-red-600">✘ Not Published</span>
                   )}
                 </td>
-               
+
                 <td className="px-6 py-4">
                   <Link to={`brand-update/${item._id}`}>Edit</Link>{" "}
                 </td>
