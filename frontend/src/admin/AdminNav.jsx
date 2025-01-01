@@ -254,12 +254,13 @@ const AdminNav = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    exact="true"
+                    to="unit-table"
                     className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
                     Manage Unit
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
                   <a

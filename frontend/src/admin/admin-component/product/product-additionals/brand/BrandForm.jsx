@@ -15,7 +15,7 @@ const BrandForm = () => {
 
   const { refetch } = useGetAllBrandsQuery();
   const navigate = useNavigate();
-  const [createBrand] = useCreateBrandMutation();
+  const [createBrand, { isLoading: loading }] = useCreateBrandMutation();
 
   const [image, setImage] = useState("");
 
@@ -36,10 +36,10 @@ const BrandForm = () => {
   const handleSubmit = async (e) => {
     console.log(element);
     e.preventDefault();
-    const productData = { ...element, imageURL: image };
-    console.log(productData);
+    const data = { ...element, imageURL: image };
+    console.log(data);
     try {
-      await createBrand(productData).unwrap();
+      await createBrand(data).unwrap();
       refetch();
       toast.success("Brand Added Successfully");
       navigate(-1);
@@ -139,7 +139,7 @@ const BrandForm = () => {
             type="submit"
             className="rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Save
+            {loading ? "Saving..." :"Save"}
           </button>
         </div>
       </form>
