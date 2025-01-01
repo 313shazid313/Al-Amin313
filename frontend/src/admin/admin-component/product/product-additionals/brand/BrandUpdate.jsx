@@ -152,7 +152,7 @@ const BrandUpdate = () => {
             disabled={isUpdating}
             className="rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600"
           >
-            {isUpdating ? "updating" : "Save"}
+            {isUpdating ? "updating" : "Update"}
           </button>
         </div>
       </form>

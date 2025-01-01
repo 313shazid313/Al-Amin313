@@ -70,8 +70,8 @@ productRouter.route("/single-type/:id").get(getSingleType);
 
 productRouter.route("/create-unit").post(unitCreate);
 productRouter.route("/all-units").get(unitRead);
-productRouter.route("/single-unit/:id").put(getSingleUnit);
-productRouter.route("/update-unit/:id").get(unitUpdate);
+productRouter.route("/single-unit/:id").get(getSingleUnit);
+productRouter.route("/update-unit/:id").put(unitUpdate);
 
 productRouter.route("/create-product").post(productCreate);
 productRouter.route("/all-products").get(getProducts);

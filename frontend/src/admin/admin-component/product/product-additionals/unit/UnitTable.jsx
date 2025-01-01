@@ -57,7 +57,7 @@ const UnitTable = () => {
                 <td className="px-6 py-4">{item.name}</td>
 
                 <td className="px-6 py-4">
-                  <Link to={`brand-update/${item._id}`}>Edit</Link>{" "}
+                  <Link to={`unit-update/${item._id}`}>Edit</Link>{" "}
                 </td>
               </tr>
             ))}
