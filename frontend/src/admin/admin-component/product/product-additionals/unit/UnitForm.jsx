@@ -39,6 +39,7 @@ const UnitForm = () => {
       navigate(-1);
     } catch (error) {
       console.error(error);
+      toast.error(error.data.message);
     }
   };
 

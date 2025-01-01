@@ -44,7 +44,8 @@ const BrandForm = () => {
       toast.success("Brand Added Successfully");
       navigate(-1);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      toast.error(error.data.message);
     }
   };
 
