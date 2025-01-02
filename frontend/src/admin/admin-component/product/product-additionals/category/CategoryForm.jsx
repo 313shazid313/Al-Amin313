@@ -6,13 +6,13 @@ import {
   useCreateCategoryMutation,
   useGetAllCategoriesQuery,
 } from "../../../../../redux/product-additional-state/categoryApi";
-
-// import { toast } from "react-toastify";
 import toast from "react-hot-toast";
 
 const CategoryForm = () => {
   const [image, setImage] = useState("");
-  const { data, isError, isLoading } = useGetAllCategoriesQuery();
+
+  // const { data, isError, isLoading } = useGetAllCategoriesQuery();
+  const { data } = useGetAllCategoriesQuery();
   // console.log(data);
 
   const handleGoBack = () => {
@@ -28,7 +28,6 @@ const CategoryForm = () => {
     parentCategoryId: "",
     imageURL: "",
     isPublished: "",
-    // inHomeCategory: "",
   });
 
   const handleInputChange = (e) => {
