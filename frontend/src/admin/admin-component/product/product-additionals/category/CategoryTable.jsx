@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useGetAllCategoriesQuery } from "../../../../../redux/product-additional-state/categoryApi";
 import Loading from "../../../../../component/Loading";
 import Error404 from "../../../../../component/RouteDoesNotExist";
+import defaultImage from "../../../../../assets/qvga.png";
 
 const CategoryTable = () => {
   const { data, isError, isLoading } = useGetAllCategoriesQuery();
@@ -23,7 +24,13 @@ const CategoryTable = () => {
         : category.name;
 
       // Add the current path as an object with name and id
-      paths.push({ name: currentPath, id: category.id });
+      paths.push({
+        name: currentPath,
+        id: category.id,
+        isPublished: category.isPublished,
+        inHomeCategory: category.inHomeCategory,
+        imageURL: category.imageURL,
+      });
 
       // Recursively process children
       const childPaths = buildParentChildPaths(
@@ -68,9 +75,11 @@ const CategoryTable = () => {
               <th scope="col" className="px-6 py-3">
                 Category name
               </th>
-
               <th scope="col" className="px-6 py-3">
-                Delete
+                Image
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Edit
               </th>
             </tr>
           </thead>
@@ -82,7 +91,17 @@ const CategoryTable = () => {
               >
                 <td className="px-6 py-4">{(serial = serial + 1)}</td>
                 <td className="px-6 py-4">{item.name}</td>
-
+                <td className="px-6 py-4">
+                  <img
+                    src={item.imageURL ? item.imageURL : defaultImage}
+                    alt="Category"
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                    }}
+                  />
+                </td>
                 <td className="px-6 py-4">
                   <Link to={`category-update/${item.id}`}>Edit</Link>
                 </td>

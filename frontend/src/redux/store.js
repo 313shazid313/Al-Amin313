@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authApi from "./auth/authApi";
-import categoryReducer from "./feature/categorySlice";
 import productReducer from "./feature/productSlice";
 import cartReducer from "./feature/cartSlice";
 import authReducer from "../redux/auth/authSlice";
@@ -13,7 +12,6 @@ import typeApi from "./product-additional-state/typeApi";
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
-    categoryR: categoryReducer,
     productR: productReducer,
     cartR: cartReducer,
     auth: authReducer,

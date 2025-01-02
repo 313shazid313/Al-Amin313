@@ -8,8 +8,7 @@ const brandSchema = new mongoose.Schema(
     },
     imageURL: {
       type: String,
-      require: false,
-      default:""
+      required: false,
     },
     isPublished: {
       type: Boolean,

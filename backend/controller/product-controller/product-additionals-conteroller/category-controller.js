@@ -2,21 +2,27 @@ const categorySchema = require("../../../model/product-model/product-additional-
 
 const categoryFuncCreate = async (req, res) => {
   try {
-    const res = req.body;
+    const { name, inHomeCategory, isPublished, imageURL, parentCategoryId } =
+      req.body;
 
-    const { name } = req.body;
-    const exist = await categorySchema.exists({ name: name });
+    const exist = await categorySchema.exists({ name });
 
     if (exist) {
-      return res.json(401, {
-        message: "This Category name is already exists. Please add new one.",
+      return res.status(409).json({
+        message: "This Category name already exists. Please add a new one.",
       });
     }
 
-    await categorySchema.create(res);
-    return res.status(200).json({ message: "message sent successfully" });
+    await categorySchema.create({
+      name,
+      parentCategoryId,
+      inHomeCategory,
+      isPublished,
+      imageURL,
+    });
+    return res.status(201).json({ message: "Category Created Successfully" });
   } catch (error) {
-    console.error(error);
+    console.error("Error in category creation:", error);
     res.status(500).json({ message: "Server Error" });
   }
 };
@@ -56,6 +62,7 @@ const nestedCategories = (categories, parentd = null) => {
       inHomeCategory: cate.inHomeCategory,
       isPublished: cate.isPublished,
       parentCategoryId: cate.parentCategoryId,
+      imageURL: cate.imageURL,
       children: nestedCategories(categories, cate.id),
     });
   }

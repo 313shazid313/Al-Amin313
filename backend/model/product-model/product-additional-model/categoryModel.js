@@ -7,24 +7,26 @@ const categorySchema = new mongoose.Schema(
       required: [true, "Category name is required"],
       unique: true,
     },
+    imageURL: {
+      type: String,
+      required: false,
+    },
     inHomeCategory: {
       type: Boolean,
       default: false,
     },
-
     isPublished: {
       type: Boolean,
       default: false,
     },
     parentCategoryId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: false,
       ref: "Category",
-      default: null,
+      required: false,
     },
   },
   {
-    timestamps: false,
+    timestamps: false, // Change to true if you want timestamps
   }
 );
 
