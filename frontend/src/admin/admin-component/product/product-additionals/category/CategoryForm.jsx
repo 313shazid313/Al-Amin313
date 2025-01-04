@@ -28,6 +28,7 @@ const CategoryForm = () => {
     parentCategoryId: "",
     imageURL: "",
     isPublished: "",
+    inHomeCategory: "",
   });
 
   const handleInputChange = (e) => {
@@ -97,7 +98,7 @@ const CategoryForm = () => {
   return (
     <div>
       <p className="text-2xl font-bold mb-6 text-center">Add New Category</p>
-      <form onSubmit={handleSubmit} className="max-w-xl mx-auto pt-16">
+      <form onSubmit={handleSubmit} className="max-w-xl mx-auto ">
         <div className="mb-5">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             Enter New Category Name
@@ -183,6 +184,50 @@ const CategoryForm = () => {
                 />
                 <label
                   htmlFor="unpublish"
+                  className="block text-sm font-medium text-gray-900"
+                >
+                  Un-Publish
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div className="space-y-10 my-5">
+          <fieldset>
+            <legend className="text-sm font-semibold text-gray-900">
+              Add to Home
+            </legend>
+            <div className="mt-3 space-y-6">
+              <div className="flex items-center gap-x-3">
+                <input
+                  id="add"
+                  name="inHomeCategory"
+                  value="true"
+                  type="radio"
+                  onChange={handleInputChange}
+                  // defaultChecked={isPublished === true}
+                  className="size-4 border-gray-300 text-blue-500 focus:ring-blue-500"
+                />
+                <label
+                  htmlFor="add"
+                  className="block text-sm font-medium text-gray-900"
+                >
+                  Publish
+                </label>
+              </div>
+              <div className="flex items-center gap-x-3">
+                <input
+                  id="notadd"
+                  name="inHomeCategory"
+                  value="false"
+                  type="radio"
+                  onChange={handleInputChange}
+                  // defaultChecked={isPublished === false}
+                  className="size-4 border-gray-300 text-blue-500 focus:ring-blue-500"
+                />
+                <label
+                  htmlFor="notadd"
                   className="block text-sm font-medium text-gray-900"
                 >
                   Un-Publish
