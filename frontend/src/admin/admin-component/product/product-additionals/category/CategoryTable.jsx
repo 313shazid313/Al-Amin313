@@ -79,6 +79,12 @@ const CategoryTable = () => {
                 Image
               </th>
               <th scope="col" className="px-6 py-3">
+                publish
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Home Category
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Edit
               </th>
             </tr>
@@ -101,6 +107,20 @@ const CategoryTable = () => {
                       objectFit: "cover",
                     }}
                   />
+                </td>
+                 <td className="px-6 py-4">
+                  {item.isPublished ? (
+                    <span className="text-green-600">✔ Published</span>
+                  ) : (
+                    <span className="text-red-600">✘ Not Published</span>
+                  )}
+                </td>
+                <td className="px-6 py-4">
+                  {item.inHomeCategory ? (
+                    <span className="text-green-600">✔ Yes</span>
+                  ) : (
+                    <span className="text-red-600">✘ No</span>
+                  )}
                 </td>
                 <td className="px-6 py-4">
                   <Link to={`category-update/${item.id}`}>Edit</Link>

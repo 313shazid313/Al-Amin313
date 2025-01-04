@@ -170,6 +170,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <RouterProvider router={router} />
-    <Toaster position="top-right" reverseOrder={false} />
+    <Toaster position="top-center" reverseOrder={false} />
   </Provider>
 );
