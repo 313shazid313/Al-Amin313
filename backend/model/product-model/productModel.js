@@ -74,6 +74,10 @@ const productSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "Unit",
     },
+    stockId: {
+      type: Schema.Types.ObjectId,
+      ref: "Stock",
+    },
   },
   { timestamps: false }
 );

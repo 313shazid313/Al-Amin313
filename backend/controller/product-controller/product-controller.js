@@ -63,7 +63,8 @@ const getProducts = async (req, res, next) => {
       .populate("typeId")
       .populate("originId")
       .populate("brandId")
-      .populate("unitId");
+      .populate("unitId")
+      .populate("stockId");
 
     return res.status(200).json(showAll);
   } catch (error) {
@@ -75,9 +76,13 @@ const getASingleProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const singleProduct = await ProductModelSchema.findById(id).populate(
-      "category"
-    );
+    const singleProduct = await ProductModelSchema.findById(id)
+      .populate("categoryId")
+      .populate("typeId")
+      .populate("originId")
+      .populate("brandId")
+      .populate("unitId")
+      .populate("stockId");
 
     if (!singleProduct) {
       res.statusCode = 404;

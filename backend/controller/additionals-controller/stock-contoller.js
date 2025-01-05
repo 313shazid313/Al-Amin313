@@ -2,9 +2,35 @@ const stockSchema = require("../../model/additionals-model/stockModel");
 
 const stockCreate = async (req, res) => {
   try {
-    const resp = req.body;
-    await stockSchema.create(resp);
-    return res.status(200).json({ message: "message sent successfully" });
+    const {
+      productName,
+      supplier,
+      quantity,
+      date,
+      unitPrice,
+      totalPrice,
+      note,
+    } = req.body;
+
+    //==========>
+    const ifExists = await stockSchema.exists({ productName: productName });
+
+    if (ifExists) {
+      return res.json(401, { message: "Product with this name already exist" });
+    }
+    //==========>
+
+    const data = await stockSchema.create({
+      productName,
+      supplier,
+      quantity,
+      date,
+      unitPrice,
+      totalPrice,
+      note,
+    });
+
+    return res.status(200).json(data);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
@@ -55,7 +81,7 @@ const stockUpdate = async (req, res) => {
 
 const getSingleStock = async (req, res) => {
   try {
-    const { id } = req.params; // Assuming ID is passed as a route parameter
+    const { id } = req.params;
     const data = await stockSchema
       .findById(id)
       .populate("productName")
