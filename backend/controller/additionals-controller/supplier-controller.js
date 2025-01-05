@@ -2,8 +2,8 @@ const supplierSchema = require("../../model/additionals-model/supplierModel");
 
 const supplierCreate = async (req, res) => {
   try {
-    const resp = req.body;
-    await supplierSchema.create(resp);
+    const { name, phone, email, address } = req.body;
+    await supplierSchema.create({ name, phone, email, address });
     return res.status(200).json({ message: "message sent successfully" });
   } catch (error) {
     console.error(error);

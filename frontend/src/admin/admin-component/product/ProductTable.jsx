@@ -1,236 +1,149 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchProducts,
-  deleteProduct,
-  setEditData,
-} from "../../../redux/feature/productSlice";
-import { useNavigate } from "react-router-dom";
 import Loading from "../../../component/Loading";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useGetAllProductsQuery } from "../../../redux/rtk/productApi";
+
+//icons
+import { FaEdit } from "react-icons/fa";
 
 const ProductTable = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const { data, isLoading } = useGetAllProductsQuery();
 
-  const { isLoading, products, error } = useSelector((state) => state.productR);
+  console.log(data);
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+  // ?search utility -----------
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // const handleEdit = (productToEdit) => {
-  //   if (confirm("Are You Sure Want to Edit")) {
-  //     dispatch(setEditData(productToEdit));
-  //     navigate("/dashboard/admin/add-new-product");
-  //   }
-  // };
-
-  const deleteFunc = (id) => {
-    if (confirm("Are you sure you want to delete?")) {
-      dispatch(deleteProduct({ id }))
-        .then(() => dispatch(fetchProducts()))
-        .catch((error) => console.error("Failed to delete product:", error));
-    }
-  };
-
-  // if (products.length === 0) {
-  //   return (
-  //     <p className="text-2xl py-4 text-center">
-  //       No products available. please add some products!
-  //     </p>
-  //   );
-  // }
+  // console.log(searchData);
+  console.log(searchQuery);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  console.log(products);
   return (
-    // <div className="max-w-7xl mx-auto p-4 space-y-6">
-    //   {!isLoading &&
-    //     !error &&
-    //     products.map((product) => (
-    //       <div
-    //         className="bg-white shadow-lg rounded-lg overflow-hidden md:flex md:space-x-4"
-    //         key={product._id}
-    //       >
-    //         <div className="md:w-1/3">
-    //           <img
-    //             src={product.image}
-    //             alt={product.name}
-    //             className="w-full h-48 object-cover md:h-full"
-    //           />
-    //         </div>
-    //         <div className="p-4 md:w-2/3">
-    //           <h5 className="text-xl font-semibold mb-2">
-    //             Product name : {product.name}
-    //           </h5>
-    //           <p className="text-gray-700 mb-4">
-    //             description : {product.description}
-    //           </p>
-    //           <p className="text-gray-700 mb-4">price : {product.price}</p>
-    //           <p className="text-gray-700 mb-4">
-    //             Quantity : {product.quantity}
-    //           </p>
-    //           <p className="text-gray-700 mb-4">Offer : {product.offer}</p>
-
-    //           <p className="text-gray-700 mb-4">Image URL : {product.image}</p>
-    //           <p className="text-gray-700 mb-4">
-    //             Category : {product.category.name}
-    //           </p>
-    //           <div className="flex w-96 flex-col space-y-2 md:flex-row md:space-x-4">
-    //             <button className="" onClick={() => handleEdit(product)}>
-    //               Edit This Product
-    //             </button>
-    //             <button
-    //               className="flex-1 w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
-    //               onClick={() => deleteFunc(product._id)}
-    //             >
-    //               Delete This Product
-    //             </button>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     ))}
-    //   {isLoading && <p>Loading...</p>}
-    //   {error && <p className="text-red-500">{error}</p>}
-    // </div>
-
     <div>
       <p className="text-2xl py-4 text-center">Manage Products</p>
-
-      <div className="flex justify-end">
-        <Link
-          to="add-new-product"
-          className="relative inline-flex items-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
-        >
-          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            Add+
-          </span>
-        </Link>
+      <div className="flex justify-between">
+        <div>
+          {/* seaarch bar */}
+          <div className="flex items-center max-w-sm mx-auto">
+            {/* <label className="sr-only">Search</label> */}
+            <div className="relative w-full">
+              <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg
+                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 18 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2"
+                  />
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="simple-search"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search with name..."
+                required
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+        {/* new item */}
+        <div>
+          <Link
+            to="product-form"
+            className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+          >
+            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              Add +
+            </span>
+          </Link>
+        </div>
       </div>
 
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Product name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Color
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Category
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Price
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Apple MacBook Pro 17"
-              </th>
-              <td className="px-6 py-4">Silver</td>
-              <td className="px-6 py-4">Laptop</td>
-              <td className="px-6 py-4">$2999</td>
-              <td className="px-6 py-4">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+      <div>
+        {/* table  */}
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Index
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Product name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Brand
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Category
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Sell Price
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Type
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Unit
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  status
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Sell Type
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {data?.map((item, index) => (
+                <tr
+                  className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                  key={item.id}
                 >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Microsoft Surface Pro
-              </th>
-              <td className="px-6 py-4">White</td>
-              <td className="px-6 py-4">Laptop PC</td>
-              <td className="px-6 py-4">$1999</td>
-              <td className="px-6 py-4">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Magic Mouse 2
-              </th>
-              <td className="px-6 py-4">Black</td>
-              <td className="px-6 py-4">Accessories</td>
-              <td className="px-6 py-4">$99</td>
-              <td className="px-6 py-4">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Google Pixel Phone
-              </th>
-              <td className="px-6 py-4">Gray</td>
-              <td className="px-6 py-4">Phone</td>
-              <td className="px-6 py-4">$799</td>
-              <td className="px-6 py-4">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Apple Watch 5
-              </th>
-              <td className="px-6 py-4">Red</td>
-              <td className="px-6 py-4">Wearables</td>
-              <td className="px-6 py-4">$999</td>
-              <td className="px-6 py-4">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                  <td className="px-6 py-4">{index + 1}</td>
+                  <td className="px-6 py-4">{item.name}</td>
+                  <td className="px-6 py-4">{item.brandId?.name}</td>
+                  <td className="px-6 py-4">{item.categoryId?.name}</td>
+                  <td className="px-6 py-4">{item.price}</td>
+                  <td className="px-6 py-4">{item.typeId?.name}</td>
+                  <td className="px-6 py-4">{item.unitId?.name}</td>
+                  <td className="px-6 py-4">
+                    {item.isPublished ? (
+                      <span className="text-green-600">Publish</span>
+                    ) : (
+                      <span className="text-red-600"></span>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">{item.sellType}</td>
+                  <td className="px-6 py-4 flex space-x-2">
+                    <div className="flex flex-row ">
+                      <Link to={`product-update/${item.id}`}>
+                        <FaEdit className="text-xl text-blue-500 m-4" />
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

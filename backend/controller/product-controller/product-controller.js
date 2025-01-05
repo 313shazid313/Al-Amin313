@@ -2,14 +2,27 @@ const ProductModelSchema = require("../../model/product-model/productModel");
 
 const productCreate = async (req, res, next) => {
   try {
-    const newProduct = new ProductModelSchema({
-      ...req.body,
-    });
-
-    // console.log("product is : ", req.body);
+    const {
+      name,
+      Specification,
+      description,
+      price,
+      deletePrice,
+      buyingPrice,
+      imageURL,
+      offer,
+      status,
+      isPublished,
+      sellType,
+      categoryId,
+      typeId,
+      originId,
+      brandId,
+      unitId,
+      preOrder,
+    } = req.body;
 
     //==========>
-    const { name } = req.body;
     const productExist = await ProductModelSchema.exists({ name: name });
 
     if (productExist) {
@@ -17,7 +30,25 @@ const productCreate = async (req, res, next) => {
     }
     //==========>
 
-    const savedProduct = await newProduct.save();
+    const savedProduct = await ProductModelSchema.create({
+      name,
+      Specification,
+      description,
+      price,
+      deletePrice,
+      buyingPrice,
+      imageURL,
+      offer,
+      status,
+      isPublished,
+      sellType,
+      categoryId,
+      typeId,
+      originId,
+      brandId,
+      unitId,
+      preOrder,
+    });
 
     return res.status(200).json(savedProduct);
   } catch (error) {
@@ -62,20 +93,22 @@ const updateProduct = async (req, res, next) => {
   try {
     const {
       name,
-      description,
       Specification,
+      description,
       price,
       deletePrice,
       buyingPrice,
       imageURL,
       offer,
+      status,
       isPublished,
-      status, //? available or not
+      sellType,
       categoryId,
       typeId,
       originId,
       brandId,
       unitId,
+      preOrder,
     } = req.body;
 
     console.log("Request Body:", req.body);
@@ -84,20 +117,22 @@ const updateProduct = async (req, res, next) => {
 
     const updateData = {
       name,
-      description,
       Specification,
+      description,
       price,
       deletePrice,
       buyingPrice,
       imageURL,
       offer,
+      status,
       isPublished,
-      status, //? available or not
+      sellType,
       categoryId,
       typeId,
       originId,
       brandId,
       unitId,
+      preOrder,
     };
 
     console.log(id);

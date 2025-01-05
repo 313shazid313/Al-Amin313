@@ -13,7 +13,8 @@ import CategoryBasedProducts from "./pages/CategoryBasedProducts.jsx";
 import ProductDetailPage from "./pages/ProductDetailPage.jsx";
 import Protected from "./admin/Protected.jsx";
 import ProductTable from "./admin/admin-component/product/ProductTable.jsx";
-import AddProduct from "./admin/admin-component/product/AddProduct.jsx";
+import ProductForm from "./admin/admin-component/product/ProductForm.jsx";
+import ProductUpdate from "./admin/admin-component/product/ProductUpdate.jsx"
 import Poster from "./admin/admin-component/Poster.jsx";
 import Cart from "./component/Cart.jsx";
 import Orders from "./admin/admin-component/Orders.jsx";
@@ -91,15 +92,17 @@ const router = createBrowserRouter([
         element: <ProductTable />,
       },
       {
-        path: "product-table/add-new-product",
-        element: <AddProduct />,
+        path: "product-table/product-form",
+        element: <ProductForm />,
       },
-
+      {
+        path: "product-table/product-update/:id",
+        element: <ProductUpdate />,
+      },
       {
         path: "add-new-poster",
         element: <Poster />,
       },
-
       {
         path: "user-order",
         element: <Orders />,

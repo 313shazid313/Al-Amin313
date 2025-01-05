@@ -112,12 +112,13 @@ const AdminNav = () => {
               </button>
               <ul id="dropdown1" className="hidden py-2 space-y-2">
                 <li>
-                  <a
-                    href="#"
+                  <NavLink
+                    exact="true"
+                    to="product-table"
                     className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
                     Products
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
                   <a

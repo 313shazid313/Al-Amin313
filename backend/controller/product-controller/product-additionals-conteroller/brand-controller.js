@@ -2,9 +2,7 @@ const brandSchema = require("../../../model/product-model/product-additional-mod
 
 const brandCreate = async (req, res) => {
   try {
-    const resp = req.body;
-
-    const { name } = req.body;
+    const { name, imageURL, isPublished } = req.body;
     const exist = await brandSchema.exists({ name: name });
 
     if (exist) {
@@ -13,7 +11,7 @@ const brandCreate = async (req, res) => {
       });
     }
 
-    await brandSchema.create(resp);
+    await brandSchema.create({ name, imageURL, isPublished });
     return res.status(200).json({ message: "message sent successfully" });
   } catch (error) {
     console.error(error);

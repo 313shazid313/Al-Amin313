@@ -36,14 +36,22 @@ const productSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-    //? available or not
     status: {
       type: String,
-      required: [false, "Status is required"],
+      required: false,
     },
     isPublished: {
       type: Boolean,
       required: true,
+      default: false,
+    },
+    sellType: {
+      type: String, // Correct the casing here
+      required: true,
+    },
+    preOrder: {
+      type: Boolean,
+      required: false,
       default: false,
     },
     categoryId: {
