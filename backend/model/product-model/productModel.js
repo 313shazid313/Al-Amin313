@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema(
       required: [true, "Name is required"],
       unique: true,
     },
-    Specification: {
+    specification: {
       type: String,
       required: false,
     },
@@ -23,10 +23,6 @@ const productSchema = new mongoose.Schema(
     deletePrice: {
       type: Number,
       required: [true, "Price is required"],
-    },
-    buyingPrice: {
-      type: Number,
-      required: false,
     },
     imageURL: {
       type: String,
@@ -54,6 +50,11 @@ const productSchema = new mongoose.Schema(
       required: false,
       default: false,
     },
+    vat: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     categoryId: {
       type: Schema.Types.ObjectId,
       ref: "Category",
@@ -73,10 +74,6 @@ const productSchema = new mongoose.Schema(
     unitId: {
       type: Schema.Types.ObjectId,
       ref: "Unit",
-    },
-    stockId: {
-      type: Schema.Types.ObjectId,
-      ref: "Stock",
     },
   },
   { timestamps: false }

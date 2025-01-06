@@ -65,7 +65,6 @@ const getProducts = async (req, res, next) => {
       .populate("originId")
       .populate("brandId")
       .populate("unitId")
-      .populate("stockId");
 
     return res.status(200).json(showAll);
   } catch (error) {
