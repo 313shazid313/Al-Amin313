@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "name is required"],
+      required: [true, "Name is required"],
       unique: true,
     },
     Specification: {
@@ -46,7 +46,7 @@ const productSchema = new mongoose.Schema(
       default: false,
     },
     sellType: {
-      type: String, // Correct the casing here
+      type: String,
       required: true,
     },
     preOrder: {

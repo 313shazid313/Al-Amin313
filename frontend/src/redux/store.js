@@ -9,6 +9,7 @@ import unitApi from "./product-additional-state/unitApi";
 import originApi from "./product-additional-state/originApi";
 import typeApi from "./product-additional-state/typeApi";
 import productApi from "./rtk/productApi";
+import stockApi from "./additionals-state/stockApi";
 
 export const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ export const store = configureStore({
     [originApi.reducerPath]: originApi.reducer,
     [typeApi.reducerPath]: typeApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
+    [stockApi.reducerPath]: stockApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -31,7 +33,8 @@ export const store = configureStore({
       originApi.middleware,
       typeApi.middleware,
       unitApi.middleware,
-      productApi.middleware
+      productApi.middleware,
+      stockApi.middleware
     ),
 });
 

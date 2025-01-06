@@ -1,4 +1,5 @@
 const ProductModelSchema = require("../../model/product-model/productModel");
+const stockSchema = require("../../model/additionals-model/stockModel");
 
 const productCreate = async (req, res, next) => {
   try {
@@ -81,8 +82,7 @@ const getASingleProduct = async (req, res, next) => {
       .populate("typeId")
       .populate("originId")
       .populate("brandId")
-      .populate("unitId")
-      .populate("stockId");
+      .populate("unitId");
 
     if (!singleProduct) {
       res.statusCode = 404;

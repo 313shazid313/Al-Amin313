@@ -2,15 +2,17 @@ import Loading from "../../../component/Loading";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useGetAllProductsQuery } from "../../../redux/rtk/productApi";
+import { useGetAllStocksQuery } from "../../../redux/additionals-state/stockApi";
 
 //icons
 import { FaEdit } from "react-icons/fa";
 
 const ProductTable = () => {
   const { data, isLoading } = useGetAllProductsQuery();
+  const { data: stockData } = useGetAllStocksQuery();
 
   console.log(data);
-
+  console.log(stockData);
   // ?search utility -----------
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -85,6 +87,9 @@ const ProductTable = () => {
                   Product name
                 </th>
                 <th scope="col" className="px-6 py-3">
+                  Quantity
+                </th>
+                <th scope="col" className="px-6 py-3">
                   Brand
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -118,9 +123,14 @@ const ProductTable = () => {
                   key={item.id}
                 >
                   <td className="px-6 py-4">{index + 1}</td>
-                  <td className="px-6 py-4">{item.name}</td>
-                  <td className="px-6 py-4">{item.brandId?.name}</td>
-                  <td className="px-6 py-4">{item.categoryId?.name}</td>
+                  <td className="px-6 py-4">{item?.name}</td>
+                  <td className="px-6 py-4">
+                    {stockData?.find(
+                      (stock) => stock.productName._id === item._id
+                    )?.quantity || "0"}
+                  </td>
+                  <td className="px-6 py-4">{item?.brandId?.name}</td>
+                  <td className="px-6 py-4">{item?.categoryId?.name}</td>
                   <td className="px-6 py-4">{item.price}</td>
                   <td className="px-6 py-4">{item.typeId?.name}</td>
                   <td className="px-6 py-4">{item.unitId?.name}</td>

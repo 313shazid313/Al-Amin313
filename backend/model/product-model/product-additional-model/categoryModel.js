@@ -26,7 +26,7 @@ const categorySchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: false, // Change to true if you want timestamps
+    timestamps: false,
   }
 );
 
