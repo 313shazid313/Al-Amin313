@@ -43,6 +43,13 @@ const {
   getSingleSupplier,
 } = require("../controller/additionals-controller/supplier-controller");
 
+const {
+  getSingleCarton,
+  cartonUpdate,
+  cartonRead,
+  cartonCreate,
+} = require("../controller/additionals-controller/carton-controller")
+
 additionalsRoute.route("/create-review").post(reviewCreate);
 additionalsRoute.route("/read-reviews").get(reviewRead);
 additionalsRoute.route("/update-review/:id").put(reviewUpdate);
@@ -72,5 +79,10 @@ additionalsRoute.route("/create-supplier").post(supplierCreate);
 additionalsRoute.route("/read-suppliers").get(supplierRead);
 additionalsRoute.route("/update-supplier/:id").put(supplierUpdate);
 additionalsRoute.route("/single-supplier/:id").get(getSingleSupplier);
+
+additionalsRoute.route("/create-carton").post(cartonCreate);
+additionalsRoute.route("/read-carton").get(cartonRead);
+additionalsRoute.route("/update-carton/:id").put(cartonUpdate);
+additionalsRoute.route("/single-carton/:id").get(getSingleCarton);
 
 module.exports = additionalsRoute;
