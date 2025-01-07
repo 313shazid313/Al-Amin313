@@ -75,6 +75,20 @@ const productSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "Unit",
     },
+    // for only corporate sell
+    cartonId: {
+      type: Schema.Types.ObjectId,
+      ref: "Carton",
+    },
+    mrpPrice: {
+      type: Number,
+      required: false,
+    },
+    tradePrice: {
+      type: Number,
+      required: false,
+    },
+    // for only corporate sell
   },
   { timestamps: false }
 );

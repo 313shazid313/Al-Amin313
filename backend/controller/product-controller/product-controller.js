@@ -1,5 +1,4 @@
 const ProductModelSchema = require("../../model/product-model/productModel");
-const stockSchema = require("../../model/additionals-model/stockModel");
 
 const productCreate = async (req, res, next) => {
   try {
@@ -21,6 +20,9 @@ const productCreate = async (req, res, next) => {
       brandId,
       unitId,
       preOrder,
+      cartonId,
+      mrpPrice,
+      tradePrice,
     } = req.body;
 
     //==========>
@@ -49,6 +51,9 @@ const productCreate = async (req, res, next) => {
       brandId,
       unitId,
       preOrder,
+      cartonId,
+      mrpPrice,
+      tradePrice,
     });
 
     return res.status(200).json(savedProduct);
@@ -64,7 +69,7 @@ const getProducts = async (req, res, next) => {
       .populate("typeId")
       .populate("originId")
       .populate("brandId")
-      .populate("unitId")
+      .populate("unitId");
 
     return res.status(200).json(showAll);
   } catch (error) {
@@ -113,6 +118,9 @@ const updateProduct = async (req, res, next) => {
       brandId,
       unitId,
       preOrder,
+      cartonId,
+      mrpPrice,
+      tradePrice,
     } = req.body;
 
     console.log("Request Body:", req.body);
@@ -137,6 +145,9 @@ const updateProduct = async (req, res, next) => {
       brandId,
       unitId,
       preOrder,
+      cartonId,
+      mrpPrice,
+      tradePrice,
     };
 
     console.log(id);

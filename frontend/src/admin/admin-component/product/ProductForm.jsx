@@ -13,6 +13,7 @@ import { useGetAllOriginQuery } from "../../../redux/product-additional-state/or
 import { useGetAllUnitQuery } from "../../../redux/product-additional-state/unitApi";
 import { useGetAllCategoriesQuery } from "../../../redux/product-additional-state/categoryApi";
 import { useGetAllBrandsQuery } from "../../../redux/product-additional-state/brandApi";
+import { useGetAllCartonsQuery } from "../../../redux/additionals-state/cartonApi";
 
 import Select from "react-select";
 
@@ -28,17 +29,21 @@ const ProductForm = () => {
     navigate(-1);
   };
 
+  // console.log(corporateForm);
+
   const { data: typeData } = useGetAllTypesQuery();
   const { data: unitData } = useGetAllUnitQuery();
   const { data: brandData } = useGetAllBrandsQuery();
   const { data: categoryData } = useGetAllCategoriesQuery();
   const { data: originData } = useGetAllOriginQuery();
+  const { data: cartonData } = useGetAllCartonsQuery();
 
   // console.log(typeData);
   // console.log(unitData);
   // console.log(brandData);
   // console.log(categoryData);
   // console.log(originData);
+  // console.log(cartonData);
 
   const [items, setItems] = useState({
     name: "",
@@ -67,8 +72,12 @@ const ProductForm = () => {
       [name]: value,
     });
 
-    if (e.target.value === "corporate-sell") {
-      setCorporateForm(true); // Example logic if using React state
+    // console.log(items.sellType);
+
+    if (items.sellType === "corporate-sell") {
+      setCorporateForm(false);
+    } else {
+      setCorporateForm(true);
     }
   };
 
@@ -489,7 +498,38 @@ const ProductForm = () => {
               </div>
             </fieldset>
           </div>
-          {corporateForm ? <p>asdasdasddasdasdasd</p> : <></>}
+          {/* corporate sale form */}
+          {corporateForm && (
+            <>
+              <div className="py-6">
+                <p className="bold text-2xl">Corporate Sell</p>
+                <div className="sm:col-span-3">
+                  <label className="block text-sm/6 font-medium text-gray-900">
+                    Carton Size
+                  </label>
+                  <select
+                    id="ProductBrandId"
+                    name="ProductBrandId"
+                    value={items.ProductBrandId}
+                    onChange={handleInputChange}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600-600 sm:text-sm/6"
+                  >
+                    <option value="" disabled>
+                      -----Select Brand-----
+                    </option>
+                    <option value="">None</option>
+                    {cartonData &&
+                      cartonData.map((Item) => (
+                        <option key={Item._id} value={Item._id}>
+                          {Item.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+              </div>
+            </>
+          )}
+          {/* corporate sale form */}
         </div>
       </div>
 
@@ -509,6 +549,7 @@ const ProductForm = () => {
           Save
         </button>
       </div>
+      {/* submit button */}
     </form>
   );
 };
